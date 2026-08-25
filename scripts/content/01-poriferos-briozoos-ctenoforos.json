@@ -1,0 +1,97 @@
+[
+{"i":1,
+ "food":"Filtra bacterioplancton y materia orgánica disuelta. Aloja cianobacterias simbiontes que le aportan fotosintato, y por eso ocupa paredes iluminadas y no fondos en penumbra.",
+ "repro":"Hermafrodita de fecundación externa: emite larvas ciliadas en verano que nadan unas horas antes de fijarse. También rebrota a partir de fragmentos desprendidos de la base.",
+ "def":"Alcaloides bromados derivados de la tirosina, como la aeroplisinina, que se activan al romperse el tejido y disuaden a peces y bacterias oportunistas.",
+ "eco":"Transforma materia orgánica disuelta en detritus celular que reaprovecha la fauna pequeña del fondo, y sus tubos dan cobijo a poliquetos y crustáceos diminutos."},
+
+{"i":2,
+ "food":"Filtrador estricto de bacterias y partículas finas. Los ejemplares iluminados llevan cianobacterias simbiontes y tiran a pardo; los de cueva, sin ellas, quedan violáceos.",
+ "repro":"Sexos separados y fecundación externa, con emisión de gametos a finales de primavera y en verano. El crecimiento es lentísimo: un ejemplar grande tiene décadas.",
+ "def":"Esqueleto de espículas silíceas tan compacto que la vuelve dura como la roca, reforzado con metabolitos disuasorios frente a la mayoría de depredadores.",
+ "eco":"Donde coinciden, es la presa casi exclusiva del nudibranquio Peltodoris atromaculata. Sus canales internos albergan una fauna densa de crustáceos y poliquetos."},
+
+{"i":3,
+ "food":"Filtra bacterias y partículas muy finas, e incorpora además sedimento del fondo que atraviesa el cuerpo y acaba integrado en su matriz de colágeno.",
+ "repro":"Vivípara: incuba las larvas dentro del cuerpo y las libera ya desarrolladas. Se propaga también por gemación y por lóbulos que se separan y arraigan.",
+ "def":"Sin espículas de ningún tipo: la defensa es puramente mecánica, una corteza de colágeno densa y elástica que resiste el mordisco y sella los desgarros.",
+ "eco":"Al retener sedimento en su matriz participa en el reciclado de partículas del fondo, y su longevidad la convierte en indicador de zonas poco alteradas."},
+
+{"i":4,
+ "food":"Filtrador de bacterias y detritus fino, con una red de fibras de espongina que sostiene un sistema de canales de gran caudal para su tamaño.",
+ "repro":"Hermafrodita vivípara que incuba larvas en el interior del cuerpo y las libera en verano. Coloniza también por fragmentación tras los temporales.",
+ "def":"Terpenoides de olor penetrante, muy evidentes al sacarla del agua, que la hacen poco apetecible para peces y limitan la colonización de su superficie.",
+ "eco":"Retiene sedimento entre sus conos superficiales y estabiliza fondos rocosos con arena, sirviendo de sustrato a hidrozoos y briozoos incrustantes."},
+
+{"i":5,
+ "food":"Filtrador de partículas en suspensión, dependiente de la corriente para renovar el agua. En paredes verticales bien barridas alcanza sus tamaños mayores.",
+ "repro":null,
+ "def":"Metabolitos terpénicos característicos del género Ircinia, que unidos a una consistencia correosa y fibrosa la hacen poco atractiva para los peces.",
+ "eco":"Su entramado de fibras aloja una fauna intersticial abundante de anfípodos, ofiuras pequeñas y poliquetos que usan la esponja como microhábitat."},
+
+{"i":6,
+ "food":"Filtrador de partículas finas en aguas de corriente constante y poca luz, condición que explica su presencia en veriles profundos y fondos detríticos.",
+ "repro":null,
+ "def":"Sin defensa química destacada conocida: su estrategia es crecer en profundidad, donde hay menos ramoneo, y confiar en un esqueleto de espículas rígido.",
+ "eco":"Sus ramas erectas hacen de estructura vertical en fondos por lo demás llanos, y sirven de percha a ofiuras, crinoideos y huevos de moluscos."},
+
+{"i":7,
+ "food":"Filtra bacterias y partículas muy finas a través de una pared corporal de una sola capa, el sistema de bombeo más simple que existe entre las esponjas.",
+ "repro":"Hermafrodita: incuba larvas anfiblástulas que salen por los tubos y se fijan cerca del progenitor, lo que explica que aparezca en grupos apretados.",
+ "def":"Espículas calcáreas de tres puntas repartidas por toda la pared, que hacen de la esponja un bocado abrasivo pese a su apariencia frágil.",
+ "eco":"Coloniza rápido roca desnuda en cuevas y extraplomos, y su retículo de tubos da refugio a copépodos y anfípodos de la fauna cavernícola."},
+
+{"i":8,
+ "food":"Filtrador de bacterias y detritus. Su esqueleto de espongina, sin espículas silíceas propias, incorpora granos de arena y espículas de otras esponjas.",
+ "repro":"Vivípara, con larvas incubadas y liberadas en verano. Crece rápido para el grupo y recoloniza en meses las superficies raspadas.",
+ "def":"Sesquiterpenoides como la avarol, potente disuasorio frente a peces y estudiado por su actividad antiviral, que la protege pese a su textura blanda.",
+ "eco":"Especie pionera en roca recién despejada: ocupa hueco antes que las esponjas de crecimiento lento y prepara el sustrato para la sucesión posterior."},
+
+{"i":9,
+ "food":"Captura fitoplancton y partículas orgánicas con el lofóforo, una corona de tentáculos ciliados que cada zooide despliega y retrae en segundos.",
+ "repro":"Hermafrodita: incuba embriones en ovicelas y libera larvas lecitotróficas que se fijan en horas. Esa brevedad larvaria explica su éxito como incrustante portuaria.",
+ "def":"Briostatinas, macrólidos producidos por la bacteria simbionte Candidatus Endobugula sertula, que protegen a las larvas del ramoneo y son la base de su interés farmacológico.",
+ "eco":"Coloniza cascos, cabos y estructuras sumergidas formando matas donde se refugian anfípodos, nudibranquios y juveniles de peces de roca."},
+
+{"i":10,
+ "food":"Filtra fitoplancton y partículas finas con el lofóforo de cada zooide, sincronizando el batido ciliar entre zooides vecinos para generar corrientes de salida.",
+ "repro":"Incuba embriones en ovicelas globosas bien visibles con lupa. Las larvas se fijan cerca, de modo que la costra se extiende como una mancha continua.",
+ "def":"Pared calcárea gruesa con la abertura protegida por un opérculo y por avicularias en forma de pico que pellizcan a los pequeños invasores.",
+ "eco":"Tapiza roca y conchas y compite por espacio con esponjas y ascidias; su costra naranja es sustrato para nudibranquios especializados en briozoos."},
+
+{"i":11,
+ "food":"Filtrador de fitoplancton mediante lofóforo. Tolera aguas turbias y con metales que excluyen a otros incrustantes, ventaja competitiva en puertos y fondeaderos.",
+ "repro":"Incuba larvas de vida corta que se fijan a pocos metros del progenitor. La expansión a larga distancia depende del transporte en cascos y aparejos.",
+ "def":"Pigmentos pardo rojizos y tolerancia al cobre que le permiten crecer sobre pinturas antiincrustantes, y sobre ella se instalan después otras especies.",
+ "eco":"Especie introducida de amplia expansión: al asentarse sobre antiincrustantes hace de puente para que otras incrustantes colonicen cascos tratados."},
+
+{"i":12,
+ "food":"Filtra partículas finas con el lofóforo. La forma nodular, con zooides dispuestos en varias capas, aumenta la superficie de captura en poco espacio.",
+ "repro":null,
+ "def":"Colonia fuertemente calcificada y erizada de avicularias, que combinan dureza mineral y pinzas defensivas contra larvas y pequeños ramoneadores.",
+ "eco":"Sus nódulos hacen de microarrecife sobre roca y conchas, y aportan huecos que ocupan poliquetos tubícolas y crustáceos diminutos."},
+
+{"i":13,
+ "food":"Filtrador de fitoplancton y partículas en suspensión, favorecido por las corrientes que barren los veriles donde forma sus estructuras erectas.",
+ "repro":"Incuba embriones en ovicelas y libera larvas de corta vida. Crece por gemación en dos capas, lo que le permite levantar láminas rígidas bifoliadas.",
+ "def":"Esqueleto muy calcificado que imita a un coral y disuade el ramoneo, complementado con avicularias repartidas por la superficie de la colonia.",
+ "eco":"Genera hábitat tridimensional en fondos de veril: sus láminas sostienen hidrozoos, ofiuras y puestas de moluscos, y aumentan la diversidad local."},
+
+{"i":14,
+ "food":"Depredador de zooplancton: despliega dos tentáculos ramificados cubiertos de coloblastos, células adhesivas que atrapan copépodos y larvas sin necesidad de veneno.",
+ "repro":"Hermafrodita simultáneo de fecundación externa que emite gametos al agua abierta. El desarrollo es directo y los juveniles ya cazan con tentáculos.",
+ "def":"Cuerpo transparente y gelatinoso que lo vuelve casi invisible en la columna de agua; carece de defensa activa y depende por completo del camuflaje.",
+ "eco":"Depredador clave del zooplancton en pulsos estacionales: cuando abunda puede reducir sensiblemente las poblaciones de copépodos y de larvas de peces."},
+
+{"i":15,
+ "food":"Carnívoro especializado en otros ctenóforos y en salpas, que engulle enteros abriendo la boca hasta el diámetro del cuerpo; carece de tentáculos.",
+ "repro":"Hermafrodita simultáneo con fecundación externa. Sus poblaciones responden con rapidez a la abundancia de presas gelatinosas y pueden multiplicarse en pocas semanas.",
+ "def":"Sin defensa activa. Su transparencia total y la ausencia de partes duras lo hacen difícil de detectar para depredadores visuales.",
+ "eco":"Regula poblaciones de otros ctenóforos, y en zonas donde Mnemiopsis ha invadido se ha usado como control biológico por esa depredación selectiva."},
+
+{"i":16,
+ "food":"Depredador de zooplancton pequeño, que captura con coloblastos repartidos a lo largo del borde de su cuerpo acintado mientras ondula en la columna de agua.",
+ "repro":"Hermafrodita simultáneo de fecundación externa. La larva es cidípida, con forma esférica y tentáculos, y solo después se alarga hasta la forma de cinta.",
+ "def":"Transparencia casi total y natación ondulante que descompone su silueta; sin defensa química ni estructura urticante de ningún tipo.",
+ "eco":"Depredador planctónico de aguas templadas y cálidas cuya presencia suele acompañar a masas de agua oceánica que se acercan a la costa."}
+]

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<rect width="200" height="200" rx="42" fill="#061418"/>
+<g transform="translate(0,26)">
+  <path id="mkLens" d="M40 55C51 49 77 48 88 55C94 59 95 69 92 79C88 92 77 99 64 99C50 99 40 90 37 76C34 65 35 58 40 55Z"/>
+  <clipPath id="mkLensR"><use href="#mkLens" transform="translate(200,0) scale(-1,1)"/></clipPath>
+  <!-- Hebillas de la correa -->
+  <rect x="1" y="58" width="19" height="28" rx="7" fill="#122C3F"/>
+  <rect x="180" y="58" width="19" height="28" rx="7" fill="#122C3F"/>
+  <!-- Cuerpo -->
+  <path id="mkBody" d="M16 54C16 34 34 25 57 22C85 19 115 19 143 22C166 25 184 34 184 54C184 78 177 98 163 110C150 121 131 122 117 113C109 108 105 104 100 104C95 104 91 108 83 113C69 122 50 121 37 110C23 98 16 78 16 54Z" fill="#122C3F"/>
+  <clipPath id="mkTop"><use href="#mkBody"/></clipPath>
+  <g clip-path="url(#mkTop)"><rect x="0" y="0" width="100" height="46" fill="#1BA9A4"/></g>
+  <!-- Cristales: un solo trazado, espejado. Simetría garantizada. -->
+  <g fill="none" stroke="#FFF" stroke-width="13">
+    <use href="#mkLens"/><use href="#mkLens" transform="translate(200,0) scale(-1,1)"/>
+  </g>
+  <use href="#mkLens" fill="#FFF" stroke="#1BA9A4" stroke-width="9"/>
+  <use href="#mkLens" transform="translate(200,0) scale(-1,1)" fill="#1BA9A4" stroke="#1BA9A4" stroke-width="9"/>
+  <!-- Izquierda: profundímetro -->
+  <g stroke="#122C3F" stroke-width="3.4" stroke-linecap="round">
+    <path d="M45 62l5 4M41 74h6M45 87l5-4M57 93l2-5"/>
+  </g>
+  <path d="M41 86l6-4" stroke="#F47B20" stroke-width="3.6" stroke-linecap="round"/>
+  <path d="M64 75L85 53c3-3 7 1 4 4L69 79Z" fill="#122C3F"/>
+  <path d="M67 74l14-1c3 0 3 5 0 5l-14-1Z" fill="#F47B20"/>
+  <circle cx="64" cy="76" r="6.5" fill="#FFF" stroke="#122C3F" stroke-width="3.6"/>
+  <!-- Derecha: la vida bajo el agua -->
+  <g clip-path="url(#mkLensR)">
+    <path d="M104 92c9 5 15-3 24 1s13 7 21 5 13-7 21-3v20h-66Z" fill="#122C3F"/>
+    <g fill="#FFF">
+      <path d="M115 80c6-6 18-7 26-2l8-6v16l-8-6c-8 5-20 4-26-2Z"/>
+      <path d="M138 60c5-5 15-5 21-1l7-5v13l-7-5c-6 4-16 3-21-2Z"/>
+    </g>
+    <g fill="#122C3F"><circle cx="131" cy="78" r="1.8"/><circle cx="149" cy="58" r="1.6"/></g>
+    <g fill="#FFF" opacity=".9"><circle cx="118" cy="61" r="2.8"/><circle cx="112" cy="70" r="1.9"/></g>
+  </g>
+  <!-- Puente, nariz y acentos -->
+  <path d="M88 47c7-5 17-5 24 0-6 6-18 6-24 0Z" fill="#B4D923"/>
+  <g clip-path="url(#mkTop)">
+    <path d="M93 70c2-7 12-7 14 0Z" fill="#F47B20"/>
+    <path d="M91 77h18c2 13 2 25 0 32-4 5-14 5-18 0-2-7-2-19 0-32Z" fill="#FFF"/>
+    <path d="M91 77h9v36c-4 0-7-1-9-4-2-7-2-19 0-32Z" fill="#1BA9A4"/>
+  </g>
+</g>
+</svg>

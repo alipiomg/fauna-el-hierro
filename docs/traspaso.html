@@ -1,0 +1,543 @@
+<title>Cuaderno de la Guía El Hierro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+/* ─────────────────────────────────────────────────────────────
+   Paleta tomada del logotipo de Agustín Fragero.
+   Neutros sesgados a teal: elegidos, no heredados.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --navy:#122C3F;
+  --teal:#1BA9A4;
+  --teal-deep:#127A76;
+  --orange:#F47B20;
+  --lime:#7FA30F;
+
+  --ground:#F1F5F5;
+  --panel:#FFFFFF;
+  --panel-2:#E7EFEF;
+  --ink:#102630;
+  --ink-soft:#3D5A66;
+  --muted:#61828E;
+  --rule:rgba(18,44,63,.14);
+  --rule-firm:rgba(27,169,164,.42);
+  --shadow:0 1px 2px rgba(18,44,63,.06), 0 8px 24px rgba(18,44,63,.06);
+
+  --display:"Archivo","Archivo Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Code",Consolas,monospace;
+
+  --measure:66ch;
+  --r:12px;
+  --cta-bg:#122C3F;
+  --cta-ink:#EAF6F7;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#08171F;
+    --panel:#0E2430;
+    --panel-2:#143140;
+    --ink:#E4F0F1;
+    --ink-soft:#B3CDD4;
+    --muted:#7FA0AC;
+    --rule:rgba(179,205,212,.17);
+    --rule-firm:rgba(27,169,164,.5);
+    --teal:#3FD0C9;
+    --teal-deep:#7FE6E0;
+    --lime:#B4D923;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.28);
+    --cta-bg:#3FD0C9;
+    --cta-ink:#04222A;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#08171F;
+  --panel:#0E2430;
+  --panel-2:#143140;
+  --ink:#E4F0F1;
+  --ink-soft:#B3CDD4;
+  --muted:#7FA0AC;
+  --rule:rgba(179,205,212,.17);
+  --rule-firm:rgba(27,169,164,.5);
+  --teal:#3FD0C9;
+  --teal-deep:#7FE6E0;
+  --lime:#B4D923;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.28);
+  --cta-bg:#3FD0C9;
+  --cta-ink:#04222A;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--body);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.022em;text-wrap:balance;margin:0;line-height:1.06}
+p{margin:0}
+a{color:var(--teal-deep);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+code,.mono{font-family:var(--mono);font-size:.88em}
+.num{font-variant-numeric:tabular-nums}
+
+.wrap{max-width:1020px;margin:0 auto;padding:0 22px}
+
+/* ── Cabecera ─────────────────────────────────────────────── */
+.top{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--ground) 88%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--rule);
+}
+.top-in{display:flex;align-items:center;gap:14px;justify-content:space-between;padding:11px 0}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand svg{width:44px;height:33px;flex:none;display:block}
+.brand b{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.02em;display:block;line-height:1.2}
+.brand span{font-size:11.5px;color:var(--muted);display:block}
+.top nav{display:flex;gap:4px;flex-wrap:wrap}
+.top nav a{
+  font-size:12.5px;font-weight:600;color:var(--ink-soft);text-decoration:none;
+  padding:7px 10px;border-radius:8px;
+}
+.top nav a:hover{background:var(--panel-2);color:var(--ink)}
+
+/* ── Portada ──────────────────────────────────────────────── */
+.hero{padding:clamp(38px,6vw,72px) 0 clamp(26px,4vw,44px)}
+.kicker{
+  font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--teal-deep);
+}
+.hero h1{font-size:clamp(34px,6.2vw,60px);margin:14px 0 18px;max-width:17ch}
+.hero p{max-width:var(--measure);font-size:clamp(16px,1.9vw,18px);color:var(--ink-soft)}
+
+.tally{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:30px;
+}
+.tally div{
+  background:var(--panel);border:1px solid var(--rule);border-radius:var(--r);
+  padding:14px 16px;box-shadow:var(--shadow);
+}
+.tally b{
+  font-family:var(--display);font-size:clamp(24px,3.4vw,32px);font-weight:800;
+  font-variant-numeric:tabular-nums;display:block;line-height:1;
+}
+.tally span{font-size:11.5px;color:var(--muted);letter-spacing:.03em;display:block;margin-top:5px}
+
+/* ── Secciones ────────────────────────────────────────────── */
+section{padding:clamp(34px,5vw,58px) 0;border-top:1px solid var(--rule)}
+.head{max-width:var(--measure);margin-bottom:26px;display:flex;flex-direction:column;gap:10px}
+.head h2{font-size:clamp(23px,3.2vw,32px)}
+.head p{color:var(--ink-soft);font-size:15.5px}
+
+/* ── Módulos con franja de estado ─────────────────────────── */
+.mods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mod{
+  background:var(--panel);border:1px solid var(--rule);border-radius:var(--r);
+  padding:16px 18px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:7px;position:relative;overflow:hidden;
+}
+.mod::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime)}
+.mod[data-state="pendiente"]::before{background:var(--orange)}
+.mod[data-state="aviso"]::before{background:var(--orange)}
+.mod h3{font-size:16.5px;font-weight:700;letter-spacing:-.01em}
+.mod p{font-size:14px;color:var(--ink-soft)}
+.mod .path{font-family:var(--mono);font-size:12px;color:var(--muted);word-break:break-all}
+.tag{
+  align-self:flex-start;font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;
+  background:color-mix(in srgb,var(--lime) 16%,transparent);color:var(--lime);
+  border:1px solid color-mix(in srgb,var(--lime) 40%,transparent);
+}
+.tag[data-t="pendiente"]{
+  background:color-mix(in srgb,var(--orange) 14%,transparent);color:var(--orange);
+  border-color:color-mix(in srgb,var(--orange) 45%,transparent);
+}
+
+/* ── Pasos numerados: aquí el orden SÍ es información ─────── */
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;counter-reset:s}
+ol.steps li{
+  counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:14px;
+  padding:14px 0;border-bottom:1px solid var(--rule);align-items:start;
+}
+ol.steps li:last-child{border-bottom:0}
+ol.steps li::before{
+  content:counter(s);font-family:var(--mono);font-size:12px;font-weight:600;
+  width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
+  background:var(--panel-2);color:var(--teal-deep);border:1px solid var(--rule-firm);
+}
+ol.steps strong{font-weight:600;display:block;margin-bottom:2px}
+ol.steps p{font-size:14.5px;color:var(--ink-soft)}
+
+/* ── Tabla de controles ───────────────────────────────────── */
+.scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:var(--r);background:var(--panel);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
+th,td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);background:var(--panel-2);
+}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+td .mono{color:var(--teal-deep)}
+
+/* ── Bloque de comandos ───────────────────────────────────── */
+pre{
+  margin:0;padding:14px 16px;border-radius:var(--r);overflow-x:auto;
+  background:var(--navy);color:#DCEEF0;border:1px solid var(--rule);
+  font-family:var(--mono);font-size:12.5px;line-height:1.65;
+}
+pre .c{color:#7FA0AC}
+
+/* ── Nota ─────────────────────────────────────────────────── */
+.note{
+  display:flex;gap:13px;padding:15px 17px;border-radius:var(--r);
+  background:var(--panel);border:1px solid var(--rule);
+  border-left:3px solid var(--orange);font-size:14.5px;color:var(--ink-soft);
+  box-shadow:var(--shadow);
+}
+.note strong{color:var(--ink)}
+.note--teal{border-left-color:var(--teal)}
+
+.cta{
+  display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:12px 20px;
+  border-radius:10px;background:var(--cta-bg);color:var(--cta-ink);text-decoration:none;
+  font-weight:600;font-size:15px;border:1px solid transparent;
+}
+.cta:hover{background:var(--teal);color:#04222A}
+.cta--ghost{background:transparent;color:var(--ink);border-color:var(--rule-firm)}
+.cta--ghost:hover{background:var(--panel-2);color:var(--ink)}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+.stack{display:flex;flex-direction:column;gap:14px}
+ul.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:7px;font-size:14.5px;color:var(--ink-soft)}
+ul.plain strong{color:var(--ink);font-weight:600}
+
+footer{
+  border-top:1px solid var(--rule);padding:34px 0 46px;color:var(--muted);font-size:13.5px;
+  display:flex;flex-direction:column;gap:6px;
+}
+footer b{color:var(--ink);font-family:var(--display);font-size:15px}
+
+@media (max-width:820px){
+  .tally{grid-template-columns:repeat(2,1fr)}
+  .mods{grid-template-columns:1fr}
+  .top nav{display:none}
+}
+</style>
+
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">
+      <svg viewBox="0 0 200 150" aria-hidden="true">
+        <defs>
+          <path id="mkLens" d="M40 55C51 49 77 48 88 55C94 59 95 69 92 79C88 92 77 99 64 99C50 99 40 90 37 76C34 65 35 58 40 55Z"/>
+          <path id="mkBody" d="M16 54C16 34 34 25 57 22C85 19 115 19 143 22C166 25 184 34 184 54C184 78 177 98 163 110C150 121 131 122 117 113C109 108 105 104 100 104C95 104 91 108 83 113C69 122 50 121 37 110C23 98 16 78 16 54Z"/>
+          <clipPath id="mkLensR"><use href="#mkLens" transform="translate(200,0) scale(-1,1)"/></clipPath>
+          <clipPath id="mkTop"><use href="#mkBody"/></clipPath>
+        </defs>
+        <rect x="1" y="58" width="19" height="28" rx="7" fill="#122C3F"/>
+        <rect x="180" y="58" width="19" height="28" rx="7" fill="#122C3F"/>
+        <use href="#mkBody" fill="#122C3F"/>
+        <g clip-path="url(#mkTop)"><rect x="0" y="0" width="100" height="46" fill="#1BA9A4"/></g>
+        <g fill="none" stroke="#FFF" stroke-width="13">
+          <use href="#mkLens"/><use href="#mkLens" transform="translate(200,0) scale(-1,1)"/>
+        </g>
+        <use href="#mkLens" fill="#FFF" stroke="#1BA9A4" stroke-width="9"/>
+        <use href="#mkLens" transform="translate(200,0) scale(-1,1)" fill="#1BA9A4" stroke="#1BA9A4" stroke-width="9"/>
+        <g stroke="#122C3F" stroke-width="3.4" stroke-linecap="round"><path d="M45 62l5 4M41 74h6M45 87l5-4M57 93l2-5"/></g>
+        <path d="M41 86l6-4" stroke="#F47B20" stroke-width="3.6" stroke-linecap="round"/>
+        <path d="M64 75L85 53c3-3 7 1 4 4L69 79Z" fill="#122C3F"/>
+        <path d="M67 74l14-1c3 0 3 5 0 5l-14-1Z" fill="#F47B20"/>
+        <circle cx="64" cy="76" r="6.5" fill="#FFF" stroke="#122C3F" stroke-width="3.6"/>
+        <g clip-path="url(#mkLensR)">
+          <path d="M104 92c9 5 15-3 24 1s13 7 21 5 13-7 21-3v20h-66Z" fill="#122C3F"/>
+          <g fill="#FFF">
+            <path d="M115 80c6-6 18-7 26-2l8-6v16l-8-6c-8 5-20 4-26-2Z"/>
+            <path d="M138 60c5-5 15-5 21-1l7-5v13l-7-5c-6 4-16 3-21-2Z"/>
+          </g>
+          <g fill="#122C3F"><circle cx="131" cy="78" r="1.8"/><circle cx="149" cy="58" r="1.6"/></g>
+          <g fill="#FFF" opacity=".9"><circle cx="118" cy="61" r="2.8"/><circle cx="112" cy="70" r="1.9"/></g>
+        </g>
+        <path d="M88 47c7-5 17-5 24 0-6 6-18 6-24 0Z" fill="#B4D923"/>
+        <g clip-path="url(#mkTop)">
+          <path d="M93 70c2-7 12-7 14 0Z" fill="#F47B20"/>
+          <path d="M91 77h18c2 13 2 25 0 32-4 5-14 5-18 0-2-7-2-19 0-32Z" fill="#FFF"/>
+          <path d="M91 77h9v36c-4 0-7-1-9-4-2-7-2-19 0-32Z" fill="#1BA9A4"/>
+        </g>
+      </svg>
+      <span>
+        <b>GUÍA EL HIERRO</b>
+        <span>Cuaderno de obra · agosto 2026</span>
+      </span>
+    </div>
+    <nav>
+      <a href="#que">Qué hay</a>
+      <a href="#usar">Usar la guía</a>
+      <a href="#mantener">Mantenerla</a>
+      <a href="#pendiente">Pendiente</a>
+      <a href="#siguiente">Lo que sigue</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <p class="kicker">Cuaderno de obra</p>
+    <h1>Qué hemos construido y cómo se usa</h1>
+    <p>
+      Una guía de identificación de la fauna del Mar de las Calmas que funciona como
+      instrumento de campo: se filtra, se consulta y se registra lo que ves. Este documento
+      existe para que cualquiera pueda operarla y mantenerla sin haber estado en la conversación
+      donde se construyó.
+    </p>
+    <div class="tally">
+      <div><b class="num">120</b><span>especies con ficha</span></div>
+      <div><b class="num">117</b><span>con fotografía verificada</span></div>
+      <div><b class="num">120</b><span>verificadas en WoRMS</span></div>
+      <div><b class="num">5</b><span>nombres corregidos</span></div>
+    </div>
+    <div class="ctas">
+      <a class="cta" href="https://claude.ai/code/artifact/3be03202-681e-4ed1-a4a4-dcd0f7e794e6" target="_blank" rel="noopener">Abrir la guía ↗</a>
+      <a class="cta cta--ghost" href="#usar">Cómo se usa</a>
+    </div>
+  </div>
+
+  <!-- ═══ Qué hay ═══════════════════════════════════════════ -->
+  <section id="que">
+    <div class="head">
+      <p class="kicker">Inventario</p>
+      <h2>Qué hay construido</h2>
+      <p>Todo vive en <code>C:\Users\alimu\claude\Hierro</code>. La franja verde marca lo terminado; la naranja, lo que aún tiene huecos.</p>
+    </div>
+    <div class="mods">
+
+      <article class="mod">
+        <span class="tag">Publicado</span>
+        <h3>La guía</h3>
+        <p>Un solo fichero HTML autocontenido de 4,38 MB: datos, fotografías y programa. Funciona sin servidor y sin conexión una vez cargado.</p>
+        <p class="path">artifact/fauna-el-hierro.html</p>
+      </article>
+
+      <article class="mod">
+        <span class="tag">Verificado</span>
+        <h3>Taxonomía contrastada</h3>
+        <p>Las 120 especies pasadas por la API de WoRMS: nombre aceptado, autoridad, orden y familia. Cinco nombres resultaron no aceptados y se corrigieron guardando el sinónimo antiguo.</p>
+      </article>
+
+      <article class="mod">
+        <span class="tag">Con licencia</span>
+        <h3>126 fotografías</h3>
+        <p>De Wikimedia Commons e iNaturalist, solo CC0, CC BY y CC BY-SA porque la web es actividad comercial. Cada una lleva autor, licencia y enlace al original.</p>
+      </article>
+
+      <article class="mod">
+        <span class="tag">Reutilizable</span>
+        <h3>Herramientas de ingesta</h3>
+        <p>Descargan fotografía filtrando por licencia y resuelven sinónimos taxonómicos antes de buscar. Son la base del <code>wp hierro ingest</code> del diseño de fase 1.</p>
+        <p class="path">tools/commons-ingest.py · tools/inat-commons-hunt.py</p>
+      </article>
+
+      <article class="mod">
+        <span class="tag">Listo</span>
+        <h3>Sistema de prompts</h3>
+        <p>Tres prompts encadenados para completar los campos que faltan en las fichas: el maestro que genera los encargos, la plantilla de extracción y el control de calidad.</p>
+        <p class="path">docs/prompts/fichas-infografia.md</p>
+      </article>
+
+      <article class="mod" data-state="aviso">
+        <span class="tag" data-t="pendiente">En conflicto</span>
+        <h3>Diseño de fase 1</h3>
+        <p>El documento aprobado especifica WordPress en hosting compartido. La intención de desplegar en Vercel lo contradice y hay que decidirlo explícitamente.</p>
+        <p class="path">docs/superpowers/specs/2026-08-17-fauna-el-hierro-fase1-design.md</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══ Usar ══════════════════════════════════════════════ -->
+  <section id="usar">
+    <div class="head">
+      <p class="kicker">Para el buceador</p>
+      <h2>Cómo se usa la guía</h2>
+      <p>El orden importa: primero acotas, luego consultas, y al salir del agua registras.</p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <div>
+          <strong>Acota lo que buscas</strong>
+          <p>Busca por nombre común, científico o grupo. Filtra por los catorce grupos taxonómicos o por banda de profundidad, que es la que de verdad importa bajo el agua: superficie, somero, veril, hondo o pelágico.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Elige cuánto texto quieres</strong>
+          <p><strong>Básico</strong> da solo la clave de identificación. <strong>Profesional</strong> añade hábitat y comportamiento. <strong>Experto</strong> suma confusiones frecuentes, ecología y estado de conservación.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Abre la ficha completa</strong>
+          <p>La ficha se despliega como lámina de dos columnas: fotografía con su crédito, frecuencia, profundidad, talla, taxonomía con autoridad, distribución y enlaces a WoRMS, GBIF, iNaturalist y Commons.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Registra lo que has visto</strong>
+          <p>El botón marca presencia y el contador anota cuántos ejemplares. El panel superior lleva el porcentaje de inventario completado.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Llévate la bitácora</strong>
+          <p>Exportar descarga tu registro como fichero. Importar fusiona el de otro buceador quedándose con el conteo mayor de cada especie, así que dos personas pueden sumar sus inmersiones.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="head" style="margin-top:36px">
+      <h2 style="font-size:20px">Los filtros que no son obvios</h2>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Filtro</th><th>Qué hace</th><th>Para qué sirve</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Me faltan</td>
+            <td>Oculta lo que ya registraste</td>
+            <td>Preparar la siguiente inmersión buscando solo lo que aún no has visto</td>
+          </tr>
+          <tr>
+            <td>Presencia por confirmar</td>
+            <td>Muestra las <span class="num">29</span> especies cuya cita en El Hierro no está contrastada</td>
+            <td>La lista de trabajo para que Agustín confirme o descarte con su criterio de campo</td>
+          </tr>
+          <tr>
+            <td>Sin fotografía</td>
+            <td>Muestra las <span class="num">3</span> especies sin imagen utilizable</td>
+            <td>Saber exactamente qué fotografiar en la próxima salida</td>
+          </tr>
+          <tr>
+            <td>Galería</td>
+            <td>Cambia a rejilla de imagen, 24 por página</td>
+            <td>Identificar por parecido visual cuando no sabes ni el nombre</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note note--teal" style="margin-top:20px">
+      <span aria-hidden="true">◍</span>
+      <span><strong>Sobre las láminas dibujadas.</strong> Las tres especies sin fotografía muestran una lámina generada por la propia página —silueta del grupo sobre su banda de profundidad, con la regla de metros— y el rótulo «Foto pendiente». Nunca se sustituye una especie por la fotografía de otra: es la regla que sostiene la credibilidad de toda la guía.</span>
+    </div>
+  </section>
+
+  <!-- ═══ Mantener ══════════════════════════════════════════ -->
+  <section id="mantener">
+    <div class="head">
+      <p class="kicker">Para quien la mantiene</p>
+      <h2>Cómo se alimenta</h2>
+      <p>Dos herramientas de línea de comandos, ambas con filtro de licencia incorporado. Ninguna toca la web publicada: producen datos que luego se integran.</p>
+    </div>
+
+    <div class="stack">
+      <div>
+        <p style="font-weight:600;margin-bottom:8px">Traer fotografía de una lista de especies</p>
+        <pre><span class="c"># objetivos.json: [{"key":"s1","term":"Aplysina aerophoba","w":400}, ...]</span>
+python tools/commons-ingest.py objetivos.json fotos.json</pre>
+        <p style="font-size:14px;color:var(--ink-soft);margin-top:9px">
+          Consulta Wikimedia Commons, exige coincidencia exacta con el nombre científico,
+          descarta cualquier licencia NonCommercial o NoDerivatives, recorta a 4:3, convierte
+          a WebP y guarda autor, licencia y enlace de origen.
+        </p>
+      </div>
+
+      <div>
+        <p style="font-weight:600;margin-bottom:8px">Buscar las difíciles en varias fuentes</p>
+        <pre><span class="c"># pendientes.json: [{"key":"s4","label":"...","names":["nombre","sinónimo"]}]</span>
+python tools/inat-commons-hunt.py</pre>
+        <p style="font-size:14px;color:var(--ink-soft);margin-top:9px">
+          Prueba todas las variantes nomenclaturales en iNaturalist y en Commons, y descarga
+          hasta cuatro candidatos por especie para revisarlos con los ojos antes de elegir.
+          Fue lo que rescató ocho de las once especies que Commons no encontraba.
+        </p>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:22px">
+      <span aria-hidden="true">▲</span>
+      <span><strong>La trampa que costó tiempo:</strong> la API de WoRMS devuelve varios registros para un mismo nombre cuando hay homónimos de autores distintos. Quedarse con el primero da falsos positivos — hizo parecer que <code>Serpula vermicularis</code> era un nombre inválido cuando es correcto. Filtra siempre por <code>status == "accepted"</code>.</span>
+    </div>
+  </section>
+
+  <!-- ═══ Pendiente ═════════════════════════════════════════ -->
+  <section id="pendiente">
+    <div class="head">
+      <p class="kicker">Honestidad de estado</p>
+      <h2>Qué queda pendiente</h2>
+      <p>La guía declara sus propios huecos en pantalla. Estos son, ordenados por lo que más la limita.</p>
+    </div>
+
+    <div class="mods">
+      <article class="mod" data-state="pendiente">
+        <span class="tag" data-t="pendiente">Contenido</span>
+        <h3>Cuatro campos por especie</h3>
+        <p>Alimentación, reproducción, defensa y papel ecológico. Son los que dejan hueco en la columna derecha de cada ficha. El sistema de prompts está escrito para producirlos.</p>
+      </article>
+
+      <article class="mod" data-state="pendiente">
+        <span class="tag" data-t="pendiente">Validación</span>
+        <h3>29 presencias sin contrastar</h3>
+        <p>24 dudosas y 5 probablemente ausentes de Canarias. Necesitan el criterio de campo de Agustín, que vale más que la bibliografía para la parte local.</p>
+      </article>
+
+      <article class="mod" data-state="pendiente">
+        <span class="tag" data-t="pendiente">Fotografía</span>
+        <h3>Tres especies sin imagen</h3>
+        <p><em>Spirobranchus polytrema</em>, <em>Eunice roussaei</em> y <em>Raja maderensis</em>. Existen fotos, pero bajo licencia NonCommercial. Las dos primeras están en La Restinga: media inmersión las resuelve.</p>
+      </article>
+
+      <article class="mod" data-state="pendiente">
+        <span class="tag" data-t="pendiente">Publicación</span>
+        <h3>Conflicto de versión</h3>
+        <p>El último intento de publicar chocó con una versión más reciente subida desde otra sesión. La copia local lleva las cinco correcciones de nombre; hay que decidir cuál manda antes de seguir.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ Siguiente ═════════════════════════════════════════ -->
+  <section id="siguiente">
+    <div class="head">
+      <p class="kicker">La siguiente vuelta</p>
+      <h2>Lo que sigue</h2>
+      <p>Publicar en dominio propio, ponerle la marca de Agustín y añadir la capa de viaje. Eso abre decisiones que conviene cerrar antes de escribir código.</p>
+    </div>
+
+    <ul class="plain">
+      <li><strong>Arquitectura.</strong> Vercel desde GitHub contradice el diseño aprobado de WordPress. Hay que derogarlo explícitamente o mantenerlo.</li>
+      <li><strong>Peso.</strong> Los 4,38 MB actuales son fotografías incrustadas en el propio HTML. Sacarlas a ficheros divide por veinte la primera carga.</li>
+      <li><strong>Posicionamiento.</strong> Sin una dirección web por especie no hay tráfico de búsqueda, y sin tráfico la guía no genera contactos para Agustín.</li>
+      <li><strong>Autonomía.</strong> Hay que decidir cómo publica Agustín sin depender de que alguien le edite ficheros.</li>
+    </ul>
+
+    <div class="note note--teal" style="margin-top:22px">
+      <span aria-hidden="true">→</span>
+      <span>Todo eso está preparado como decisiones a ratificar en <code>docs/prompts/potenciador-hierro-v1.html</code>. Ábrelo con doble clic, marca lo que quieras y copia el prompt que genera para arrancar la siguiente sesión.</span>
+    </div>
+  </section>
+
+  <footer>
+    <b>Agustín Fragero Blesa · Dive Master</b>
+    <p>Guía Fauna Marina de El Hierro — La Restinga, Reserva Marina del Mar de las Calmas</p>
+    <p>Cuaderno de obra al cierre de agosto de 2026. El contenido biológico es borrador hasta su validación.</p>
+  </footer>
+
+</main>

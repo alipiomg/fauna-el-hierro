@@ -1,0 +1,87 @@
+{
+ "aviso": "Duraciones y distancias aproximadas, que cambian poco. Horarios, precios y disponibilidad no se guardan aquí: se consultan siempre en la web del operador, y por eso cada fila enlaza a la suya.",
+ "llegar": [
+  {
+   "modo": "avion",
+   "op": "Binter",
+   "ruta": "Tenerife Norte (TFN) → El Hierro (VDE)",
+   "dur": "≈ 40 min",
+   "nota": "Varias frecuencias diarias. Es la conexión más habitual con la isla.",
+   "url": "https://www.bintercanarias.com/"
+  },
+  {
+   "modo": "avion",
+   "op": "Canaryfly",
+   "ruta": "Tenerife Norte (TFN) → El Hierro (VDE)",
+   "dur": "≈ 40 min",
+   "nota": "Menos frecuencias que Binter, pero conviene comparar.",
+   "url": "https://www.canaryfly.es/"
+  },
+  {
+   "modo": "avion",
+   "op": "Binter",
+   "ruta": "Gran Canaria (LPA) → El Hierro (VDE)",
+   "dur": "Consultar",
+   "nota": "Salvo temporada, lo normal es enlazar por Tenerife Norte. Comprueba la conexión antes de comprar el billete largo.",
+   "url": "https://www.bintercanarias.com/"
+  },
+  {
+   "modo": "barco",
+   "op": "Fred Olsen Express",
+   "ruta": "Los Cristianos (Tenerife) → Puerto de La Estaca",
+   "dur": "≈ 2 h 20 min",
+   "nota": "La opción si viajas con coche propio o con mucho equipo de buceo.",
+   "url": "https://www.fredolsen.es/"
+  },
+  {
+   "modo": "barco",
+   "op": "Naviera Armas",
+   "ruta": "Los Cristianos (Tenerife) → Puerto de La Estaca",
+   "dur": "≈ 2 h 30 min",
+   "nota": "Menos frecuencias que la línea aérea; conviene reservar con antelación en verano.",
+   "url": "https://www.navieraarmas.com/"
+  }
+ ],
+ "moverse": [
+  {
+   "t": "Coche de alquiler",
+   "d": "En la práctica es imprescindible. La isla tiene 30 km de Valverde a La Restinga por carretera de montaña, y los horarios de buceo no encajan con los de la guagua.",
+   "dato": "Valverde → La Restinga · ≈ 30 km · ≈ 35 min",
+   "url": null
+  },
+  {
+   "t": "Guagua (TransHierro)",
+   "d": "Red pública insular. No hay línea directa entre Valverde y La Restinga: hay que enlazar por El Pinar, y el trayecto completo se va a unas dos horas.",
+   "dato": "Con transbordo · ≈ 2 h",
+   "url": "https://transhierro.com/"
+  },
+  {
+   "t": "Del aeropuerto y del puerto",
+   "d": "El aeropuerto (VDE) y el Puerto de La Estaca están los dos a pocos kilómetros de Valverde, en la costa este. Desde ahí se cruza la isla hacia el sur.",
+   "dato": "VDE → La Restinga · ≈ 40 min en coche",
+   "url": null
+  },
+  {
+   "t": "Entre islas",
+   "d": "El Hierro no tiene conexión directa con La Gomera, La Palma ni las islas orientales. Todo pasa por Tenerife, por aire desde Tenerife Norte o por mar desde Los Cristianos.",
+   "dato": "Siempre vía Tenerife",
+   "url": null
+  }
+ ],
+ "dormir": {
+  "d": "La Restinga es un pueblo pequeño: apartamentos y casas de alquiler junto al puerto, y poco más. Muchos buceadores se alojan en El Pinar, a unos 15 minutos, o en Valverde y La Frontera si combinan buceo con recorrer la isla. En temporada alta y en puentes se llena con antelación.",
+  "enlaces": [
+   {
+    "t": "Alojamientos oficiales de El Hierro",
+    "d": "Listado de Turismo de El Hierro: hoteles, casas rurales y apartamentos con ficha y contacto directo.",
+    "url": "https://elhierro.travel/alojamientos-el-hierro/"
+   },
+   {
+    "t": "Reservar con tu centro de buceo",
+    "d": "Los centros de La Restinga suelen tener acuerdo con alojamientos del pueblo y resuelven el paquete completo. Pregunta antes de reservar por tu cuenta.",
+    "url": null
+   }
+  ],
+  "declaracion": "Esta guía no tiene acuerdo comercial con ningún alojamiento ni cobra comisión por estos enlaces."
+ }
+}

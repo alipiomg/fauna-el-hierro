@@ -1,0 +1,2360 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fauna Marina de El Hierro — gu&iacute;a de buceo del Mar de las Calmas</title>
+<meta name="description" content="Gu&iacute;a de identificaci&oacute;n de 120 especies del Mar de las Calmas, El Hierro. Taxonom&iacute;a verificada en WoRMS y fotograf&iacute;a con licencia. Por Agust&iacute;n Fragero Blesa, Dive Master en La Restinga.">
+<meta name="author" content="Agust&iacute;n Fragero Blesa">
+<meta name="theme-color" content="#061418">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" as="image" href="fotos/hero.webp" fetchpriority="high">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Fauna Marina de El Hierro">
+<meta property="og:title" content="Fauna Marina de El Hierro — gu&iacute;a de buceo del Mar de las Calmas">
+<meta property="og:description" content="120 especies del Mar de las Calmas con taxonom&iacute;a verificada y fotograf&iacute;a con licencia. Por Agust&iacute;n Fragero Blesa, Dive Master en La Restinga.">
+<meta property="og:image" content="og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   Fauna Marina de El Hierro — guía de campo del Mar de las Calmas
+   Tema único comprometido: la columna de agua. Todos los colores
+   se pintan explícitamente para que la página aguante sobre
+   cualquier fondo del visor.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --abyss:#061418;
+  --basalt:#0d2129;
+  --basalt-hi:#132c36;
+  --shelf:#0a1d24;
+  --foam:#eaf6f7;
+  --calm:#8fb3ba;
+  --calm-dim:#63868f;
+  --turquoise:#2fd4c0;
+  --turquoise-dim:#1d9a90;
+  --lumen:#ffd166;
+  --logged:#6fe39a;
+  --doubt:#ff9d7a;
+  --line:rgba(143,179,186,.18);
+  --line-hi:rgba(47,212,192,.34);
+
+  --band-sup:#7fe3d4;
+  --band-som:#3fc9c4;
+  --band-ver:#2a8fb8;
+  --band-hon:#2b5f9e;
+  --band-pel:#7d8fd6;
+
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",ui-serif,serif;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI Variable Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+
+  --r-sm:10px; --r-md:14px; --r-lg:20px; --r-xl:26px;
+  --measure:66ch;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--abyss);
+  color:var(--foam);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--turquoise);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+em,i{font-style:italic}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--turquoise);outline-offset:3px;border-radius:4px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+
+/* Atmósfera: capa fija anclada al viewport, no al alto del documento */
+.atmos{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(120% 72% at 50% -12%, #14414c 0%, #0a2029 40%, var(--abyss) 74%);
+}
+.hero,.wrap,.foot{position:relative;z-index:1}
+
+.eyebrow{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--turquoise);
+}
+.muted{color:var(--calm)}
+.tiny{font-size:12px;line-height:1.45;color:var(--calm)}
+.num{font-variant-numeric:tabular-nums}
+
+/* ── Barra superior ─────────────────────────────────────────── */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 16px;
+  background:rgba(6,20,24,.86);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit;min-width:0}
+.brand:hover{text-decoration:none}
+.brand-mark{
+  width:42px;height:42px;flex:none;border-radius:12px;
+  display:grid;place-items:center;padding:3px;
+  border:1px solid var(--line-hi);
+  background:linear-gradient(160deg,#123c47,#0a212b);
+}
+.brand-mark svg{width:100%;height:100%;display:block}
+.foot-mark{width:74px;height:56px;display:block;margin-bottom:6px}
+.brand-name{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.06em;line-height:1.25}
+.brand-role{font-size:11px;color:var(--calm);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:10px 16px;
+  border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--basalt);color:var(--foam);
+  font-size:14px;font-weight:600;cursor:pointer;
+  transition:background .16s ease,border-color .16s ease,transform .16s ease;
+}
+.btn:hover{background:var(--basalt-hi);border-color:var(--line-hi);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--turquoise);color:#04222a;border-color:transparent}
+.btn--primary:hover{background:#4ee2d0;border-color:transparent}
+.btn--ghost{background:transparent}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn--sm{min-height:38px;padding:8px 12px;font-size:13px}
+
+/* ── Cajón de navegación ────────────────────────────────────── */
+.drawer{position:fixed;inset:0;z-index:90;display:none}
+.drawer[data-open="true"]{display:block}
+.drawer-veil{position:absolute;inset:0;background:rgba(3,11,14,.72);backdrop-filter:blur(4px)}
+.drawer-panel{
+  position:absolute;right:0;top:0;height:100%;width:min(340px,88vw);
+  display:flex;flex-direction:column;gap:2px;
+  padding:16px;overflow:auto;
+  background:var(--shelf);border-left:1px solid var(--line);
+}
+.drawer-panel a,.drawer-panel button{
+  display:flex;align-items:center;gap:10px;
+  min-height:46px;padding:10px 12px;
+  border:0;border-radius:var(--r-sm);background:transparent;
+  color:var(--foam);font-size:15px;text-align:left;cursor:pointer;
+}
+.drawer-panel a:hover,.drawer-panel button:hover{background:var(--basalt);text-decoration:none}
+.drawer-close{color:var(--calm) !important;font-weight:600;margin-bottom:8px}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+.hero{
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-inner{
+  position:relative;z-index:2;
+  max-width:1180px;margin:0 auto;
+  padding:clamp(48px,9vw,96px) 20px clamp(36px,6vw,64px);
+  display:flex;flex-direction:column;gap:20px;align-items:flex-start;
+}
+.hero h1{
+  font-size:clamp(38px,7.4vw,76px);line-height:.98;letter-spacing:-.025em;
+  max-width:14ch;
+}
+.hero h1 em{color:var(--turquoise);font-style:normal}
+.hero-lede{max-width:56ch;font-size:clamp(16px,2vw,18.5px);color:#cfe6ea}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ── Estructura de secciones ────────────────────────────────── */
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.section{padding:clamp(46px,7vw,78px) 0;border-bottom:1px solid var(--line)}
+.section:last-of-type{border-bottom:0}
+.section-head{display:flex;flex-direction:column;gap:10px;margin-bottom:26px;max-width:var(--measure)}
+.section-head h2{font-size:clamp(26px,3.6vw,38px);line-height:1.08}
+.section-head p{color:var(--calm);font-size:15.5px}
+
+.note{
+  display:flex;gap:12px;
+  padding:14px 16px;border-radius:var(--r-md);
+  border:1px solid var(--line);border-left:3px solid var(--lumen);
+  background:rgba(255,209,102,.055);
+  color:#e9dcb6;font-size:13.5px;line-height:1.5;
+}
+.note strong{color:var(--lumen)}
+.note--turq{border-left-color:var(--turquoise);background:rgba(47,212,192,.055);color:#c8e9e7}
+.note--turq strong{color:var(--turquoise)}
+
+/* ── Panel de estadísticas ──────────────────────────────────── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.stat{
+  display:flex;flex-direction:column;gap:2px;
+  padding:14px 16px;border-radius:var(--r-md);
+  border:1px solid var(--line);background:var(--basalt);
+}
+.stat b{font-family:var(--serif);font-size:clamp(24px,3.4vw,32px);font-variant-numeric:tabular-nums;line-height:1.05}
+.stat span{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--calm)}
+.stat-bar{height:4px;border-radius:99px;background:rgba(143,179,186,.2);overflow:hidden;margin-top:8px}
+.stat-bar i{display:block;height:100%;background:var(--logged);border-radius:99px;transition:width .4s ease}
+
+/* ── Controles ──────────────────────────────────────────────── */
+.controls{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.control-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.control-label{
+  font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--calm-dim);margin-right:2px;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:7px;
+  min-height:38px;padding:7px 13px;
+  border:1px solid var(--line);border-radius:999px;
+  background:transparent;color:var(--calm);
+  font-size:13.5px;font-weight:600;cursor:pointer;
+  transition:background .15s ease,color .15s ease,border-color .15s ease;
+}
+.chip:hover{background:var(--basalt);color:var(--foam)}
+.chip[aria-pressed="true"]{background:var(--basalt-hi);color:var(--foam);border-color:var(--line-hi)}
+.chip-dot{width:9px;height:9px;border-radius:50%;flex:none}
+.chip-count{font-size:11.5px;color:var(--calm-dim);font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"] .chip-count{color:var(--turquoise)}
+
+.field{
+  min-height:44px;padding:10px 13px;
+  border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--shelf);color:var(--foam);font-size:14.5px;
+}
+.field::placeholder{color:var(--calm-dim)}
+.field:hover{border-color:var(--line-hi)}
+.search{flex:1 1 260px;min-width:200px}
+select.field{cursor:pointer}
+
+/* ── Rejilla de fichas ──────────────────────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{
+  display:flex;flex-direction:column;
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  background:var(--basalt);overflow:hidden;
+  transition:border-color .18s ease,transform .18s ease;
+}
+.card:hover{border-color:var(--line-hi);transform:translateY(-2px)}
+.card[data-seen="true"]{border-color:rgba(111,227,154,.4)}
+
+.plate{position:relative;aspect-ratio:16/10;background:var(--shelf)}
+.plate svg{display:block;width:100%;height:100%}
+.plate-band{
+  position:absolute;left:10px;top:10px;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 9px;border-radius:999px;
+  background:rgba(4,14,18,.74);border:1px solid rgba(234,246,247,.14);
+  font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+}
+.plate-flag{
+  position:absolute;right:10px;top:10px;
+  padding:5px 9px;border-radius:999px;
+  background:rgba(4,14,18,.74);border:1px solid rgba(255,157,122,.5);
+  color:var(--doubt);font-size:10.5px;font-weight:700;letter-spacing:.06em;
+}
+.plate-seen{
+  position:absolute;right:10px;bottom:10px;
+  width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--logged);color:#052b13;font-size:15px;font-weight:700;
+}
+
+.card-body{display:flex;flex-direction:column;gap:9px;padding:15px 16px 16px;flex:1}
+.card-group{display:flex;align-items:center;gap:7px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--calm)}
+.card h3{font-size:20px;line-height:1.18}
+.card-sci{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--turquoise-dim)}
+.card-text{font-size:13.8px;line-height:1.55;color:#c4dce1}
+.card-facts{display:flex;flex-wrap:wrap;gap:6px}
+.fact{
+  padding:4px 8px;border-radius:7px;
+  background:var(--shelf);border:1px solid var(--line);
+  font-size:11.5px;color:var(--calm);font-variant-numeric:tabular-nums;
+}
+.card-actions{display:flex;gap:8px;margin-top:auto;padding-top:4px}
+.card-actions .btn{flex:1}
+
+.log{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:42px;padding:9px 12px;
+  border:1px solid rgba(111,227,154,.34);border-radius:var(--r-md);
+  background:rgba(111,227,154,.1);color:#b6f5cd;
+  font-size:13.5px;font-weight:700;cursor:pointer;
+  transition:background .15s ease;
+}
+.log:hover{background:rgba(111,227,154,.18)}
+.log[data-on="true"]{background:var(--logged);color:#04220f;border-color:transparent}
+.counter{display:flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--shelf);padding:3px}
+.counter button{width:34px;height:34px;border:0;border-radius:8px;background:transparent;color:var(--foam);font-size:17px;cursor:pointer}
+.counter button:hover{background:var(--basalt-hi)}
+.counter span{min-width:26px;text-align:center;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ── Vista galería ──────────────────────────────────────────── */
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{
+  position:relative;padding:0;overflow:hidden;
+  border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--shelf);cursor:pointer;text-align:left;
+  transition:border-color .16s ease,transform .16s ease;
+}
+.tile:hover{border-color:var(--line-hi);transform:translateY(-2px)}
+.tile[data-seen="true"]{border-color:rgba(111,227,154,.45)}
+.tile svg{display:block;width:100%;aspect-ratio:1/1}
+.tile-label{
+  position:absolute;left:0;right:0;bottom:0;padding:10px;
+  background:linear-gradient(transparent,rgba(4,14,18,.94) 62%);
+}
+.tile-label strong{display:block;font-family:var(--serif);font-size:14px;line-height:1.2}
+.tile-label em{display:block;font-family:var(--serif);font-size:12px;color:var(--calm);font-style:italic}
+
+/* ── Fotografía ─────────────────────────────────────────────── */
+.shot{width:100%;height:100%;object-fit:cover;display:block;background:var(--shelf)}
+.tile .shot{aspect-ratio:1/1;height:auto}
+.credit{
+  position:absolute;left:0;right:0;bottom:0;padding:14px 10px 6px;
+  background:linear-gradient(transparent,rgba(4,14,18,.9));
+  font-size:9.5px;line-height:1.3;color:#b6ced4;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.tile .credit{padding-bottom:2px;font-size:9px}
+.credit--lg{
+  position:static;padding:10px 14px;background:var(--basalt);
+  border-top:1px solid var(--line);font-size:11.5px;white-space:normal;display:block;
+}
+.credit--lg a{color:var(--turquoise)}
+.sheet-plate{display:flex;flex-direction:column;position:relative}
+.sheet-plate .shot{flex:1 1 0;height:0;min-height:230px;object-fit:cover}
+
+.hero-shot{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;opacity:.42;
+  filter:saturate(.72) contrast(1.04);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(175deg,rgba(6,20,24,.34) 0%,rgba(6,20,24,.72) 52%,var(--abyss) 100%);
+}
+.hero-inner{z-index:3}
+.hero-canvas{z-index:2}
+.hero-credit{margin-top:6px;opacity:.72}
+.hero-credit a{color:var(--turquoise)}
+
+.shots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.shot-card{
+  position:relative;border:1px solid var(--line);border-radius:var(--r-md);
+  overflow:hidden;background:var(--shelf);
+}
+.shot-card .shot{aspect-ratio:4/3;height:auto}
+.shot-card b{
+  position:absolute;left:10px;top:10px;padding:5px 9px;border-radius:999px;
+  background:rgba(4,14,18,.78);border:1px solid rgba(234,246,247,.15);
+  font-family:var(--serif);font-size:13px;font-weight:600;
+}
+@media (max-width:900px){.shots{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.shots{grid-template-columns:1fr}}
+
+.pending{
+  position:absolute;left:10px;bottom:10px;
+  padding:5px 9px;border-radius:999px;
+  background:rgba(4,14,18,.78);border:1px dashed rgba(143,179,186,.45);
+  font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--calm);
+}
+.tile .pending{left:8px;bottom:8px;font-size:9px}
+
+/* ── Paginación ─────────────────────────────────────────────── */
+.pager{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;margin-top:24px}
+.pager button{
+  min-width:42px;min-height:42px;padding:8px 12px;
+  border:1px solid var(--line);border-radius:var(--r-sm);
+  background:var(--basalt);color:var(--foam);
+  font-size:14px;font-variant-numeric:tabular-nums;cursor:pointer;
+}
+.pager button:hover:not([disabled]){border-color:var(--line-hi)}
+.pager button[aria-current="page"]{background:var(--turquoise);color:#04222a;border-color:transparent;font-weight:700}
+.pager button[disabled]{opacity:.35;cursor:not-allowed}
+.pager-status{width:100%;text-align:center;font-size:12.5px;color:var(--calm);font-variant-numeric:tabular-nums;margin-top:4px}
+
+.empty{
+  grid-column:1/-1;display:flex;flex-direction:column;gap:10px;align-items:flex-start;
+  padding:34px;border:1px dashed var(--line);border-radius:var(--r-lg);color:var(--calm);
+}
+
+/* ── Bitácora ───────────────────────────────────────────────── */
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.paste{display:none;flex-direction:column;gap:10px;margin-top:14px}
+.paste[data-open="true"]{display:flex}
+textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:12.5px;resize:vertical}
+.file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+
+/* ── Tarjetas de enlace (guía de la isla) ───────────────────── */
+.links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.link-card{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;
+  padding:15px 16px;border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--basalt);color:inherit;
+  transition:border-color .16s ease,background .16s ease,transform .16s ease;
+}
+.link-card:hover{border-color:var(--line-hi);background:var(--basalt-hi);transform:translateY(-2px);text-decoration:none}
+.link-icon{
+  width:42px;height:42px;flex:none;border-radius:12px;
+  display:grid;place-items:center;font-size:21px;
+  background:var(--shelf);border:1px solid var(--line);
+}
+.link-card h3{font-size:16.5px;margin-bottom:2px}
+.link-card p{font-size:12.5px;color:var(--calm)}
+.link-go{color:var(--turquoise);font-size:18px;font-weight:700}
+
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.info{
+  display:flex;flex-direction:column;gap:6px;
+  padding:16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--basalt);
+}
+.info h3{font-size:17px}
+.info p{font-size:13.5px;color:var(--calm)}
+.info-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px;font-size:13.5px;font-weight:600}
+
+/* ── Créditos ───────────────────────────────────────────────── */
+.credits{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;
+}
+.credits>div{
+  background:var(--basalt);padding:11px 14px;
+  display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;font-size:12.5px;
+}
+.credits em{font-family:var(--serif);font-style:italic;color:var(--turquoise-dim);flex:1 1 100%}
+.credits span{color:var(--calm)}
+.credits a{font-weight:600}
+@media (max-width:760px){.credits{grid-template-columns:1fr}}
+
+/* ── Ficha infográfica ─────────────────────────────────────── */
+.modal{position:fixed;inset:0;z-index:120;display:none;padding:14px}
+.modal[data-open="true"]{display:grid;place-items:center}
+.modal-veil{position:absolute;inset:0;background:rgba(3,11,14,.86);backdrop-filter:blur(10px)}
+.sheet{
+  position:relative;z-index:2;
+  width:min(1320px,97vw);max-height:94vh;overflow:auto;
+  border:1px solid var(--line-hi);border-radius:var(--r-xl);
+  background:var(--abyss);box-shadow:0 40px 120px rgba(0,0,0,.62);
+  padding:16px;
+}
+.sheet-close{
+  position:absolute;right:16px;top:16px;z-index:6;
+  width:42px;height:42px;border-radius:12px;
+  border:1px solid var(--line-hi);background:rgba(9,35,44,.94);color:var(--foam);
+  font-size:16px;cursor:pointer;
+}
+.sheet-brand{
+  font-size:10.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--calm-dim);padding:2px 4px 12px;
+}
+.sheet-cols{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:12px;align-items:start}
+.sheet-left,.sheet-right{display:flex;flex-direction:column;gap:10px;min-width:0}
+.sheet-warn{
+  display:flex;gap:10px;margin-top:12px;padding:12px 15px;
+  border:1px solid var(--line);border-left:3px solid var(--lumen);border-radius:var(--r-md);
+  background:rgba(255,209,102,.06);color:#e9dcb6;font-size:12.5px;line-height:1.5;
+}
+
+/* Identidad */
+.idBlock{display:flex;flex-direction:column;gap:3px;padding:2px 2px 4px}
+.idGroup{
+  align-self:flex-start;padding:5px 12px;border-radius:999px;
+  background:var(--basalt-hi);border:1px solid var(--line-hi);
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--turquoise);
+}
+.idBlock h2{font-size:clamp(34px,5vw,54px);line-height:.96;letter-spacing:-.025em;margin-top:6px;text-transform:uppercase}
+.idSci{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.1vw,22px);color:var(--turquoise)}
+.idAuth{font-size:14px;color:var(--calm)}
+.idSyn{font-size:12.5px;color:var(--doubt);font-family:var(--serif);font-style:italic}
+.idSyn span{font-family:var(--sans);font-style:normal;color:var(--calm-dim)}
+
+/* Fotografía */
+.idPhoto{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--shelf);aspect-ratio:4/3}
+.idPhoto .shot{width:100%;height:100%;object-fit:cover}
+.idPhoto svg{width:100%;height:100%;display:block}
+.idSeen{
+  position:absolute;right:10px;top:10px;
+  display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;
+  background:rgba(4,14,18,.82);border:1px solid rgba(234,246,247,.16);
+  font-size:11.5px;font-weight:700;color:var(--calm);
+}
+.idSeen.on{background:var(--logged);color:#04220f;border-color:transparent}
+.idSeen b{font-size:14px}
+.idCredit{font-size:11px;color:var(--calm-dim);padding:0 3px}
+.idCredit a{color:var(--turquoise)}
+
+/* Chips de medida */
+.idChips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.idChip{
+  display:flex;flex-direction:column;gap:4px;padding:11px 12px;
+  border:1px solid var(--line);border-radius:var(--r-md);background:var(--basalt);
+}
+.idChip small{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--calm-dim)}
+.idChip b{font-size:13.5px;font-weight:600}
+.dots{display:flex;gap:4px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(143,179,186,.28)}
+.dot.on{background:var(--turquoise)}
+
+/* Leyenda de nivel */
+.idLevels{display:flex;flex-wrap:wrap;gap:6px}
+.idLevels span{
+  display:inline-flex;align-items:center;gap:7px;padding:6px 11px;
+  border:1px solid var(--line);border-radius:999px;background:var(--shelf);
+  font-size:11.5px;color:var(--calm-dim);
+}
+.idLevels span.on{border-color:var(--line-hi);color:var(--foam);background:var(--basalt-hi)}
+.idLevels i{width:8px;height:8px;border-radius:50%;display:block}
+
+.idRecog{padding:15px 16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--basalt)}
+.idRecog h3{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--turquoise);margin-bottom:7px}
+.idRecog p{font-size:14px;line-height:1.6;color:#cfe4e8}
+
+/* Bloques de contenido */
+.boxes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.box{
+  display:flex;flex-direction:column;gap:6px;padding:14px 15px;
+  border:1px solid var(--line);border-radius:var(--r-md);background:var(--basalt);
+}
+.box h3{
+  font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--lumen);
+}
+.box p{font-size:13.2px;line-height:1.55;color:#cfe4e8}
+
+/* Tira taxonómica */
+.taxo{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;
+}
+.taxo>div{background:var(--basalt);padding:11px 13px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.taxo small{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--calm-dim)}
+.taxo strong{font-family:var(--serif);font-size:13px;font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+
+/* Geografía */
+.geo{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(200px,.85fr);gap:9px;align-items:stretch}
+.mapBox{align-items:center}
+.island{width:min(160px,80%);height:auto;display:block;margin:4px auto}
+.mapBox .tiny{text-align:center}
+
+/* Aportación */
+.addBox{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;
+  padding:14px 15px;border:1px solid var(--line-hi);border-radius:var(--r-md);
+  background:linear-gradient(135deg,rgba(47,212,192,.09),rgba(13,33,41,.9));
+}
+.addBox h3{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--turquoise);margin-bottom:3px}
+.addBtns{display:flex;gap:8px;align-items:center}
+
+@media (max-width:1000px){
+  .sheet-cols{grid-template-columns:1fr}
+  .geo{grid-template-columns:1fr}
+  .mapBox{min-width:0}
+}
+@media (max-width:620px){
+  .boxes{grid-template-columns:1fr}
+  .idChips{grid-template-columns:1fr}
+  .taxo{grid-template-columns:repeat(2,1fr)}
+}
+
+/* Fuentes */
+.sources{display:flex;flex-wrap:wrap;gap:7px}
+.sources a{
+  display:inline-flex;align-items:center;min-height:40px;padding:9px 13px;
+  border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--basalt);color:var(--foam);
+  font-size:12.5px;font-weight:600;text-decoration:none;
+}
+.sources a:hover{border-color:var(--line-hi);background:var(--basalt-hi);text-decoration:none}
+
+/* ── Aviso emergente ────────────────────────────────────────── */
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);
+  z-index:200;max-width:min(520px,92vw);
+  display:flex;align-items:center;gap:10px;
+  padding:13px 18px;border-radius:var(--r-md);
+  border:1px solid var(--line-hi);background:#0f2f38;color:var(--foam);
+  font-size:14px;box-shadow:0 20px 50px rgba(0,0,0,.5);
+  opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s ease;
+}
+.toast[data-show="true"]{opacity:1;transform:translate(-50%,0)}
+
+/* ── Pie ────────────────────────────────────────────────────── */
+.foot{
+  display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;
+  padding:44px 20px;border-top:1px solid var(--line);color:var(--calm);font-size:13.5px;
+}
+.foot strong{color:var(--foam);font-family:var(--serif);font-size:16px;letter-spacing:.02em}
+
+/* ── Adaptación ─────────────────────────────────────────────── */
+@media (max-width:1000px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sheet-top{grid-template-columns:1fr}
+  .sheet-plate{min-height:230px}
+}
+@media (max-width:720px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .links{grid-template-columns:1fr}
+  .link-card{grid-template-columns:auto 1fr}
+  .link-go{grid-column:2;justify-self:start;font-size:14px}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .blocks{grid-template-columns:1fr}
+  .brand-role{display:none}
+}
+@media (max-width:560px){
+  .grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cards{grid-template-columns:1fr}
+}
+
+/* ── Capa de viaje ──────────────────────────────────────────── */
+.travel{display:grid;gap:10px}
+.travel-row{
+  display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:14px;
+  padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--basalt);
+}
+.travel-row:hover{border-color:var(--line-hi)}
+.travel-icon{font-size:20px;text-align:center;line-height:1}
+.travel-body h3{font-size:15px;margin-bottom:2px}
+.travel-body p{font-size:13px;color:var(--calm);line-height:1.45}
+.travel-op{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--turquoise)}
+.travel-dur{
+  font-variant-numeric:tabular-nums;font-size:13px;font-weight:700;white-space:nowrap;
+  padding:6px 10px;border:1px solid var(--line-hi);border-radius:999px;
+}
+.travel-go{white-space:nowrap}
+.moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.move{padding:16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--shelf)}
+.move h3{font-size:15px;margin-bottom:6px}
+.move p{font-size:13.5px;color:var(--calm);line-height:1.5}
+.move b{display:inline-block;margin-top:10px;font-size:12.5px;color:var(--foam);font-variant-numeric:tabular-nums}
+
+/* ── Mapa de inmersiones ────────────────────────────────────── */
+.divemap{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px;align-items:start;
+}
+.divemap-canvas{
+  position:relative;border:1px solid var(--line);border-radius:var(--r-lg);
+  background:linear-gradient(180deg,#0a2530,#061418);padding:10px;
+}
+.divemap-canvas svg{width:100%;height:auto;display:block}
+.coast{fill:#123b45;stroke:#2fd4c0;stroke-width:2.4;stroke-linejoin:round}
+.reserva-zone{fill:rgba(47,212,192,.10);stroke:var(--lumen);stroke-width:2;stroke-dasharray:9 7}
+.dive-pin{cursor:pointer}
+.dive-pin circle{fill:var(--turquoise);stroke:#04222a;stroke-width:2.5;transition:r .15s ease}
+.dive-pin:hover circle,.dive-pin[data-on="true"] circle{fill:var(--lumen);r:13}
+.dive-pin text{fill:var(--foam);font-size:17px;font-weight:600;paint-order:stroke;stroke:#061418;stroke-width:5}
+.place-pin circle{fill:none;stroke:var(--calm);stroke-width:2}
+.place-pin text{fill:var(--calm);font-size:15px;paint-order:stroke;stroke:#061418;stroke-width:4}
+.dive-list{display:grid;gap:9px;max-height:520px;overflow:auto;padding-right:4px}
+.dive-item{
+  text-align:left;width:100%;padding:12px 14px;cursor:pointer;
+  border:1px solid var(--line);border-radius:var(--r-md);background:var(--basalt);
+}
+.dive-item[data-on="true"]{border-color:var(--lumen);background:var(--basalt-hi)}
+.dive-item h3{font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dive-item p{font-size:13px;color:var(--calm);line-height:1.45;margin-top:5px}
+.dive-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.dive-tag{
+  font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:999px;
+  border:1px solid var(--line);color:var(--calm);
+}
+.dive-tag.lvl-Bajo{color:var(--logged);border-color:rgba(111,227,154,.4)}
+.dive-tag.lvl-Medio{color:var(--lumen);border-color:rgba(255,209,102,.4)}
+.dive-tag.lvl-Alto{color:var(--doubt);border-color:rgba(255,157,122,.45)}
+.dive-tag.res{color:var(--turquoise);border-color:var(--line-hi)}
+
+/* ── Autor ──────────────────────────────────────────────────── */
+.author{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:26px;align-items:center;
+  padding:26px;border:1px solid var(--line-hi);border-radius:var(--r-xl);
+  background:linear-gradient(150deg,#123c47,#0a212b 62%);
+}
+.author-mark{width:132px;height:99px;flex:none}
+.author h2{font-size:26px;margin-bottom:4px}
+.author .role{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px}
+.author p{color:var(--calm);max-width:60ch;line-height:1.6}
+.author p + p{margin-top:10px}
+.author-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+
+/* ── Riesgo y acciones de la ficha ──────────────────────────── */
+.box--risk{border-color:rgba(255,157,122,.5) !important;background:rgba(255,157,122,.07)}
+.box--risk h3{color:var(--doubt)}
+.sheet-tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.mapBox .island{width:100%;height:auto;max-height:260px}
+
+@media (max-width:900px){
+  .divemap{grid-template-columns:1fr}
+  .dive-list{max-height:none}
+  .author{grid-template-columns:1fr;text-align:left}
+  .author-mark{width:96px;height:72px}
+}
+@media (max-width:720px){
+  .travel-row{grid-template-columns:28px 1fr;gap:10px}
+  .travel-dur{grid-column:2;justify-self:start}
+  .travel-go{grid-column:2;justify-self:start}
+  .moves{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="atmos" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="mark" viewBox="0 0 200 150">
+  <path id="mkLens" d="M40 55C51 49 77 48 88 55C94 59 95 69 92 79C88 92 77 99 64 99C50 99 40 90 37 76C34 65 35 58 40 55Z"/>
+  <clipPath id="mkLensR"><use href="#mkLens" transform="translate(200,0) scale(-1,1)"/></clipPath>
+  <!-- Hebillas de la correa -->
+  <rect x="1" y="58" width="19" height="28" rx="7" fill="#122C3F"/>
+  <rect x="180" y="58" width="19" height="28" rx="7" fill="#122C3F"/>
+  <!-- Cuerpo -->
+  <path id="mkBody" d="M16 54C16 34 34 25 57 22C85 19 115 19 143 22C166 25 184 34 184 54C184 78 177 98 163 110C150 121 131 122 117 113C109 108 105 104 100 104C95 104 91 108 83 113C69 122 50 121 37 110C23 98 16 78 16 54Z" fill="#122C3F"/>
+  <clipPath id="mkTop"><use href="#mkBody"/></clipPath>
+  <g clip-path="url(#mkTop)"><rect x="0" y="0" width="100" height="46" fill="#1BA9A4"/></g>
+  <!-- Cristales: un solo trazado, espejado. Simetría garantizada. -->
+  <g fill="none" stroke="#FFF" stroke-width="13">
+    <use href="#mkLens"/><use href="#mkLens" transform="translate(200,0) scale(-1,1)"/>
+  </g>
+  <use href="#mkLens" fill="#FFF" stroke="#1BA9A4" stroke-width="9"/>
+  <use href="#mkLens" transform="translate(200,0) scale(-1,1)" fill="#1BA9A4" stroke="#1BA9A4" stroke-width="9"/>
+  <!-- Izquierda: profundímetro -->
+  <g stroke="#122C3F" stroke-width="3.4" stroke-linecap="round">
+    <path d="M45 62l5 4M41 74h6M45 87l5-4M57 93l2-5"/>
+  </g>
+  <path d="M41 86l6-4" stroke="#F47B20" stroke-width="3.6" stroke-linecap="round"/>
+  <path d="M64 75L85 53c3-3 7 1 4 4L69 79Z" fill="#122C3F"/>
+  <path d="M67 74l14-1c3 0 3 5 0 5l-14-1Z" fill="#F47B20"/>
+  <circle cx="64" cy="76" r="6.5" fill="#FFF" stroke="#122C3F" stroke-width="3.6"/>
+  <!-- Derecha: la vida bajo el agua -->
+  <g clip-path="url(#mkLensR)">
+    <path d="M104 92c9 5 15-3 24 1s13 7 21 5 13-7 21-3v20h-66Z" fill="#122C3F"/>
+    <g fill="#FFF">
+      <path d="M115 80c6-6 18-7 26-2l8-6v16l-8-6c-8 5-20 4-26-2Z"/>
+      <path d="M138 60c5-5 15-5 21-1l7-5v13l-7-5c-6 4-16 3-21-2Z"/>
+    </g>
+    <g fill="#122C3F"><circle cx="131" cy="78" r="1.8"/><circle cx="149" cy="58" r="1.6"/></g>
+    <g fill="#FFF" opacity=".9"><circle cx="118" cy="61" r="2.8"/><circle cx="112" cy="70" r="1.9"/></g>
+  </g>
+  <!-- Puente, nariz y acentos -->
+  <path d="M88 47c7-5 17-5 24 0-6 6-18 6-24 0Z" fill="#B4D923"/>
+  <g clip-path="url(#mkTop)">
+    <path d="M93 70c2-7 12-7 14 0Z" fill="#F47B20"/>
+    <path d="M91 77h18c2 13 2 25 0 32-4 5-14 5-18 0-2-7-2-19 0-32Z" fill="#FFF"/>
+    <path d="M91 77h9v36c-4 0-7-1-9-4-2-7-2-19 0-32Z" fill="#1BA9A4"/>
+  </g>
+</symbol></defs></svg>
+
+<header class="topbar">
+  <a class="brand" href="#inicio">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 200 150"><use href="#mark"/></svg></span>
+    <span>
+      <span class="brand-name">FAUNA MARINA DE EL HIERRO</span>
+      <span class="brand-role">Agustín Fragero Blesa · Dive Master</span>
+    </span>
+  </a>
+  <button class="btn btn--sm" id="menuBtn" aria-expanded="false" aria-controls="drawer">☰ Menú</button>
+</header>
+
+<div class="drawer" id="drawer" data-open="false" role="dialog" aria-modal="true" aria-label="Navegación">
+  <div class="drawer-veil" data-close-drawer></div>
+  <nav class="drawer-panel">
+    <button class="drawer-close" data-close-drawer>← Cerrar</button>
+    <a href="#fauna" data-close-drawer>Consulta de fauna</a>
+    <a href="#bitacora" data-close-drawer>Mi bitácora</a>
+    <a href="#viaje" data-close-drawer>Cómo llegar y moverse</a>
+    <a href="#inmersiones" data-close-drawer>Puntos de inmersión</a>
+    <a href="#isla" data-close-drawer>Guía de la isla</a>
+    <a href="#restinga" data-close-drawer>La Restinga y el Mar de las Calmas</a>
+    <a href="#autor" data-close-drawer>Quién firma esta guía</a>
+    <a href="#practico" data-close-drawer>Servicios y emergencias</a>
+    <a href="#creditos" data-close-drawer>Créditos fotográficos</a>
+    <a href="#fuentes" data-close-drawer>Fuentes y verificación</a>
+    <a href="https://www.instagram.com/agustin_fragero/" target="_blank" rel="noopener" data-close-drawer>Instagram @agustin_fragero ↗</a>
+  </nav>
+</div>
+
+<section class="hero" id="inicio">
+  <img class="hero-shot" src="fotos/hero.webp" width="1500" height="1125" fetchpriority="high" alt="" aria-hidden="true">
+  <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <p class="eyebrow">Reserva Marina · Mar de las Calmas · El Hierro</p>
+    <h1>Lo que vive <em>bajo</em> las calmas</h1>
+    <p class="hero-lede">
+      Guía de identificación de 120 especies del Mar de las Calmas, ordenadas por grupo taxonómico y
+      por la profundidad a la que realmente te las encuentras. Marca lo que ves, anota cuántos ejemplares
+      y llévate tu bitácora contigo.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn--primary" href="#fauna">Consultar la fauna</a>
+      <a class="btn" href="#viaje">Cómo llegar</a>
+      <a class="btn btn--ghost" href="#autor">Bucear con Agustín</a>
+    </div>
+    <p class="tiny hero-credit">Mar de las Calmas · foto de Josepgras · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Mardelascalmas(1).jpg" target="_blank" rel="noopener">Wikimedia Commons ↗</a></p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- ═══ Fauna ═══════════════════════════════════════════════ -->
+  <section class="section" id="fauna">
+    <div class="section-head">
+      <p class="eyebrow">Instrumento de consulta</p>
+      <h2>Consulta de fauna</h2>
+      <p>
+        Filtra por grupo, por banda de profundidad o por lo que aún te falta por ver. El selector de nivel
+        cambia cuánto texto recibes: <strong>Básico</strong> da la clave de identificación,
+        <strong>Profesional</strong> añade talla, hábitat y comportamiento, y <strong>Experto</strong>
+        suma confusiones frecuentes, ecología y estado de conservación.
+      </p>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="note note--turq" style="margin-bottom:22px">
+      <span aria-hidden="true">◍</span>
+      <span><strong>Sobre las láminas:</strong> cada especie lleva una lámina dibujada por la propia página —silueta del grupo taxonómico sobre su banda de profundidad, con la regla de metros a la izquierda—. No es una fotografía y no pretende serlo: para imagen real, cada ficha enlaza directamente a Wikimedia Commons, iNaturalist y Wikipedia.</span>
+    </div>
+
+    <div class="controls">
+      <div class="control-row">
+        <input class="field search" id="q" type="search" placeholder="Buscar por nombre común, científico o grupo…" aria-label="Buscar especie">
+        <select class="field" id="groupSel" aria-label="Filtrar por grupo taxonómico"></select>
+      </div>
+      <div class="control-row" id="bandRow">
+        <span class="control-label">Profundidad</span>
+      </div>
+      <div class="control-row" id="stateRow">
+        <span class="control-label">Registro</span>
+      </div>
+      <div class="control-row">
+        <span class="control-label">Nivel</span>
+        <div id="levelRow" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+        <span style="flex:1"></span>
+        <span class="control-label">Vista</span>
+        <div id="viewRow" style="display:flex;gap:8px"></div>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="gallery" id="gallery" hidden></div>
+    <div class="pager" id="pager"></div>
+  </section>
+
+  <!-- ═══ Bitácora ════════════════════════════════════════════ -->
+  <section class="section" id="bitacora">
+    <div class="section-head">
+      <p class="eyebrow">Inventario cooperativo</p>
+      <h2>Mi bitácora</h2>
+      <p>
+        Aquí no gana quien más ve: gana el proyecto cuando cada persona aporta. <strong>Registrar</strong>
+        marca presencia y el contador anota cuántos ejemplares observaste. Todo se guarda en tu propio
+        navegador; exporta el fichero para fusionarlo con el de otro buceador.
+      </p>
+    </div>
+
+    <div class="tools">
+      <button class="btn btn--primary" id="exportBtn">Exportar mi bitácora</button>
+      <button class="btn" id="importBtn">Importar una bitácora</button>
+      <button class="btn btn--ghost" id="pasteBtn">Pegar o copiar como texto</button>
+      <button class="btn btn--ghost" id="resetBtn">Reiniciar</button>
+      <input class="file-input" id="importFile" type="file" accept="application/json,.json">
+    </div>
+
+    <div class="paste" id="pasteBox">
+      <label class="tiny" for="pasteArea">Pega aquí el contenido de otra bitácora y pulsa Fusionar, o copia el tuyo desde este mismo campo.</label>
+      <textarea class="field" id="pasteArea" spellcheck="false" aria-label="Bitácora en formato JSON"></textarea>
+      <div class="tools" style="margin:0">
+        <button class="btn btn--sm" id="mergeBtn">Fusionar lo pegado</button>
+        <button class="btn btn--sm btn--ghost" id="fillBtn">Volcar mi bitácora aquí</button>
+        <button class="btn btn--sm btn--ghost" id="copyBtn">Copiar al portapapeles</button>
+      </div>
+    </div>
+
+    <div class="note" id="storageNote" style="margin-top:16px" hidden>
+      <span aria-hidden="true">▲</span>
+      <span><strong>Sin almacenamiento persistente:</strong> este visor no permite guardar en el navegador. Tu bitácora funciona durante la sesión, pero se pierde al cerrar. Exporta antes de salir.</span>
+    </div>
+  </section>
+
+  <!-- ═══ Viaje ═══════════════════════════════════════════════ -->
+  <section class="section" id="viaje">
+    <div class="section-head">
+      <p class="eyebrow">Antes de meterse en el agua</p>
+      <h2>Cómo llegar y cómo moverse</h2>
+      <p id="viajeAviso"></p>
+    </div>
+    <h3 class="eyebrow" style="margin-bottom:12px">Llegar a El Hierro</h3>
+    <div class="travel" id="travelList"></div>
+    <div class="moves" id="movesList"></div>
+    <div id="dormir" style="margin-top:26px"></div>
+  </section>
+
+  <!-- ═══ Puntos de inmersión ═════════════════════════════════ -->
+  <section class="section" id="inmersiones">
+    <div class="section-head">
+      <p class="eyebrow">El Hierro bajo el agua</p>
+      <h2>Puntos de inmersión</h2>
+      <p id="diveIntro"></p>
+    </div>
+    <div class="divemap">
+      <div class="divemap-canvas" id="diveMap"></div>
+      <div class="dive-list" id="diveList"></div>
+    </div>
+    <div class="note" style="margin-top:18px">
+      <span aria-hidden="true">▲</span>
+      <span><strong>Buceo autorizado, no libre.</strong> La inmersión autónoma dentro de la Reserva Marina exige embarcación de apoyo homologada, autorización previa y hacerse en los puntos señalizados. Queda excluida la reserva integral de la bahía de Naos. Ve siempre con un centro de la isla.</span>
+    </div>
+  </section>
+
+  <!-- ═══ Guía de la isla ═════════════════════════════════════ -->
+  <section class="section" id="isla">
+    <div class="section-head">
+      <p class="eyebrow">El Hierro fuera del agua</p>
+      <h2>Guía de la isla</h2>
+      <p>
+        Las diez categorías oficiales de Turismo de El Hierro, cada una enlazada a su página fuente para que
+        consultes horarios, accesos y fotografías actualizadas antes de salir.
+      </p>
+    </div>
+    <div class="shots" id="islandShots"></div>
+
+    <div class="links">
+      <a class="link-card" href="https://elhierro.travel/espacios-naturales-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">🌿</span>
+        <span><h3>Espacios naturales</h3><p>Parques, reservas y paisajes protegidos sobre roca volcánica.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/lugares-con-encanto-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">✦</span>
+        <span><h3>Lugares con encanto</h3><p>Pueblos, rincones de costa y sitios que piden ir sin prisa.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/miradores-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">◉</span>
+        <span><h3>Miradores</h3><p>Los puntos donde se lee el relieve, el océano y el atardecer.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/piscinas-naturales-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">≋</span>
+        <span><h3>Piscinas naturales</h3><p>Charcos y piscinas de lava: Tacorón, Charco Azul, Charco Manso.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/playas-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">◡</span>
+        <span><h3>Playas</h3><p>Calas y arenales para después de la inmersión.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/puntos-de-inmersion-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">⌁</span>
+        <span><h3>Puntos de inmersión</h3><p>La puerta de entrada a toda la fauna de esta guía.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/senderos-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">⋀</span>
+        <span><h3>Senderos</h3><p>Rutas de costa, sabinar, pinares y caminos históricos.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/observacion-de-estrellas-en-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">✷</span>
+        <span><h3>Observación de estrellas</h3><p>Baja contaminación lumínica: el cielo también es patrimonio.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/museos-y-visitas-de-interes-en-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">▤</span>
+        <span><h3>Museos y visitas</h3><p>Geoparque, Árbol Garoé, arqueología y patrimonio religioso.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="link-card" href="https://elhierro.travel/zonas-de-despegue-parapente-en-el-hierro/" target="_blank" rel="noopener">
+        <span class="link-icon" aria-hidden="true">⌃</span>
+        <span><h3>Parapente</h3><p>Zonas de despegue y otra forma de leer el paisaje herreño.</p></span>
+        <span class="link-go" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ La Restinga ═════════════════════════════════════════ -->
+  <section class="section" id="restinga">
+    <div class="section-head">
+      <p class="eyebrow">Base operativa</p>
+      <h2>La Restinga y el Mar de las Calmas</h2>
+      <p>
+        Pueblo pesquero al sur de la isla, resguardado del alisio, y puerta de entrada a la Reserva Marina.
+        Es donde empieza y acaba cada jornada de buceo.
+      </p>
+    </div>
+    <div class="cards">
+      <article class="info">
+        <h3>Punta Restinga</h3>
+        <p>Lenguas de lava, veriles, plataformas de arena y cuevas frente al puerto. Mero, chuchos, trompeteros y peces de arrecife a poca profundidad.</p>
+        <div class="info-links"><a href="https://elhierro.travel/puntos-de-inmersion/el-hierro/punta-restinga/" target="_blank" rel="noopener">Ficha oficial ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>El Bajón</h3>
+        <p>Bajo volcánico icónico, la inmersión de referencia del Mar de las Calmas. Grandes bancos de bogas y medregales; condiciones siempre a criterio del centro.</p>
+        <div class="info-links"><a href="https://elhierro.travel/puntos-de-inmersion-el-hierro/" target="_blank" rel="noopener">Puntos de inmersión ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>Reserva Marina</h3>
+        <p>Figura de protección que explica por qué aquí se ven meros grandes y confiados. Respeta los límites de fondeo, la prohibición de extracción y la distancia a la fauna.</p>
+        <div class="info-links"><a href="https://elhierro.travel/experiencias/lo-que-no-te-puedes-perder-de-el-hierro/" target="_blank" rel="noopener">Imprescindibles ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>Mirador de Tanajara</h3>
+        <p>La mejor lectura del paisaje: desde aquí se entiende la dorsal volcánica que baja hasta La Restinga y el porqué de un mar tan tranquilo.</p>
+        <div class="info-links"><a href="https://elhierro.travel/miradores/el-hierro/mirador-de-tanajara/" target="_blank" rel="noopener">Ficha oficial ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>Centro de Interpretación del Geoparque</h3>
+        <p>Para entender la formación de la isla y la erupción submarina de 2011, que reconfiguró justo el fondo que hoy buceas.</p>
+        <div class="info-links"><a href="https://elhierro.travel/museos-y-visitas-de-interes/el-hierro/centro-de-interpretacion-del-geoparque/" target="_blank" rel="noopener">Ficha oficial ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>Tacorón</h3>
+        <p>Baño volcánico al sur, aguas habitualmente tranquilas y aparcamiento. El plan natural para las horas de desaturación entre inmersiones.</p>
+        <div class="info-links"><a href="https://elhierro.travel/piscinas-naturales/el-hierro/tacoron/" target="_blank" rel="noopener">Ficha oficial ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ Autor ═══════════════════════════════════════════════ -->
+  <section class="section" id="autor">
+    <div class="section-head">
+      <p class="eyebrow">Quién firma esta guía</p>
+      <h2>Bucear con Agustín</h2>
+    </div>
+    <div class="author" id="authorCard"></div>
+  </section>
+
+  <!-- ═══ Práctico ════════════════════════════════════════════ -->
+  <section class="section" id="practico">
+    <div class="section-head">
+      <p class="eyebrow">Alrededor de La Restinga</p>
+      <h2>Servicios y emergencias</h2>
+      <p>Selección de arranque, no un ranking. Conviene confirmar horarios antes de ir, sobre todo fuera de temporada.</p>
+    </div>
+    <div class="cards">
+      <article class="info">
+        <h3>Comer en La Restinga</h3>
+        <p>El Refugio · Casa Juan · Restingolita. Pescado del día y cocina canaria a pie de puerto.</p>
+        <div class="info-links">
+          <a href="tel:+34922557130">El Refugio</a>
+          <a href="tel:+34922557102">Casa Juan</a>
+          <a href="tel:+34822096130">Restingolita</a>
+        </div>
+      </article>
+      <article class="info">
+        <h3>Supermercados</h3>
+        <p>SuperDino (C. el Rancho, 15) y Padrón (C. el Rancho, 7B), ambos en La Restinga.</p>
+        <div class="info-links">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=SuperDino+La+Restinga+El+Hierro" target="_blank" rel="noopener">Ver mapa ↗</a>
+          <a href="tel:822126190">822 126 190</a>
+        </div>
+      </article>
+      <article class="info">
+        <h3>Combustible</h3>
+        <p>DISA El Pinar, C. Travesía del Pino 29, Taibique. La más cercana subiendo desde La Restinga.</p>
+        <div class="info-links">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=DISA+El+Pinar+El+Hierro" target="_blank" rel="noopener">Ver mapa ↗</a>
+          <a href="tel:689751771">689 751 771</a>
+        </div>
+      </article>
+      <article class="info">
+        <h3>Farmacia</h3>
+        <p>Farmacia El Pinar, C. Travesía del Pino 56, Taibique.</p>
+        <div class="info-links">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Farmacia+El+Pinar+El+Hierro" target="_blank" rel="noopener">Ver mapa ↗</a>
+          <a href="tel:922558301">922 558 301</a>
+        </div>
+      </article>
+      <article class="info">
+        <h3>Centro médico</h3>
+        <p>Ambulatorio de La Restinga, C. la Restinga Cuatro.</p>
+        <div class="info-links">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Centro+M%C3%A9dico+La+Restinga+El+Hierro" target="_blank" rel="noopener">Ver mapa ↗</a>
+        </div>
+      </article>
+      <article class="info">
+        <h3>Emergencias</h3>
+        <p>112 para cualquier emergencia. Policía Local (Frontera): 922 555 991. La cámara hiperbárica de referencia no está en la isla: consúltalo con tu centro antes de bucear.</p>
+        <div class="info-links"><a href="tel:112">Llamar al 112</a></div>
+      </article>
+    </div>
+    <div class="note" style="margin-top:18px">
+      <span aria-hidden="true">▲</span>
+      <span><strong>Esta guía no es documentación de seguridad.</strong> No sustituye al briefing de tu centro de buceo, ni a la información oficial de navegación, meteorología o asistencia médica. Ninguna inmersión de esta guía debe planificarse sin un profesional en destino.</span>
+    </div>
+  </section>
+
+  <!-- ═══ Créditos ═══════════════════════════════════════════ -->
+  <section class="section" id="creditos">
+    <div class="section-head">
+      <p class="eyebrow">Cumplimiento de licencias</p>
+      <h2>Créditos fotográficos</h2>
+      <p id="creditsIntro"></p>
+    </div>
+    <div class="note note--turq" style="margin-bottom:20px">
+      <span aria-hidden="true">◍</span>
+      <span><strong>Criterio de selección:</strong> solo se acepta una fotografía si Wikimedia Commons la identifica con el nombre científico exacto de la especie, y si su licencia permite uso comercial. Quedan excluidas las licencias NonCommercial y NoDerivatives, porque esta guía promociona una actividad profesional. Las especies sin coincidencia mantienen su lámina generada: nunca se muestra una especie con la foto de otra.</span>
+    </div>
+    <div id="creditsList"></div>
+  </section>
+
+  <!-- ═══ Fuentes ═════════════════════════════════════════════ -->
+  <section class="section" id="fuentes">
+    <div class="section-head">
+      <p class="eyebrow">Trazabilidad</p>
+      <h2>Fuentes y verificación</h2>
+      <p>
+        Cada ficha enlaza a sus fuentes primarias. La taxonomía debe contrastarse en WoRMS antes de dar
+        por cerrada cualquier edición científica, y la presencia local en El Hierro es dato de campo,
+        no dato bibliográfico.
+      </p>
+    </div>
+    <div class="cards">
+      <article class="info">
+        <h3>WoRMS</h3>
+        <p>World Register of Marine Species. La autoridad para nombres aceptados y sinonimias.</p>
+        <div class="info-links"><a href="https://www.marinespecies.org/" target="_blank" rel="noopener">Abrir ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>iNaturalist</h3>
+        <p>Observaciones georreferenciadas con fotografía y licencia declarada. La fuente de imagen del proyecto.</p>
+        <div class="info-links"><a href="https://www.inaturalist.org/" target="_blank" rel="noopener">Abrir ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>GBIF</h3>
+        <p>Registros de distribución agregados. Útil para contrastar si una especie llega de verdad a Canarias.</p>
+        <div class="info-links"><a href="https://www.gbif.org/" target="_blank" rel="noopener">Abrir ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>REDPROMAR</h3>
+        <p>Red de observadores del medio marino de Canarias. El canal para reportar avistamientos relevantes.</p>
+        <div class="info-links"><a href="https://redpromar.org/" target="_blank" rel="noopener">Abrir ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>Turismo de El Hierro</h3>
+        <p>Fuente oficial de todas las fichas turísticas enlazadas en la guía de la isla.</p>
+        <div class="info-links"><a href="https://elhierro.travel/" target="_blank" rel="noopener">Abrir ↗</a></div>
+      </article>
+      <article class="info">
+        <h3>Agustín Fragero</h3>
+        <p>Autoría del contenido de buceo y de la selección de especies. Dive Master en El Hierro.</p>
+        <div class="info-links"><a href="https://www.instagram.com/agustin_fragero/" target="_blank" rel="noopener">Instagram ↗</a></div>
+      </article>
+    </div>
+    <div class="note" style="margin-top:18px">
+      <span aria-hidden="true">▲</span>
+      <span><strong>Borrador pendiente de revisión.</strong> Los textos de identificación, talla, profundidad y comportamiento son una redacción de trabajo preparada para que Agustín la valide especie por especie antes de publicarse como edición definitiva. Las especies marcadas <em>presencia por confirmar</em> aparecen en la lista de partida pero su cita en aguas de El Hierro necesita contraste con registros locales.</span>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <svg class="foot-mark" viewBox="0 0 200 150" aria-hidden="true"><use href="#mark"/></svg>
+  <strong>Agustín Fragero Blesa · Dive Master</strong>
+  <p>Fauna Marina de El Hierro — guía de campo del Mar de las Calmas</p>
+  <p><a href="https://www.instagram.com/agustin_fragero/" target="_blank" rel="noopener">Instagram @agustin_fragero ↗</a></p>
+</footer>
+
+<!-- ═══ Modal de ficha ════════════════════════════════════════ -->
+<div class="modal" id="modal" data-open="false" role="dialog" aria-modal="true" aria-labelledby="mName">
+  <div class="modal-veil" data-close-modal></div>
+  <article class="sheet" id="sheet">
+    <button class="sheet-close" data-close-modal aria-label="Cerrar ficha">&#10005;</button>
+    <p class="sheet-brand">Gu&iacute;a Fauna Marina de El Hierro &mdash; Gu&iacute;a de Buceo Profesional</p>
+    <div class="sheet-cols">
+      <section class="sheet-left" id="mLeft"></section>
+      <section class="sheet-right" id="mRight"></section>
+    </div>
+    <p class="sheet-warn"><span aria-hidden="true">&#9888;</span> Respeta la vida marina: observa sin tocar, no extraigas especies ni alteres su h&aacute;bitat. El mar de El Hierro es un tesoro que debemos conservar.</p>
+  </article>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+/* ═══ Datos ═══════════════════════════════════════════════════
+   b   banda de profundidad: sup som ver hon pel
+   loc si | dudosa | no        f  frecuencia en El Hierro
+   ═══════════════════════════════════════════════════════════ */
+
+let SPECIES = [];
+
+/* Fotografía ingerida de Wikimedia Commons. Solo licencias de uso comercial
+   (CC0, CC BY, CC BY-SA); NonCommercial y NoDerivatives quedan excluidas por la
+   sección 5.4 del diseño. d=imagen, a=autor, l=licencia, u=página de origen. */
+let PHOTOS = {};
+
+/* ═══ Vocabularios ════════════════════════════════════════════ */
+
+const BANDS = {
+  sup:{name:"Superficie",range:"0–5 m",color:"#7fe3d4",min:0,max:5},
+  som:{name:"Somero",range:"5–20 m",color:"#3fc9c4",min:5,max:20},
+  ver:{name:"Veril",range:"20–40 m",color:"#2a8fb8",min:20,max:40},
+  hon:{name:"Hondo",range:"+40 m",color:"#2b5f9e",min:40,max:80},
+  pel:{name:"Pelágico",range:"Aguas abiertas",color:"#7d8fd6",min:0,max:60}
+};
+
+const GROUPS = {
+  "Poríferos":{motif:"esponja",mark:"🧽"},
+  "Briozoos":{motif:"briozoo",mark:"🪸"},
+  "Ctenóforos":{motif:"gelatina",mark:"🫧"},
+  "Cnidarios":{motif:"anemona",mark:"🌺"},
+  "Gusanos":{motif:"gusano",mark:"🪱"},
+  "Artrópodos":{motif:"crustaceo",mark:"🦐"},
+  "Moluscos":{motif:"pulpo",mark:"🐚"},
+  "Equinodermos":{motif:"estrella",mark:"⭐"},
+  "Tunicados":{motif:"tunicado",mark:"🟦"},
+  "Peces":{motif:"pez",mark:"🐟"},
+  "Tiburones":{motif:"tiburon",mark:"🦈"},
+  "Rayas y mantas":{motif:"raya",mark:"🪽"},
+  "Reptiles":{motif:"tortuga",mark:"🐢"},
+  "Mamíferos":{motif:"delfin",mark:"🐬"}
+};
+
+/* Siluetas en caja local 0 0 100 100 */
+const MOTIFS = {
+  pez:"M4 50c10-19 34-25 52-17l3-9 9 9 10-8-4 12 12 6-12 6 4 12-10-8-9 9-3-9c-18 8-42 2-52-17zm22-5a3.4 3.4 0 106.8 0 3.4 3.4 0 00-6.8 0z",
+  tiburon:"M2 56c14-22 40-33 62-31l6-14 6 14 8-3-5 11 17 9-17 9 5 11-8-3-4 9c-22 3-56-3-70-16zm26-8a3 3 0 106 0 3 3 0 00-6 0z",
+  raya:"M50 16c16 0 40 16 46 34 2 6-3 9-9 6-9-4-18-7-25-7l-2 34-5 3-5-3-2-34c-7 0-16 3-25 7-6 3-11 0-9-6 6-18 30-34 46-34zm-8 22a3 3 0 106 0 3 3 0 00-6 0zm10 0a3 3 0 106 0 3 3 0 00-6 0z",
+  tortuga:"M50 20c17 0 30 13 30 30s-13 30-30 30-30-13-30-30 13-30 30-30zm0-4c5 0 8 3 8 7l-16 0c0-4 3-7 8-7zM21 30c-5-3-10-2-11 2s3 8 9 9zm58 0c5-3 10-2 11 2s-3 8-9 9zM21 70c-5 3-10 2-11-2s3-8 9-9zm58 0c5 3 10 2 11-2s-3-8-9-9zM50 30l10 8-4 12h-12l-4-12z",
+  delfin:"M6 62c8-20 30-34 52-34l4-16 8 15 22-4-14 14 16 12-18 4c-6 12-22 20-38 20l-6 9-4-10-14 6z",
+  pulpo:"M50 14c14 0 24 10 24 23 0 6-2 11-5 15 4 6 10 10 15 10 4 0 6-2 7-5l4 3c-2 6-6 9-12 9-8 0-15-4-20-10l-3 2 2 20-4 2-3-19h-4l-3 19-4-2 2-20-3-2c-5 6-12 10-20 10-6 0-10-3-12-9l4-3c1 3 3 5 7 5 5 0 11-4 15-10-3-4-5-9-5-15 0-13 10-23 24-23zm-9 20a3.6 3.6 0 107.2 0 3.6 3.6 0 00-7.2 0zm11 0a3.6 3.6 0 107.2 0 3.6 3.6 0 00-7.2 0z",
+  crustaceo:"M50 30c11 0 19 8 19 18 0 6-3 11-7 15l5 16-8-11-3 12-6-12-6 12-3-12-8 11 5-16c-4-4-7-9-7-15 0-10 8-18 19-18zM30 26c-6-6-14-8-20-6l2 6c5-1 10 1 14 5zm40 0c6-6 14-8 20-6l-2 6c-5-1-10 1-14 5zM24 42c-7 1-13 5-16 11l5 3c3-4 7-7 12-8zm52 0c7 1 13 5 16 11l-5 3c-3-4-7-7-12-8zM42 24l-4-12 4 2 3 10zm16 0l4-12-4 2-3 10z",
+  estrella:"M50 8l11 27 29 2-22 19 7 28-25-15-25 15 7-28-22-19 29-2z",
+  esponja:"M30 88c-4 0-6-3-6-7l2-33c0-8 5-13 11-13s11 5 11 13l1 33c0 4-2 7-6 7zm34 0c-4 0-6-3-6-7l1-25c0-7 4-11 9-11s9 4 9 11l1 25c0 4-2 7-6 7zM33 42c-3 0-5-2-5-5s2-5 5-5 5 2 5 5-2 5-5 5zm34 8c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4z",
+  anemona:"M50 60c-9 0-15-6-15-14 0-7 6-13 15-13s15 6 15 13c0 8-6 14-15 14zm-4 4h8l3 28h-14zM35 46c-6-8-14-13-22-13l1 5c7 1 13 5 18 12zm30 0c6-8 14-13 22-13l-1 5c-7 1-13 5-18 12zM38 38c-3-9-9-16-16-19l-1 5c6 3 11 9 13 16zm24 0c3-9 9-16 16-19l1 5c-6 3-11 9-13 16zM45 34c0-9-2-17-6-22l-3 4c3 5 5 11 5 19zm10 0c0-9 2-17 6-22l3 4c-3 5-5 11-5 19z",
+  gusano:"M46 52h8l2 40h-12zM50 12c10 0 18 8 18 18 0 6-3 11-8 14l-3-4c4-2 6-6 6-10 0-7-6-13-13-13s-13 6-13 13c0 4 2 8 6 10l-3 4c-5-3-8-8-8-14 0-10 8-18 18-18zm0 6c7 0 12 5 12 12 0 4-2 7-5 9l-3-4c2-1 3-3 3-5 0-4-3-7-7-7s-7 3-7 7c0 2 1 4 3 5l-3 4c-3-2-5-5-5-9 0-7 5-12 12-12zM30 26c-5-4-11-6-17-5l1 5c5-1 9 1 13 4zm40 0c5-4 11-6 17-5l-1 5c-5-1-9 1-13 4z",
+  gelatina:"M50 12c14 0 24 14 24 34s-10 42-24 42-24-22-24-42 10-34 24-34zm-12 14v52m8-56v60m8-60v60m8-56v52",
+  briozoo:"M48 92h4V56h-4zM50 56c0-8-6-12-14-14l-2 4c6 2 10 5 10 10zm0 0c0-8 6-12 14-14l2 4c-6 2-10 5-10 10zM36 42c0-7-5-11-12-13l-2 4c5 2 8 5 8 9zm0 0c0-7 4-11 10-13l2 4c-5 2-8 5-8 9zm28 0c0-7 5-11 12-13l2 4c-5 2-8 5-8 9zm0 0c0-7-4-11-10-13l-2 4c5 2 8 5 8 9zM24 28c0-6-4-10-9-12l-2 4c4 2 7 4 7 8zm52 0c0-6 4-10 9-12l2 4c-4 2-7 4-7 8zM50 40c0-8-4-14-10-18l-3 4c5 3 9 8 9 14zm0 0c0-8 4-14 10-18l3 4c-5 3-9 8-9 14z",
+  tunicado:"M36 88c-6 0-9-4-9-10l3-32c0-9 5-14 12-14s12 5 12 14l2 32c0 6-3 10-8 10zm34 0c-5 0-8-3-8-9l2-24c0-7 4-11 9-11s9 4 9 11l1 24c0 6-3 9-7 9zM33 34c0-4 2-6 5-6s5 2 5 6l-1 4h-8zm35 8c0-3 2-5 4-5s4 2 4 5l-1 3h-6z"
+};
+
+/* ═══ Utilidades ══════════════════════════════════════════════ */
+
+const $  = (sel,root)=>(root||document).querySelector(sel);
+const $$ = (sel,root)=>Array.from((root||document).querySelectorAll(sel));
+const esc = s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const wikiSlug = s=>encodeURIComponent(String(s).replace(/ /g,"_"));
+
+/* Generador determinista: la misma especie dibuja siempre igual */
+function seeded(seed){
+  let a = seed*2654435761 >>> 0;
+  return ()=>{
+    a = a + 0x6D2B79F5 >>> 0;
+    let t = Math.imul(a ^ a>>>15, 1|a);
+    t = t + Math.imul(t ^ t>>>7, 61|t) ^ t;
+    return ((t ^ t>>>14)>>>0) / 4294967296;
+  };
+}
+
+/* ═══ Almacenamiento tolerante a fallos ═══════════════════════ */
+
+const KEY = "hierro-bitacora-v2";
+let memoryOnly = false;
+let log = {};
+
+(function loadLog(){
+  try{
+    const raw = window.localStorage.getItem(KEY);
+    if(raw) log = JSON.parse(raw) || {};
+    window.localStorage.setItem(KEY+"-probe","1");
+    window.localStorage.removeItem(KEY+"-probe");
+  }catch(err){
+    memoryOnly = true;
+    log = {};
+  }
+})();
+
+function persist(){
+  if(!memoryOnly){
+    try{ window.localStorage.setItem(KEY, JSON.stringify(log)); }
+    catch(err){ memoryOnly = true; revealStorageNote(); }
+  }
+  renderStats();
+}
+function revealStorageNote(){ const n = $("#storageNote"); if(n) n.hidden = false; }
+if(memoryOnly) revealStorageNote();
+
+const entry = id => log[id] || {seen:false,count:0};
+
+function setSeen(id){
+  const e = entry(id);
+  e.seen = !e.seen;
+  if(e.seen && e.count === 0) e.count = 1;
+  if(!e.seen) e.count = 0;
+  log[id] = e;
+  persist(); render();
+  if(modalSpecies && modalSpecies.i === id) fillModal(modalSpecies);
+}
+function bump(id,delta){
+  const e = entry(id);
+  e.count = Math.max(0, e.count + delta);
+  e.seen = e.count > 0;
+  log[id] = e;
+  persist(); render();
+  if(modalSpecies && modalSpecies.i === id) fillModal(modalSpecies);
+}
+
+/* ═══ Aviso emergente ═════════════════════════════════════════ */
+
+let toastTimer = null;
+function toast(message){
+  const el = $("#toast");
+  el.textContent = message;
+  el.dataset.show = "true";
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{ el.dataset.show = "false"; }, 4200);
+}
+
+/* ═══ Láminas ═════════════════════════════════════════════════ */
+
+function plate(sp,{square=false}={}){
+  const band = BANDS[sp.b] || BANDS.som;
+  const motif = MOTIFS[(GROUPS[sp.g]||{}).motif] || MOTIFS.pez;
+  const W = 400, H = square ? 400 : 250;
+  const rand = seeded(sp.i);
+  const uid = (square?"sq":"cd") + sp.i;
+  const benthic = sp.b !== "pel";
+
+  let shapes = "";
+  const n = 3;
+  for(let k=0;k<n;k++){
+    const scale = (square ? 0.62 : 0.5) * (0.62 + rand()*0.62) * (k === 0 ? 1.28 : 1);
+    const x = 36 + rand()*(W-140);
+    const y = (square ? 60 : 34) + rand()*(H - (square?190:130));
+    const rot = -16 + rand()*32;
+    const flip = rand() > 0.5 ? -1 : 1;
+    const op = k === 0 ? 0.95 : 0.24 + rand()*0.2;
+    shapes += '<g transform="translate('+x.toFixed(1)+' '+y.toFixed(1)+') rotate('+rot.toFixed(1)+') scale('+(scale*flip).toFixed(3)+' '+scale.toFixed(3)+')" opacity="'+op.toFixed(2)+'">'
+      + '<path d="'+motif+'" fill="'+(k===0?"#dff4f6":band.color)+'"'
+      + (sp.g === "Ctenóforos" ? ' stroke="'+band.color+'" stroke-width="2.6" fill-opacity=".22"' : '')
+      + '/></g>';
+  }
+
+  let motes = "";
+  for(let k=0;k<26;k++){
+    motes += '<circle cx="'+(rand()*W).toFixed(1)+'" cy="'+(rand()*H).toFixed(1)+'" r="'+(0.6+rand()*1.5).toFixed(2)+'" fill="#eaf6f7" opacity="'+(0.05+rand()*0.16).toFixed(2)+'"/>';
+  }
+
+  /* Regla de profundidad: el dato, dibujado */
+  let ruler = '<line x1="17" y1="14" x2="17" y2="'+(H-14)+'" stroke="rgba(234,246,247,.22)" stroke-width="1"/>';
+  const marks = square ? 5 : 4;
+  for(let k=0;k<=marks;k++){
+    const yy = 14 + (H-28) * (k/marks);
+    ruler += '<line x1="12" y1="'+yy.toFixed(1)+'" x2="'+(k%2?20:24)+'" y2="'+yy.toFixed(1)+'" stroke="rgba(234,246,247,.3)" stroke-width="1"/>';
+  }
+  const from = (H-28) * (band.min/80) + 14;
+  const to   = (H-28) * (Math.min(band.max,80)/80) + 14;
+  ruler += '<line x1="17" y1="'+from.toFixed(1)+'" x2="17" y2="'+to.toFixed(1)+'" stroke="'+band.color+'" stroke-width="4" stroke-linecap="round"/>';
+
+  const floor = benthic
+    ? '<path d="M0 '+H+' L0 '+(H-26)+' Q '+(W*0.22)+' '+(H-46)+' '+(W*0.45)+' '+(H-24)+' T '+W+' '+(H-32)+' L '+W+' '+H+' Z" fill="#04121a" opacity=".85"/>'
+    : '';
+
+  return ''
+  + '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Lámina esquemática de '+esc(sp.n)+', '+esc(band.name)+'">'
+  + '<defs><linearGradient id="g'+uid+'" x1="0" y1="0" x2="0" y2="1">'
+  + '<stop offset="0" stop-color="'+band.color+'" stop-opacity=".30"/>'
+  + '<stop offset=".55" stop-color="#0a2029" stop-opacity=".92"/>'
+  + '<stop offset="1" stop-color="#04121a"/></linearGradient></defs>'
+  + '<rect width="'+W+'" height="'+H+'" fill="url(#g'+uid+')"/>'
+  + motes + shapes + floor + ruler
+  + '</svg>';
+}
+
+/* Foto verificada si la hay; si no, la lámina generada como estado propio. */
+function media(sp,square){
+  const ph = PHOTOS["s"+sp.i];
+  if(!ph) return plate(sp,{square:square})
+    + '<span class="pending">Foto pendiente</span>';
+  return '<img class="shot" loading="lazy" decoding="async" src="'+photoSrc(ph)+'"'
+       + ' alt="'+esc(sp.n)+' — '+esc(sp.s)+'">'
+       + '<span class="credit">'+esc(ph.a)+' · '+esc(ph.l)+'</span>';
+}
+const hasPhoto = sp => Boolean(PHOTOS["s"+sp.i]);
+
+/* ═══ Estado de la vista ══════════════════════════════════════ */
+
+const state = {q:"",group:"all",band:"all",record:"all",level:"basic",view:"cards",page:1};
+const PER = {cards:12,gallery:24};
+
+function matches(sp){
+  if(state.group !== "all" && sp.g !== state.group) return false;
+  if(state.band  !== "all" && sp.b !== state.band)  return false;
+  const e = entry(sp.i);
+  if(state.record === "seen"    && !e.seen) return false;
+  if(state.record === "pending" &&  e.seen) return false;
+  if(state.record === "doubt"   && sp.loc === "si") return false;
+  if(state.record === "nophoto" && hasPhoto(sp)) return false;
+  const q = state.q.trim().toLowerCase();
+  if(!q) return true;
+  return (sp.n+" "+sp.s+" "+sp.g).toLowerCase().includes(q);
+}
+const results = ()=>SPECIES.filter(matches);
+
+function levelText(sp){
+  if(state.level === "basic") return sp.id;
+  if(state.level === "pro")   return sp.id+" "+sp.ha+" "+sp.be;
+  return sp.id+" "+sp.ha+" "+sp.be+" "+sp.ex;
+}
+
+/* ═══ Render ══════════════════════════════════════════════════ */
+
+function renderStats(){
+  const values  = Object.values(log);
+  const seen    = values.filter(v=>v.seen).length;
+  const reports = values.reduce((sum,v)=>sum+(v.count||0),0);
+  const pct     = Math.round(seen / SPECIES.length * 100);
+  $("#stats").innerHTML =
+      '<div class="stat"><b>'+seen+'</b><span>especies registradas</span><div class="stat-bar"><i style="width:'+pct+'%"></i></div></div>'
+    + '<div class="stat"><b>'+reports+'</b><span>ejemplares anotados</span></div>'
+    + '<div class="stat"><b>'+SPECIES.length+'</b><span>especies en la guía</span></div>'
+    + '<div class="stat"><b>'+pct+'%</b><span>del inventario</span></div>';
+}
+
+function cardMarkup(sp){
+  const e = entry(sp.i), band = BANDS[sp.b] || BANDS.som;
+  return '<article class="card" data-seen="'+e.seen+'">'
+    + '<div class="plate">'+media(sp,false)
+      + '<span class="plate-band"><span class="chip-dot" style="background:'+band.color+'"></span>'+esc(band.name)+'</span>'
+      + (sp.loc !== "si" ? '<span class="plate-flag">Por confirmar</span>' : '')
+      + (e.seen ? '<span class="plate-seen" aria-label="Registrada">✓</span>' : '')
+    + '</div>'
+    + '<div class="card-body">'
+      + '<p class="card-group"><span aria-hidden="true">'+(GROUPS[sp.g]||{}).mark+'</span> '+esc(sp.g)+'</p>'
+      + '<h3>'+esc(sp.n)+'</h3>'
+      + '<p class="card-sci">'+esc(sp.s)+'</p>'
+      + '<p class="card-text">'+esc(levelText(sp))+'</p>'
+      + '<div class="card-facts"><span class="fact">'+esc(sp.sz)+'</span><span class="fact">'+esc(sp.dp)+'</span><span class="fact">'+esc(sp.f)+'</span></div>'
+      + '<div class="card-actions">'
+        + '<button class="log" data-log="'+sp.i+'" data-on="'+e.seen+'" aria-pressed="'+e.seen+'">'+(e.seen?"✓ Registrada":"Registrar")+'</button>'
+        + '<div class="counter"><button data-minus="'+sp.i+'" aria-label="Restar un ejemplar de '+esc(sp.n)+'">−</button>'
+        + '<span class="num">'+(e.count||0)+'</span>'
+        + '<button data-plus="'+sp.i+'" aria-label="Sumar un ejemplar de '+esc(sp.n)+'">+</button></div>'
+      + '</div>'
+      + '<button class="btn btn--sm" data-open="'+sp.i+'">Ver ficha completa</button>'
+    + '</div></article>';
+}
+
+function tileMarkup(sp){
+  const e = entry(sp.i);
+  return '<button class="tile" data-open="'+sp.i+'" data-seen="'+e.seen+'">'
+    + media(sp,true)
+    + (e.seen ? '<span class="plate-seen" style="top:10px;bottom:auto" aria-label="Registrada">✓</span>' : '')
+    + (sp.loc !== "si" ? '<span class="plate-flag">Por confirmar</span>' : '')
+    + '<span class="tile-label"><strong>'+esc(sp.n)+'</strong><em>'+esc(sp.s)+'</em></span>'
+    + '</button>';
+}
+
+function render(){
+  const data  = results();
+  const per   = PER[state.view];
+  const pages = Math.max(1, Math.ceil(data.length / per));
+  if(state.page > pages) state.page = pages;
+  const start = (state.page - 1) * per;
+  const slice = data.slice(start, start + per);
+
+  const grid = $("#grid"), gallery = $("#gallery");
+  grid.hidden    = state.view !== "cards";
+  gallery.hidden = state.view !== "gallery";
+
+  const host = state.view === "cards" ? grid : gallery;
+  if(!slice.length){
+    host.innerHTML = '<div class="empty"><strong>Ningún resultado.</strong>'
+      + '<p>Prueba a quitar un filtro o a buscar por el nombre científico.</p>'
+      + '<button class="btn btn--sm" id="clearFilters">Quitar todos los filtros</button></div>';
+  }else{
+    host.innerHTML = slice.map(state.view === "cards" ? cardMarkup : tileMarkup).join("");
+  }
+  const other = state.view === "cards" ? gallery : grid;
+  other.innerHTML = "";
+
+  renderPager(data.length, pages, start, slice.length);
+  renderGroupCounts();
+}
+
+function renderPager(total,pages,start,shown){
+  const pager = $("#pager");
+  if(total === 0){ pager.innerHTML = ""; return; }
+  let html = '<button data-page="'+(state.page-1)+'"'+(state.page===1?" disabled":"")+' aria-label="Página anterior">‹</button>';
+  const from = Math.max(1, Math.min(state.page - 2, pages - 4));
+  const to   = Math.min(pages, from + 4);
+  for(let p=from;p<=to;p++){
+    html += '<button data-page="'+p+'" class="num"'+(p===state.page?' aria-current="page"':'')+'>'+p+'</button>';
+  }
+  html += '<button data-page="'+(state.page+1)+'"'+(state.page===pages?" disabled":"")+' aria-label="Página siguiente">›</button>';
+  html += '<p class="pager-status">Mostrando '+(start+1)+'–'+(start+shown)+' de '+total+' especies</p>';
+  pager.innerHTML = html;
+}
+
+function renderGroupCounts(){
+  $$("#bandRow .chip").forEach(chip=>{
+    const key = chip.dataset.band;
+    const count = key === "all" ? SPECIES.length : SPECIES.filter(s=>s.b===key).length;
+    const slot = $(".chip-count", chip);
+    if(slot) slot.textContent = count;
+  });
+}
+
+/* ═══ Ficha completa ══════════════════════════════════════════ */
+
+let modalSpecies = null, lastFocus = null;
+
+function fillModal(sp){
+  const e = entry(sp.i), band = BANDS[sp.b] || BANDS.som, ph = PHOTOS["s"+sp.i];
+  const grp = GROUPS[sp.g] || {};
+
+  /* Frecuencia dibujada en puntos: la forma comunica el dato, no lo decora */
+  const SCALE = ["Excepcional","Rara","Ocasional","Estacional","Frecuente","Com\u00fan"];
+  const pos = Math.max(1, SCALE.indexOf(sp.f) + 1);
+  let dots = "";
+  for(let k = 1; k <= 5; k++) dots += '<i class="dot' + (k <= Math.round(pos * 5 / 6) ? " on" : "") + '"></i>';
+
+  const lv = (sp.b === "hon" || sp.f === "Excepcional") ? 2 : (sp.b === "sup" ? 0 : 1);
+  const LEVELS = [["B\u00e1sico","#6fe39a"],["Profesional","#ffd166"],["Experto","#ff9d7a"]];
+
+  $("#mLeft").innerHTML =
+      '<div class="idBlock">'
+    +   '<span class="idGroup">' + (grp.mark || "") + ' ' + esc(sp.g) + '</span>'
+    +   '<h2 id="mName">' + esc(sp.n) + '</h2>'
+    +   '<p class="idSci">' + esc(sp.s) + '</p>'
+    +   (sp.auth ? '<p class="idAuth">' + esc(sp.auth) + '</p>' : '')
+    +   (sp.syn ? '<p class="idSyn">= ' + esc(sp.syn) + ' <span>en la bibliograf\u00eda de buceo</span></p>' : '')
+    + '</div>'
+    + '<div class="idPhoto">'
+    +   (ph ? '<img class="shot" src="' + photoSrc(ph) + '" alt="' + esc(sp.n) + ' \u2014 ' + esc(sp.s) + '">'
+          : plate(sp, {square:true}) + '<span class="pending">Foto pendiente</span>')
+    +   '<span class="idSeen' + (e.seen ? " on" : "") + '">' + (e.seen ? "\u2713 Visto" : "\u25ef Sin ver")
+    +   '<b class="num">' + (e.count || 0) + '</b></span>'
+    + '</div>'
+    + (ph ? '<p class="idCredit">Foto: ' + esc(ph.a) + ' \u00b7 ' + esc(ph.l)
+          + ' \u00b7 <a href="' + esc(ph.u) + '" target="_blank" rel="noopener">Commons \u2197</a></p>' : '')
+    + '<div class="idChips">'
+    +   '<div class="idChip"><small>Frecuencia</small><span class="dots">' + dots + '</span><b>' + esc(sp.f) + '</b></div>'
+    +   '<div class="idChip"><small>Profundidad</small><b class="num">' + esc(sp.dp) + '</b></div>'
+    +   '<div class="idChip"><small>Tama\u00f1o</small><b class="num">' + esc(sp.sz) + '</b></div>'
+    + '</div>'
+    + '<div class="idLevels">'
+    +   LEVELS.map(function(L, k){
+          return '<span' + (k === lv ? ' class="on"' : '') + '><i style="background:' + L[1] + '"></i>' + L[0] + '</span>';
+        }).join("")
+    + '</div>'
+    + '<section class="idRecog"><h3>\u00bfC\u00f3mo reconocerla?</h3><p>' + esc(sp.id) + '</p></section>';
+
+  /* Se dibuja solo el bloque que tiene dato. Cuando el pipeline de extraccion
+     anada alimentacion, reproduccion, defensa y papel ecologico, apareceran solos. */
+  const BOXES = [
+    ["howIs", "\u00bfC\u00f3mo es?",            sp.desc],
+    ["food",  "Alimentaci\u00f3n",               sp.food],
+    ["repro", "Reproducci\u00f3n",               sp.repro],
+    ["def",   "Defensa",                          sp.def],
+    ["eco",   "Papel ecol\u00f3gico",            sp.eco],
+    ["hab",   "H\u00e1bitat en El Hierro",       sp.ha],
+    ["know",  "\u00bfSab\u00edas que?",         sp.ex],
+    ["obs",   "Observaci\u00f3n",                sp.be]
+  ].filter(function(b){ return b[2]; });
+
+  /* El aviso de riesgo va antes que nada: si alguien lee media ficha, que sea esta. */
+  const riskBox = sp.risk
+    ? '<section class="box box--risk"><h3>\u26a0 Precauci\u00f3n</h3><p>' + esc(sp.risk) + '</p></section>'
+    : '';
+
+  const genus = sp.s.split(" ")[0] || "", epi = sp.s.split(" ").slice(1).join(" ");
+  const q = encodeURIComponent(sp.s);
+
+  $("#mRight").innerHTML =
+      '<div class="boxes">'
+    +   riskBox
+    +   BOXES.map(function(b){
+          return '<section class="box"><h3>' + b[1] + '</h3><p>' + esc(b[2]) + '</p></section>';
+        }).join("")
+    + '</div>'
+    + '<div class="taxo">'
+    +   '<div><small>Orden</small><strong>'   + esc(cleanRank(sp.ord)) + '</strong></div>'
+    +   '<div><small>Familia</small><strong>' + esc(sp.fam || "\u2014") + '</strong></div>'
+    +   '<div><small>G\u00e9nero</small><strong>' + esc(genus) + '</strong></div>'
+    +   '<div><small>Especie</small><strong>' + esc(genus.charAt(0) + ". " + epi) + '</strong></div>'
+    + '</div>'
+    + '<div class="geo">'
+    +   '<section class="box"><h3>Distribuci\u00f3n y presencia</h3>'
+    +     '<p><strong style="color:' + band.color + '">' + esc(band.name) + ' \u00b7 ' + esc(band.range) + '</strong>. '
+    +     (sp.loc === "si"
+            ? 'Presencia en El Hierro contrastada con la bibliograf\u00eda canaria.'
+            : (sp.loc === "no"
+               ? '\u00c1rea de distribuci\u00f3n conocida que no alcanza Canarias: ficha pendiente de retirada o correcci\u00f3n.'
+               : 'Presencia local por confirmar: comprueba la especie en GBIF y REDPROMAR antes de darla por buena.'))
+    +     '</p></section>'
+    +   '<section class="box mapBox"><h3>D\u00f3nde, en la isla</h3>' + islandMap()
+    +     '<p class="tiny">Costa real de El Hierro con el l\u00edmite de la Reserva Marina y los puntos de inmersi\u00f3n publicados. '
+    +     'En qu\u00e9 punto concreto se ve esta especie es dato de campo del autor.</p></section>'
+    + '</div>'
+    + '<div class="sources">'
+    +   '<a href="https://es.wikipedia.org/wiki/' + wikiSlug(sp.s) + '" target="_blank" rel="noopener">Wikipedia \u2197</a>'
+    +   '<a href="https://commons.wikimedia.org/w/index.php?search=' + q + '&title=Special:MediaSearch&type=image" target="_blank" rel="noopener">Fotos en Commons \u2197</a>'
+    +   '<a href="https://www.inaturalist.org/search?q=' + q + '" target="_blank" rel="noopener">iNaturalist \u2197</a>'
+    +   '<a href="https://www.marinespecies.org/aphia.php?p=taxlist&searchpar=0&tName=' + q + '" target="_blank" rel="noopener">WoRMS \u2197</a>'
+    +   '<a href="https://www.gbif.org/species/search?q=' + q + '" target="_blank" rel="noopener">GBIF \u2197</a>'
+    +   '<a href="https://redpromar.org/" target="_blank" rel="noopener">REDPROMAR \u2197</a>'
+    + '</div>'
+    + '<div class="addBox">'
+    +   '<div><h3>A\u00f1adir aportaci\u00f3n</h3>'
+    +   '<p class="tiny">\u00bfLa has visto? Reg\u00edstrala y ayuda a completar el inventario colectivo.</p></div>'
+    +   '<div class="addBtns">'
+    +     '<button class="log" data-log="' + sp.i + '" data-on="' + e.seen + '">' + (e.seen ? "\u2713 Registrada" : "Registrar") + '</button>'
+    +     '<div class="counter"><button data-minus="' + sp.i + '" aria-label="Restar un ejemplar">\u2212</button>'
+    +     '<span class="num">' + (e.count || 0) + '</span>'
+    +     '<button data-plus="' + sp.i + '" aria-label="Sumar un ejemplar">+</button></div>'
+    +   '</div>'
+    + '</div>'
+    + '<div class="sheet-tools">'
+    +   '<button class="btn btn--sm" data-plate="' + sp.i + '">↓ Lámina imprimible (PNG)</button>'
+    +   (sp.rp ? '<button class="btn btn--sm" data-report="' + sp.i + '">◈ Reportar a REDPROMAR</button>' : '')
+    + '</div>';
+}
+
+/* WoRMS marca 'incertae sedis' cuando la posicion del taxon no esta resuelta.
+   Mostrarlo tal cual confunde; se declara como pendiente. */
+function cleanRank(v){
+  if(!v) return "\u2014";
+  return /incertae\s+sedis/i.test(v) ? v.replace(/\s*incertae\s+sedis/i, "") + " (sin resolver)" : v;
+}
+
+/* Costa real de El Hierro (OpenStreetMap, ODbL) proyectada en equirectangular.
+   La misma proyeccion coloca los puntos de inmersion, de modo que lo que se ve
+   en el mapa es la posicion publicada y no un adorno. */
+function projectSite(p){
+  const pr = ISLA.proyeccion;
+  return [
+    pr.pad + (p.lon - pr.west) * pr.kx * pr.scale,
+    pr.pad + (pr.north - p.lat) * pr.scale
+  ];
+}
+
+/* El Ministerio publica cuatro vertices, dos en la costa y dos mar adentro. Se
+   dibuja la linea de mar abierta, no un poligono cerrado: cerrarlo obligaria a
+   inventar por donde corre el limite en tierra. */
+function reservaPath(){
+  if(!ISLA.reserva) return "";
+  return ISLA.reserva.map((p,k)=>(k?"L":"M")+p[0]+" "+p[1]).join("");
+}
+
+/* Tres de los puntos estan a menos de 300 m entre si: sin escalonar las
+   etiquetas se pisan y el mapa deja de servir. */
+function labelOffsets(points, minDist){
+  const placed = [];
+  return points.map(c=>{
+    if(!c) { placed.push(null); return 0; }
+    let step = 0;
+    while(placed.some(p=>p && Math.abs(p[0]-c[0])<minDist && Math.abs(p[1]-(c[1]+step))<26)) step += 30;
+    placed.push([c[0], c[1]+step]);
+    return step;
+  });
+}
+
+/* Version compacta para la ficha: sin etiquetas de punto, solo contexto. */
+function islandMap(){
+  if(!ISLA.costa) return "";
+  return '<svg class="island" viewBox="' + ISLA.viewBox + '" role="img" aria-label="El Hierro con la Reserva Marina del Mar de las Calmas">'
+    + '<path class="reserva-zone" d="' + reservaPath() + '" fill="none"/>'
+    + '<path class="coast" d="' + ISLA.costa + '"/>'
+    + DIVES.filter(p=>p.lat!=null).map(p=>{
+        const c = projectSite(p);
+        return '<circle cx="'+c[0].toFixed(1)+'" cy="'+c[1].toFixed(1)+'" r="9" fill="#2fd4c0" stroke="#04222a" stroke-width="2.5"/>';
+      }).join("")
+    + (ISLA.lugares||[]).filter(l=>l.tipo==="puerto"&&l.n==="La Restinga").map(l=>
+        '<text x="'+(l.x-18)+'" y="'+(l.y+30)+'" fill="#eaf6f7" font-size="26" text-anchor="end" '
+        + 'paint-order="stroke" stroke="#061418" stroke-width="6">La Restinga</text>').join("")
+    + '</svg>';
+}
+
+/* Mapa grande e interactivo de la seccion de inmersiones. */
+function renderDiveMap(active){
+  const host = $("#diveMap");
+  if(!host || !ISLA.costa){ return; }
+  const W = Number((ISLA.viewBox||"0 0 1000 1000").split(" ")[2]) || 1000;
+  const coords = DIVES.map(p=>p.lat==null ? null : projectSite(p));
+  const offsets = labelOffsets(coords, 150);
+
+  host.innerHTML =
+      '<svg viewBox="' + ISLA.viewBox + '" role="img" aria-label="Puntos de inmersi\u00f3n de El Hierro y l\u00edmite de la Reserva Marina">'
+    + '<path class="reserva-zone" d="' + reservaPath() + '" fill="none"/>'
+    + '<path class="coast" d="' + ISLA.costa + '"/>'
+    + (ISLA.lugares||[]).map(l=>{
+        const left = l.x > W * 0.66;
+        return '<g class="place-pin"><circle cx="'+l.x+'" cy="'+l.y+'" r="5"/>'
+          + '<text x="'+(l.x+(left?-11:11))+'" y="'+(l.y+5)+'" text-anchor="'+(left?"end":"start")+'">'
+          + esc(l.n)+'</text></g>';
+      }).join("")
+    + DIVES.map((p,k)=>{
+        const c = coords[k];
+        if(!c) return "";
+        const on = k===active, left = c[0] > W * 0.62, dy = offsets[k];
+        return '<g class="dive-pin" data-dive="'+k+'" data-on="'+on+'" role="button" tabindex="0">'
+          + '<circle cx="'+c[0].toFixed(1)+'" cy="'+c[1].toFixed(1)+'" r="'+(on?13:9)+'"/>'
+          + (dy ? '<line x1="'+c[0].toFixed(1)+'" y1="'+c[1].toFixed(1)+'" x2="'+c[0].toFixed(1)
+                + '" y2="'+(c[1]+dy).toFixed(1)+'" stroke="#2fd4c0" stroke-width="1.6" opacity=".55"/>' : "")
+          + '<text x="'+(c[0]+(left?-16:16)).toFixed(1)+'" y="'+(c[1]+dy+6).toFixed(1)+'"'
+          + ' text-anchor="'+(left?"end":"start")+'">'+esc(p.n)+'</text></g>';
+      }).join("")
+    + '</svg>'
+    + '<p class="tiny" style="margin-top:8px">Costa: OpenStreetMap \u00b7 ODbL. La l\u00ednea discontinua es el l\u00edmite marino de la Reserva '
+    + 'seg\u00fan los cuatro v\u00e9rtices publicados por el Ministerio; en tierra lo cierra la propia costa.</p>';
+}
+
+function renderDives(active){
+  const intro = $("#diveIntro");
+  if(intro) intro.textContent = DIVES_META.aviso || "";
+  renderDiveMap(active);
+  const host = $("#diveList");
+  if(!host) return;
+  host.innerHTML = DIVES.map((p,k)=>
+      '<button class="dive-item" data-dive="'+k+'" data-on="'+(k===active)+'">'
+    +   '<h3>'+esc(p.n)+(p.lat==null?' <span class="dive-tag">sin coordenada fiable</span>':'')+'</h3>'
+    +   '<p>'+esc(p.d)+'</p>'
+    +   (p.nota ? '<p class="tiny" style="color:var(--doubt)">'+esc(p.nota)+'</p>' : '')
+    +   '<div class="dive-tags">'
+    +     '<span class="dive-tag">'+esc(p.prof)+'</span>'
+    +     '<span class="dive-tag lvl-'+esc(p.nivel)+'">Nivel '+esc(p.nivel).toLowerCase()+'</span>'
+    +     '<span class="dive-tag">'+esc(p.acceso)+'</span>'
+    +     (p.reserva ? '<span class="dive-tag res">Reserva Marina</span>' : '')
+    +   '</div>'
+    + '</button>').join("");
+}
+
+function openModal(sp){
+  modalSpecies = sp;
+  lastFocus = document.activeElement;
+  fillModal(sp);
+  const modal = $("#modal");
+  modal.dataset.open = "true";
+  document.body.style.overflow = "hidden";
+  $(".sheet-close").focus();
+}
+function closeModal(){
+  $("#modal").dataset.open = "false";
+  document.body.style.overflow = "";
+  modalSpecies = null;
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+
+/* ═══ Bitácora: exportar, importar, fusionar ══════════════════ */
+
+function bitacora(){
+  return JSON.stringify({
+    formato:"fauna-el-hierro",
+    version:2,
+    exportado:new Date().toISOString(),
+    especies:SPECIES.length,
+    registros:log
+  },null,2);
+}
+
+async function downloads(){
+  try{
+    if(typeof claude === "undefined" || typeof claude.use !== "function") return null;
+    return await claude.use("downloads");
+  }catch(err){ return null; }
+}
+
+$("#exportBtn").addEventListener("click", async ()=>{
+  if(!Object.keys(log).length){ toast("Tu bitácora está vacía: registra alguna especie primero."); return; }
+  const dl = await downloads();
+  if(!dl){
+    $("#pasteBox").dataset.open = "true";
+    $("#pasteArea").value = bitacora();
+    $("#pasteArea").focus();
+    toast("Este visor no permite descargar. Copia el texto de abajo y guárdalo tú.");
+    return;
+  }
+  try{
+    await dl.save({filename:"bitacora-fauna-el-hierro.json", data:bitacora()});
+    toast("Bitácora guardada.");
+  }catch(err){
+    const code = err && err.code;
+    if(code === "declined")           toast("Guardado cancelado.");
+    else if(code === "rate_limited")  toast("Espera un momento antes de volver a guardar.");
+    else{
+      $("#pasteBox").dataset.open = "true";
+      $("#pasteArea").value = bitacora();
+      toast("No se ha podido guardar el fichero. Copia el texto de abajo.");
+    }
+  }
+});
+
+function merge(incoming){
+  const source = incoming && incoming.registros ? incoming.registros : incoming;
+  if(!source || typeof source !== "object") throw new Error("formato");
+  let added = 0;
+  Object.keys(source).forEach(id=>{
+    const v = source[id] || {};
+    const current = entry(id);
+    const count = Math.max(current.count||0, Number(v.count)||0);
+    const seen  = Boolean(current.seen || v.seen);
+    if(count !== (current.count||0) || seen !== current.seen) added++;
+    log[id] = {seen:seen || count>0, count:count};
+  });
+  persist(); render();
+  return added;
+}
+
+$("#importBtn").addEventListener("click", ()=>$("#importFile").click());
+$("#importFile").addEventListener("change", async event=>{
+  const file = event.target.files && event.target.files[0];
+  event.target.value = "";
+  if(!file) return;
+  try{
+    const added = merge(JSON.parse(await file.text()));
+    toast(added ? "Bitácora fusionada: "+added+" especies actualizadas." : "Nada nuevo que fusionar.");
+  }catch(err){
+    toast("Ese fichero no es una bitácora válida.");
+  }
+});
+
+$("#pasteBtn").addEventListener("click", ()=>{
+  const box = $("#pasteBox");
+  box.dataset.open = box.dataset.open === "true" ? "false" : "true";
+});
+$("#mergeBtn").addEventListener("click", ()=>{
+  try{
+    const added = merge(JSON.parse($("#pasteArea").value));
+    toast(added ? "Bitácora fusionada: "+added+" especies actualizadas." : "Nada nuevo que fusionar.");
+  }catch(err){ toast("El texto pegado no es una bitácora válida."); }
+});
+$("#fillBtn").addEventListener("click", ()=>{ $("#pasteArea").value = bitacora(); $("#pasteArea").select(); });
+$("#copyBtn").addEventListener("click", async ()=>{
+  const text = bitacora();
+  $("#pasteArea").value = text;
+  try{ await navigator.clipboard.writeText(text); toast("Bitácora copiada al portapapeles."); }
+  catch(err){ $("#pasteArea").select(); toast("Selecciona el texto y cópialo con Ctrl+C."); }
+});
+
+let resetArmed = false;
+$("#resetBtn").addEventListener("click", ()=>{
+  const btn = $("#resetBtn");
+  if(!resetArmed){
+    resetArmed = true;
+    btn.textContent = "Confirmar borrado";
+    toast("Esto borra tu bitácora. Pulsa otra vez para confirmar.");
+    setTimeout(()=>{ resetArmed = false; btn.textContent = "Reiniciar"; }, 6000);
+    return;
+  }
+  log = {}; resetArmed = false; btn.textContent = "Reiniciar";
+  persist(); render(); toast("Bitácora vaciada.");
+});
+
+/* ═══ Controles ═══════════════════════════════════════════════ */
+
+function buildControls(){
+  const groupSel = $("#groupSel");
+  groupSel.innerHTML = '<option value="all">Todos los grupos ('+SPECIES.length+')</option>'
+    + Object.keys(GROUPS).map(g=>{
+        const n = SPECIES.filter(s=>s.g===g).length;
+        return n ? '<option value="'+esc(g)+'">'+GROUPS[g].mark+' '+esc(g)+' ('+n+')</option>' : "";
+      }).join("");
+
+  const bandRow = $("#bandRow");
+  bandRow.insertAdjacentHTML("beforeend",
+    '<button class="chip" data-band="all" aria-pressed="true">Todas <span class="chip-count num"></span></button>'
+    + Object.keys(BANDS).map(k=>
+        '<button class="chip" data-band="'+k+'" aria-pressed="false">'
+        + '<span class="chip-dot" style="background:'+BANDS[k].color+'"></span>'
+        + BANDS[k].name+' <span class="tiny">'+BANDS[k].range+'</span> <span class="chip-count num"></span></button>').join(""));
+
+  $("#stateRow").insertAdjacentHTML("beforeend",
+      '<button class="chip" data-record="all" aria-pressed="true">Todas</button>'
+    + '<button class="chip" data-record="seen" aria-pressed="false"><span class="chip-dot" style="background:#6fe39a"></span>Ya registradas</button>'
+    + '<button class="chip" data-record="pending" aria-pressed="false">Me faltan</button>'
+    + '<button class="chip" data-record="doubt" aria-pressed="false"><span class="chip-dot" style="background:#ff9d7a"></span>Presencia por confirmar</button>'
+    + '<button class="chip" data-record="nophoto" aria-pressed="false">Sin fotografía</button>');
+
+  $("#levelRow").innerHTML =
+      '<button class="chip" data-level="basic" aria-pressed="true">Básico</button>'
+    + '<button class="chip" data-level="pro" aria-pressed="false">Profesional</button>'
+    + '<button class="chip" data-level="expert" aria-pressed="false">Experto</button>';
+
+  $("#viewRow").innerHTML =
+      '<button class="chip" data-view="cards" aria-pressed="true">Fichas</button>'
+    + '<button class="chip" data-view="gallery" aria-pressed="false">Galería</button>';
+}
+
+function pressGroup(selector,attr,value){
+  $$(selector).forEach(b=>b.setAttribute("aria-pressed", String(b.dataset[attr] === value)));
+}
+
+document.addEventListener("click", event=>{
+  const t = event.target.closest("[data-band],[data-record],[data-level],[data-view],[data-page],[data-log],[data-plus],[data-minus],[data-open],[data-close-drawer],[data-close-modal],#clearFilters");
+  if(!t) return;
+
+  if(t.dataset.band !== undefined){ state.band = t.dataset.band; state.page = 1; pressGroup("[data-band]","band",state.band); render(); return; }
+  if(t.dataset.record !== undefined){ state.record = t.dataset.record; state.page = 1; pressGroup("[data-record]","record",state.record); render(); return; }
+  if(t.dataset.level !== undefined){ state.level = t.dataset.level; pressGroup("[data-level]","level",state.level); render(); return; }
+  if(t.dataset.view !== undefined){ state.view = t.dataset.view; state.page = 1; pressGroup("[data-view]","view",state.view); render(); return; }
+  if(t.dataset.page !== undefined){
+    const p = Number(t.dataset.page);
+    if(p >= 1){ state.page = p; render(); $("#fauna").scrollIntoView({behavior:"smooth",block:"start"}); }
+    return;
+  }
+  if(t.id === "clearFilters"){
+    state.q = ""; state.group = "all"; state.band = "all"; state.record = "all"; state.page = 1;
+    $("#q").value = ""; $("#groupSel").value = "all";
+    pressGroup("[data-band]","band","all"); pressGroup("[data-record]","record","all");
+    render(); return;
+  }
+  if(t.dataset.log)   { setSeen(Number(t.dataset.log)); return; }
+  if(t.dataset.plus)  { bump(Number(t.dataset.plus), 1); return; }
+  if(t.dataset.minus) { bump(Number(t.dataset.minus), -1); return; }
+  if(t.dataset.open)  { const sp = SPECIES.find(s=>s.i === Number(t.dataset.open)); if(sp) openModal(sp); return; }
+  if(t.hasAttribute("data-close-drawer")) { closeDrawer(); return; }
+  if(t.hasAttribute("data-close-modal"))  { closeModal(); return; }
+});
+
+$("#q").addEventListener("input", event=>{ state.q = event.target.value; state.page = 1; render(); });
+$("#groupSel").addEventListener("change", event=>{ state.group = event.target.value; state.page = 1; render(); });
+
+/* ═══ Cajón y teclado ═════════════════════════════════════════ */
+
+const drawer = $("#drawer"), menuBtn = $("#menuBtn");
+function openDrawer(){ drawer.dataset.open = "true"; menuBtn.setAttribute("aria-expanded","true"); $(".drawer-close").focus(); }
+function closeDrawer(){ drawer.dataset.open = "false"; menuBtn.setAttribute("aria-expanded","false"); }
+menuBtn.addEventListener("click", openDrawer);
+
+document.addEventListener("keydown", event=>{
+  if(event.key === "Escape"){
+    if($("#modal").dataset.open === "true") closeModal();
+    else if(drawer.dataset.open === "true") closeDrawer();
+    return;
+  }
+  if(event.key === "Tab" && $("#modal").dataset.open === "true"){
+    const focusable = $$('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])', $("#sheet"));
+    if(!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length-1];
+    if(event.shiftKey && document.activeElement === first){ event.preventDefault(); last.focus(); }
+    else if(!event.shiftKey && document.activeElement === last){ event.preventDefault(); first.focus(); }
+  }
+});
+
+/* ═══ Fondo del hero: columna de agua ═════════════════════════ */
+
+(function heroBackdrop(){
+  const canvas = $("#heroCanvas");
+  const ctx = canvas.getContext && canvas.getContext("2d");
+  if(!ctx) return;
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let w = 0, h = 0, particles = [], raf = null;
+
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    if(w < 2 || h < 2) return false;   /* aún sin layout: reintenta en el próximo frame */
+    canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const count = Math.round(Math.min(150, w*h/9000));
+    particles = Array.from({length:count},()=>({
+      x:Math.random()*w, y:Math.random()*h,
+      r:0.5+Math.random()*1.9,
+      s:0.06+Math.random()*0.4,
+      o:0.06+Math.random()*0.3
+    }));
+    return true;
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,w,h);
+    /* Cáusticas: bandas de luz que bajan desde la superficie */
+    for(let k=0;k<5;k++){
+      const x = w*(0.1+k*0.2);
+      const grd = ctx.createLinearGradient(x,0,x-90,h);
+      grd.addColorStop(0,"rgba(120,240,225,.10)");
+      grd.addColorStop(1,"rgba(120,240,225,0)");
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.moveTo(x-30,0); ctx.lineTo(x+34,0); ctx.lineTo(x-70,h); ctx.lineTo(x-140,h);
+      ctx.closePath(); ctx.fill();
+    }
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = "rgba(220,246,248,"+p.o+")";
+      ctx.fill();
+      if(!reduced){
+        p.y -= p.s;
+        if(p.y < -4){ p.y = h+4; p.x = Math.random()*w; }
+      }
+    });
+    if(!reduced) raf = requestAnimationFrame(frame);
+  }
+
+  function start(){
+    if(!resize()){ requestAnimationFrame(start); return; }
+    cancelAnimationFrame(raf);
+    frame();
+  }
+  start();
+
+  let resizeTimer = null;
+  window.addEventListener("resize", ()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(start, 120);
+  });
+})();
+
+/* ═══ Fotografía de la isla y créditos ════════════════════════ */
+
+/* p11 estaba etiquetada "El Sabinar" pero el fichero de Commons es el CRA El
+   Sabinar de Alpuente, Valencia. Fuera: la regla de no mostrar una cosa con la
+   foto de otra vale igual para los lugares que para las especies. */
+const PLACES = [
+  ["p1","La Restinga"],["p2","Mar de las Calmas"],["p3","Tacorón"],["p4","Charco Azul"],
+  ["p7","Mirador de la Peña"],["p8","Pozo de las Calcosas"],
+  ["p13","Mirador de Jinama"]
+];
+
+function renderIsland(){
+  const host = $("#islandShots");
+  host.innerHTML = PLACES.filter(p=>PHOTOS[p[0]]).map(([key,name])=>{
+    const ph = PHOTOS[key];
+    return '<figure class="shot-card"><img class="shot" loading="lazy" decoding="async" src="'+photoSrc(ph)+'" alt="'+esc(name)+', El Hierro">'
+         + '<b>'+esc(name)+'</b>'
+         + '<figcaption class="credit">'+esc(ph.a)+' · '+esc(ph.l)+'</figcaption></figure>';
+  }).join("");
+}
+
+function renderCredits(){
+  const named = {};
+  SPECIES.forEach(sp=>{ if(PHOTOS["s"+sp.i]) named["s"+sp.i] = sp.n+" — "+sp.s; });
+  PLACES.forEach(([k,n])=>{ if(PHOTOS[k]) named[k] = n+" (El Hierro)"; });
+  if(PHOTOS.hero) named.hero = "Mar de las Calmas (cabecera)";
+  const keys = Object.keys(named);
+  $("#creditsIntro").textContent =
+    "Las " + keys.length + " fotografías de esta guía proceden de Wikimedia Commons y se reproducen "
+    + "bajo licencias que permiten uso comercial, con la atribución que cada una exige. "
+    + (SPECIES.length - SPECIES.filter(hasPhoto).length)
+    + " especies siguen sin fotografía verificada y muestran su lámina generada.";
+  $("#creditsList").innerHTML = '<div class="credits">' + keys.map(k=>{
+    const ph = PHOTOS[k];
+    return '<div><em>'+esc(named[k])+'</em>'
+         + '<span>'+esc(ph.a)+'</span>'
+         + '<span>'+esc(ph.l)+'</span>'
+         + '<a href="'+esc(ph.u)+'" target="_blank" rel="noopener">Commons ↗</a></div>';
+  }).join("") + '</div>';
+}
+
+/* ═══ Capa de viaje ═══════════════════════════════════════════ */
+
+const MODO_ICON = {avion:"✈", barco:"⛴"};
+
+function renderViaje(){
+  const aviso = $("#viajeAviso");
+  if(aviso) aviso.textContent = VIAJE.aviso || "";
+
+  const list = $("#travelList");
+  if(list) list.innerHTML = (VIAJE.llegar||[]).map(r=>
+      '<div class="travel-row">'
+    +   '<span class="travel-icon" aria-hidden="true">'+(MODO_ICON[r.modo]||"→")+'</span>'
+    +   '<span class="travel-body">'
+    +     '<span class="travel-op">'+esc(r.op)+'</span>'
+    +     '<h3>'+esc(r.ruta)+'</h3>'
+    +     '<p>'+esc(r.nota)+'</p>'
+    +   '</span>'
+    +   '<span class="travel-dur num">'+esc(r.dur)+'</span>'
+    +   '<a class="btn btn--sm travel-go" href="'+esc(r.url)+'" target="_blank" rel="noopener">Horarios ↗</a>'
+    + '</div>').join("");
+
+  const moves = $("#movesList");
+  if(moves) moves.innerHTML = (VIAJE.moverse||[]).map(m=>
+      '<article class="move">'
+    +   '<h3>'+esc(m.t)+'</h3><p>'+esc(m.d)+'</p>'
+    +   (m.dato ? '<b>'+esc(m.dato)+'</b>' : '')
+    +   (m.url ? '<div class="info-links" style="margin-top:10px"><a href="'+esc(m.url)+'" target="_blank" rel="noopener">Abrir ↗</a></div>' : '')
+    + '</article>').join("");
+
+  const dormir = $("#dormir"), d = VIAJE.dormir;
+  if(dormir && d) dormir.innerHTML =
+      '<h3 class="eyebrow" style="margin-bottom:12px">Dónde alojarse</h3>'
+    + '<p class="muted" style="max-width:var(--measure);margin-bottom:16px">'+esc(d.d)+'</p>'
+    + '<div class="cards">' + (d.enlaces||[]).map(e=>
+        '<article class="info"><h3>'+esc(e.t)+'</h3><p>'+esc(e.d)+'</p>'
+        + (e.url ? '<div class="info-links"><a href="'+esc(e.url)+'" target="_blank" rel="noopener">Abrir ↗</a></div>' : '')
+        + '</article>').join("") + '</div>'
+    + '<p class="tiny" style="margin-top:14px">'+esc(d.declaracion||"")+'</p>';
+}
+
+/* ═══ Autor ═══════════════════════════════════════════════════ */
+
+function renderAutor(){
+  const host = $("#authorCard");
+  if(!host || !AUTOR.nombre) return;
+  const primario = (AUTOR.contacto||[]).find(c=>c.primario) || (AUTOR.contacto||[])[0];
+  host.innerHTML =
+      '<svg class="author-mark" viewBox="0 0 200 150" aria-hidden="true"><use href="#mark"/></svg>'
+    + '<div>'
+    +   '<h2>'+esc(AUTOR.nombre)+'</h2>'
+    +   '<p class="role">'+esc(AUTOR.rol)+'</p>'
+    +   (AUTOR.bio||[]).map(p=>'<p>'+esc(p)+'</p>').join("")
+    +   '<div class="author-actions">'
+    +     (primario ? '<a class="btn btn--primary" href="'+esc(primario.url)+'" target="_blank" rel="noopener">'
+                    + esc(AUTOR.cta || "Contactar") + '</a>' : '')
+    +     (AUTOR.contacto||[]).filter(c=>c!==primario).map(c=>
+            '<a class="btn" href="'+esc(c.url)+'" target="_blank" rel="noopener">'+esc(c.t)+' ↗</a>').join("")
+    +     '<a class="btn btn--ghost" href="#inmersiones">Ver los puntos de inmersión</a>'
+    +   '</div>'
+    + '</div>';
+}
+
+/* ═══ Lámina imprimible ═══════════════════════════════════════ */
+
+/* Rasteriza la ficha a 3072 px de ancho para imprimir o para redes. Se dibuja
+   sobre canvas, no se captura el DOM: asi el resultado no depende del navegador
+   ni del tamano de la ventana. */
+async function exportPlate(sp){
+  const W = 3072, H = 4096, S = W / 1024;
+  const cv = document.createElement("canvas");
+  cv.width = W; cv.height = H;
+  const g = cv.getContext("2d");
+
+  const grad = g.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, "#14414c"); grad.addColorStop(.45, "#0a2029"); grad.addColorStop(1, "#061418");
+  g.fillStyle = grad; g.fillRect(0, 0, W, H);
+
+  const band = BANDS[sp.b] || BANDS.som;
+  const ph = PHOTOS["s" + sp.i];
+  const pad = 72 * S;
+
+  /* Fotografia o lamina generada, en una caja fija con recorte centrado. */
+  const boxY = 300 * S, boxH = 420 * S, boxW = 1024 * S - pad * 2;
+  g.save();
+  g.beginPath(); g.roundRect(pad, boxY, boxW, boxH, 26 * S); g.clip();
+  if(ph){
+    const img = await new Promise((res, rej)=>{
+      const im = new Image();
+      im.onload = ()=>res(im); im.onerror = rej;
+      im.src = photoSrc(ph);
+    }).catch(()=>null);
+    if(img){
+      const r = Math.max(boxW / img.width, boxH / img.height);
+      const w = img.width * r, h = img.height * r;
+      g.drawImage(img, pad + (boxW - w) / 2, boxY + (boxH - h) / 2, w, h);
+    }else{
+      g.fillStyle = "#0f2f38"; g.fillRect(pad, boxY, boxW, boxH);
+    }
+  }else{
+    g.fillStyle = "#0f2f38"; g.fillRect(pad, boxY, boxW, boxH);
+    g.fillStyle = band.color; g.font = `600 ${34 * S}px Georgia, serif`;
+    g.textAlign = "center";
+    g.fillText("Foto pendiente", pad + boxW / 2, boxY + boxH / 2);
+    g.textAlign = "left";
+  }
+  g.restore();
+
+  let y = 120 * S;
+  g.textAlign = "left";
+  g.fillStyle = "#2fd4c0";
+  g.font = `700 ${19 * S}px ui-sans-serif, Segoe UI, sans-serif`;
+  g.fillText("RESERVA MARINA · MAR DE LAS CALMAS · EL HIERRO", pad, y);
+
+  y += 62 * S;
+  g.fillStyle = "#eaf6f7";
+  g.font = `600 ${58 * S}px Georgia, serif`;
+  g.fillText(sp.n, pad, y);
+
+  y += 48 * S;
+  g.fillStyle = "#8fb3ba";
+  g.font = `italic ${30 * S}px Georgia, serif`;
+  g.fillText(sp.s + (sp.auth ? "  " + sp.auth : ""), pad, y);
+
+  y = boxY + boxH + 44 * S;
+  if(ph){
+    g.fillStyle = "#63868f";
+    g.font = `${19 * S}px ui-sans-serif, Segoe UI, sans-serif`;
+    g.fillText("Foto: " + ph.a + " · " + ph.l + " · Wikimedia Commons", pad, y);
+    y += 44 * S;
+  }
+
+  /* Fila de datos duros */
+  const facts = [["Grupo", sp.g], ["Talla", sp.sz], ["Profundidad", sp.dp], ["Frecuencia", sp.f]];
+  const colW = (1024 * S - pad * 2) / facts.length;
+  facts.forEach(([k, v], n)=>{
+    const x = pad + colW * n;
+    g.fillStyle = "#63868f";
+    g.font = `700 ${17 * S}px ui-sans-serif, Segoe UI, sans-serif`;
+    g.fillText(k.toUpperCase(), x, y);
+    g.fillStyle = "#eaf6f7";
+    g.font = `600 ${25 * S}px ui-sans-serif, Segoe UI, sans-serif`;
+    g.fillText(String(v), x, y + 34 * S);
+  });
+  y += 96 * S;
+
+  g.fillStyle = band.color;
+  g.fillRect(pad, y, (1024 * S - pad * 2), 5 * S);
+  y += 46 * S;
+
+  const wrap = (text, maxW)=>{
+    const words = String(text).split(/\s+/);
+    const lines = []; let line = "";
+    for(const w of words){
+      const t = line ? line + " " + w : w;
+      if(g.measureText(t).width > maxW && line){ lines.push(line); line = w; }
+      else line = t;
+    }
+    if(line) lines.push(line);
+    return lines;
+  };
+
+  const blocks = [
+    ["¿Cómo reconocerla?", sp.id],
+    ["Alimentación", sp.food],
+    ["Reproducción", sp.repro],
+    ["Defensa", sp.def],
+    ["Papel ecológico", sp.eco],
+    ["Hábitat en El Hierro", sp.ha],
+    ["Precaución", sp.risk]
+  ].filter(b=>b[1]);
+
+  const maxW = 1024 * S - pad * 2;
+  for(const [title, body] of blocks){
+    if(y > H - 320 * S) break;
+    g.fillStyle = title === "Precaución" ? "#ff9d7a" : "#2fd4c0";
+    g.font = `700 ${19 * S}px ui-sans-serif, Segoe UI, sans-serif`;
+    g.fillText(title.toUpperCase(), pad, y);
+    y += 36 * S;
+    g.fillStyle = "#eaf6f7";
+    g.font = `${25 * S}px ui-sans-serif, Segoe UI, sans-serif`;
+    for(const line of wrap(body, maxW)){
+      g.fillText(line, pad, y);
+      y += 36 * S;
+    }
+    y += 26 * S;
+  }
+
+  /* Pie: autoria y aviso de borrador, que viajan con la lamina */
+  g.fillStyle = "#63868f";
+  g.font = `${20 * S}px ui-sans-serif, Segoe UI, sans-serif`;
+  g.fillText("Fauna Marina de El Hierro · Agustín Fragero Blesa, Dive Master · La Restinga", pad, H - 108 * S);
+  g.fillText("Contenido biológico en borrador, pendiente de validación. No sustituye al briefing del centro de buceo.", pad, H - 68 * S);
+
+  const blob = await new Promise(res=>cv.toBlob(res, "image/png"));
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "ficha-" + sp.s.toLowerCase().replace(/[^a-z0-9]+/g, "-") + ".png";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 4000);
+  toast("Lámina descargada a 3072 px");
+}
+
+/* ═══ REDPROMAR ═══════════════════════════════════════════════ */
+
+/* El formulario oficial exige registro y no documenta parametros en la URL, asi
+   que no se puede prerellenar de verdad. Lo honesto es abrirlo y dejar la cita
+   en el portapapeles para pegarla. */
+async function reportSighting(sp){
+  const e = entry(sp.i);
+  const cita = [
+    "Especie: " + sp.s + (sp.auth ? " " + sp.auth : ""),
+    "Nombre común: " + sp.n,
+    "Lugar: Mar de las Calmas, El Hierro (Canarias)",
+    "Fecha: " + new Date().toLocaleDateString("es-ES"),
+    "Ejemplares: " + (e.count || 1),
+    "Observador: —",
+    "Fuente: guía Fauna Marina de El Hierro"
+  ].join("\n");
+  try{
+    await navigator.clipboard.writeText(cita);
+    toast("Datos copiados: pégalos en el formulario de REDPROMAR");
+  }catch(err){
+    toast("Abriendo REDPROMAR");
+  }
+  window.open("https://redpromar.org/report-sighting", "_blank", "noopener");
+}
+
+/* ═══ Arranque ════════════════════════════════════════════════ */
+
+const photoSrc = ph => "fotos/" + ph.f;
+
+let VIAJE = {}, AUTOR = {}, ISLA = {}, DIVES = [], DIVES_META = {};
+let diveActive = -1;
+
+document.addEventListener("click", event=>{
+  const plate = event.target.closest("[data-plate]");
+  if(plate){
+    const sp = SPECIES.find(s=>s.i === Number(plate.dataset.plate));
+    if(sp){ plate.disabled = true; exportPlate(sp).finally(()=>{ plate.disabled = false; }); }
+    return;
+  }
+  const rep = event.target.closest("[data-report]");
+  if(rep){
+    const sp = SPECIES.find(s=>s.i === Number(rep.dataset.report));
+    if(sp) reportSighting(sp);
+    return;
+  }
+  const dive = event.target.closest("[data-dive]");
+  if(dive){
+    diveActive = Number(dive.dataset.dive);
+    renderDives(diveActive);
+    return;
+  }
+});
+
+async function boot(){
+  const grab = (file, fallback) =>
+    fetch("data/" + file).then(r=>{ if(!r.ok) throw new Error(file + " " + r.status); return r.json(); })
+      .catch(err=>{ console.warn(err); return fallback; });
+
+  try{
+    const [species, photos] = await Promise.all([
+      fetch("data/species.json").then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }),
+      fetch("data/photos.json").then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })
+    ]);
+    SPECIES = species;
+    PHOTOS  = photos;
+  }catch(err){
+    $("#grid").innerHTML = '<p class="empty">No se han podido cargar los datos de la gu&iacute;a. '
+      + 'Comprueba la conexi&oacute;n y recarga la p&aacute;gina.</p>';
+    console.error(err);
+    return;
+  }
+
+  /* Lo secundario no bloquea la consulta de fauna: si falla, su seccion queda
+     vacia pero la guia sigue sirviendo bajo el agua. */
+  const [viaje, autor, isla, dives] = await Promise.all([
+    grab("viaje.json", {}), grab("autor.json", {}),
+    grab("isla.json", {}), grab("inmersiones.json", {puntos:[]})
+  ]);
+  VIAJE = viaje; AUTOR = autor; ISLA = isla;
+  DIVES_META = dives; DIVES = dives.puntos || [];
+
+  buildControls();
+  renderIsland();
+  renderCredits();
+  renderViaje();
+  renderAutor();
+  renderDives(diveActive);
+  renderStats();
+  render();
+}
+
+boot();
+
+/* Sin conexion: en La Restinga la cobertura falla y bajo el agua no hay ninguna. */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=>{
+    navigator.serviceWorker.register("sw.js").catch(err=>console.warn("SW:", err));
+  });
+}
+</script>
+</body>
+</html>

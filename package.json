@@ -1,0 +1,18 @@
+{
+  "name": "fauna-el-hierro",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Guía de fauna marina del Mar de las Calmas, El Hierro. Sitio estático publicado en Vercel.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "verify": "node scripts/verify.mjs",
+    "fichas": "node scripts/merge-fichas.mjs",
+    "assets": "node scripts/build-assets.mjs",
+    "mapa": "node scripts/build-mapa.mjs",
+    "extract": "node scripts/extract.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^23.11.1"
+  }
+}

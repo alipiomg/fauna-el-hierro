@@ -1,0 +1,1301 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Potenciador de Prompts — ASASA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ PALETA FOREST ASASA — sobreescribible en 6 variables ============ */
+:root {
+  --tierra:    #3D2817;
+  --corazon:   #B33A3A;
+  --latido:    #E8804A;
+  --pacha:     #4A6B3A;
+  --kallary:   #D4A547;
+  --cielo:     #F5E6D3;
+  --papel:     #FBF7F0;
+  --tinta:     #2A1B10;
+  --suave:     #8B7765;
+  --borde:     #E0D2BD;
+  --acento-bg: #FFF6E8;
+  --pot-bg:    #EDF3E6;
+  --pot-borde: #7FA065;
+  --rat-bg:    #FDF3DC;
+  --rat-borde: #D4A547;
+  --exp-bg:    #F5E8DC;
+  --exp-borde: #C89160;
+  --no-bg:     #FBE9E9;
+  --no-borde:  #C98080;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--papel); color: var(--tinta); }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  padding: 32px 20px 80px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(232,128,74,0.06), transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(75,107,58,0.06), transparent 40%),
+    var(--papel);
+  min-height: 100vh;
+}
+.wrap { max-width: 1180px; margin: 0 auto; }
+
+/* ===================== HERO ===================== */
+.hero {
+  background: linear-gradient(135deg, var(--tierra) 0%, #5A3A22 100%);
+  color: var(--cielo);
+  padding: 48px 40px 44px;
+  border-radius: 18px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px -20px rgba(61,40,23,0.45);
+}
+.hero::before {
+  content: ""; position: absolute; top: -50%; right: -10%;
+  width: 460px; height: 460px;
+  background: radial-gradient(circle, rgba(212,165,71,0.18), transparent 60%);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px; font-weight: 600; letter-spacing: -0.5px;
+  margin-bottom: 10px; position: relative;
+}
+.hero h1 .k { color: var(--kallary); }
+.hero .sub { font-size: 16px; opacity: 0.92; max-width: 760px; position: relative; }
+.hero .meta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; position: relative; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.4px; text-transform: uppercase; border-radius: 999px;
+  background: rgba(245,230,211,0.12); border: 1px solid rgba(245,230,211,0.22);
+}
+
+/* ===================== SECCIONES ===================== */
+section {
+  background: white; border-radius: 16px;
+  padding: 32px 36px; margin-bottom: 24px;
+  border: 1px solid var(--borde);
+  box-shadow: 0 4px 18px -10px rgba(61,40,23,0.18);
+}
+section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 600; color: var(--tierra);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 12px;
+}
+section h2 .num {
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+  background: var(--tierra); color: var(--kallary);
+  padding: 4px 10px; border-radius: 999px; letter-spacing: 0.5px;
+}
+section .lede { color: var(--suave); font-size: 14px; margin-bottom: 22px; max-width: 800px; }
+
+/* ===================== EXPLICACIÓN ===================== */
+.quees { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.q-card {
+  background: var(--acento-bg); border: 1px solid var(--borde);
+  border-radius: 12px; padding: 18px 20px;
+}
+.q-card.full { grid-column: 1 / -1; }
+.q-card h3 {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--latido); margin-bottom: 8px;
+}
+.q-card p, .q-card li { font-size: 14px; line-height: 1.6; }
+.q-card ul { margin: 8px 0 0 18px; }
+.q-card code {
+  background: rgba(61,40,23,0.08); padding: 1px 6px; border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--tierra);
+}
+.flujo { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 18px 0 4px; }
+.flujo .step {
+  background: var(--cielo); border: 1px solid var(--borde);
+  border-radius: 10px; padding: 12px 14px; text-align: center; position: relative;
+}
+.flujo .step .n {
+  font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700;
+  color: var(--corazon); line-height: 1;
+}
+.flujo .step .t { font-size: 12px; margin-top: 4px; font-weight: 500; }
+.flujo .step::after {
+  content: "→"; position: absolute; right: -10px; top: 50%;
+  transform: translateY(-50%); color: var(--latido); font-size: 16px; font-weight: 700;
+}
+.flujo .step:last-child::after { content: ""; }
+
+/* ===================== CERTIFICACIONES (¿he entendido bien?) ===================== */
+.certs { display: grid; gap: 14px; }
+.cert {
+  border: 1px solid var(--borde); border-radius: 12px;
+  padding: 16px 18px; background: var(--acento-bg);
+  transition: border-color .2s, background .2s;
+}
+.cert.matizada { background: var(--no-bg); border-color: var(--no-borde); }
+.cert .afirmacion { font-size: 14.5px; line-height: 1.6; margin-bottom: 10px; }
+.cert .controles { display: flex; gap: 8px; flex-wrap: wrap; }
+.cert .toggle {
+  cursor: pointer; padding: 6px 14px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; border: 1.5px solid var(--borde);
+  background: white; user-select: none;
+}
+.cert .toggle.si.activo { background: var(--pot-bg); border-color: var(--pot-borde); color: var(--pacha); }
+.cert .toggle.no.activo { background: var(--no-bg); border-color: var(--corazon); color: var(--corazon); }
+.cert textarea {
+  display: none; width: 100%; margin-top: 10px; min-height: 64px;
+  border: 1px solid var(--no-borde); border-radius: 8px; padding: 10px 12px;
+  font-family: 'Inter', sans-serif; font-size: 13.5px; resize: vertical;
+  background: white;
+}
+.cert.matizada textarea { display: block; }
+
+/* ===================== DESTINOS ===================== */
+.destinos { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.destino-card {
+  cursor: pointer; border: 2px solid var(--borde); border-radius: 12px;
+  padding: 16px 18px; background: white; position: relative;
+  transition: border-color .2s, background .2s, transform .1s;
+}
+.destino-card:hover { transform: translateY(-2px); }
+.destino-card input { position: absolute; opacity: 0; pointer-events: none; }
+.destino-card .ico { font-size: 26px; line-height: 1; margin-bottom: 8px; }
+.destino-card .d-t { font-weight: 700; font-size: 15px; margin-bottom: 4px; color: var(--tierra); }
+.destino-card .d-d { font-size: 13px; color: var(--suave); line-height: 1.5; }
+.destino-card:has(input:checked) {
+  border-color: var(--corazon); background: var(--rat-bg);
+  box-shadow: 0 6px 18px -10px rgba(179,58,58,0.4);
+}
+.destino-card:has(input:checked)::after {
+  content: "✓ elegido"; position: absolute; top: 10px; right: 12px;
+  font-size: 11px; font-weight: 700; color: var(--corazon);
+  text-transform: uppercase; letter-spacing: .5px;
+}
+
+/* ===================== DECISIONES ===================== */
+.dec { border: 1px solid var(--borde); border-radius: 14px; padding: 22px 24px; margin-bottom: 20px; background: #FFFDF9; }
+.dec-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; }
+.dec-head .id {
+  font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700;
+  background: var(--tierra); color: var(--kallary);
+  width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.dec-head h3 { font-size: 17px; font-weight: 700; color: var(--tierra); }
+.dec-head .preg { font-size: 13.5px; color: var(--suave); margin-top: 2px; }
+.dec-opciones { display: grid; gap: 10px; }
+.op {
+  display: block; cursor: pointer; border: 1.5px solid var(--borde);
+  border-radius: 10px; padding: 14px 16px 12px; background: white;
+  transition: border-color .15s, background .15s; position: relative;
+}
+.op input { position: absolute; top: 16px; right: 14px; accent-color: var(--corazon); }
+.op .optipo {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .6px;
+  padding: 2px 9px; border-radius: 999px; margin-bottom: 6px;
+}
+.op.esperado .optipo   { background: var(--exp-bg); color: #8A5A28; border: 1px solid var(--exp-borde); }
+.op.potenciado .optipo { background: var(--pot-bg); color: var(--pacha); border: 1px solid var(--pot-borde); }
+.op.ratificado .optipo { background: var(--rat-bg); color: #8A6A1A; border: 1px solid var(--rat-borde); }
+.op .optit { font-weight: 700; font-size: 14.5px; margin-bottom: 4px; color: var(--tinta); padding-right: 28px; }
+.op .opdesc { font-size: 13.5px; line-height: 1.55; color: #4A3626; }
+.op .opnota { font-size: 12.5px; margin-top: 6px; color: var(--suave); font-style: italic; }
+.op .opefecto {
+  margin-top: 10px; padding: 9px 11px; border-radius: 8px;
+  background: var(--papel); border-left: 3px solid var(--borde);
+  display: grid; gap: 6px;
+}
+.op .opefecto .ef { font-size: 12.5px; line-height: 1.5; color: #4A3626; }
+.op .opefecto .ef b {
+  display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .5px;
+  text-transform: uppercase; color: var(--suave); margin-bottom: 2px;
+}
+.op:has(input:checked) { border-color: var(--corazon); background: var(--rat-bg); }
+.op:has(input:checked) .opefecto { background: #fff; border-left-color: var(--corazon); }
+.custom-input {
+  width: 100%; margin-top: 10px; min-height: 54px;
+  border: 1px dashed var(--borde); border-radius: 8px; padding: 10px 12px;
+  font-family: 'Inter', sans-serif; font-size: 13.5px; resize: vertical; background: white;
+}
+
+/* ===================== EXTRAS ===================== */
+.extras { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.extra {
+  display: flex; gap: 12px; align-items: flex-start; cursor: pointer;
+  border: 1.5px solid var(--borde); border-radius: 10px; padding: 14px 16px;
+  background: white; transition: border-color .15s, background .15s;
+}
+.extra input { margin-top: 3px; accent-color: var(--pacha); width: 16px; height: 16px; flex-shrink: 0; }
+.extra .ex-t { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.extra .ex-d { font-size: 13px; color: #4A3626; line-height: 1.5; }
+.extra:has(input:checked) { border-color: var(--pot-borde); background: var(--pot-bg); }
+
+/* ===================== ESCUELA + ANATOMÍA ===================== */
+.escuela { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+.leccion {
+  border-left: 4px solid var(--kallary); background: var(--acento-bg);
+  border-radius: 0 10px 10px 0; padding: 14px 16px;
+}
+.leccion .l-t { font-weight: 700; font-size: 14px; color: var(--tierra); margin-bottom: 4px; }
+.leccion .l-d { font-size: 13px; line-height: 1.55; color: #4A3626; }
+.anatomia { display: flex; flex-wrap: wrap; gap: 8px; }
+.ana-item {
+  padding: 6px 13px; border-radius: 999px; font-size: 13px; font-weight: 600;
+  border: 1.5px solid var(--borde); background: white; color: var(--suave);
+}
+.ana-item.ok { background: var(--pot-bg); border-color: var(--pot-borde); color: var(--pacha); }
+.ana-item.falta { background: var(--no-bg); border-color: var(--no-borde); color: var(--corazon); }
+
+/* ===================== SALIDA ===================== */
+.preview-head {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 14px;
+}
+.preview-head .info { font-size: 13.5px; color: var(--suave); }
+.preview-head .info strong { color: var(--corazon); font-size: 16px; }
+.btn {
+  cursor: pointer; border: none; border-radius: 9px;
+  padding: 10px 18px; font-family: 'Inter', sans-serif;
+  font-size: 13.5px; font-weight: 600; transition: transform .1s, opacity .15s;
+}
+.btn:hover { transform: translateY(-1px); opacity: .92; }
+.btn-pacha   { background: var(--pacha); color: white; }
+.btn-primary { background: var(--corazon); color: white; }
+.btn-sec     { background: var(--tierra); color: var(--cielo); }
+.btn-ghost   { background: transparent; color: var(--suave); border: 1.5px solid var(--borde); }
+#promptOut {
+  width: 100%; min-height: 480px;
+  font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6;
+  border: 1px solid var(--borde); border-radius: 12px;
+  padding: 18px 20px; background: #FFFDF8; color: var(--tinta); resize: vertical;
+}
+
+/* ===================== FOOTER + TOAST ===================== */
+footer { text-align: center; margin-top: 40px; color: var(--suave); font-size: 13px; }
+footer .corazon-final {
+  font-family: 'Cormorant Garamond', serif; font-size: 20px;
+  color: var(--corazon); margin-top: 8px; font-weight: 600;
+}
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--tierra); color: var(--cielo);
+  padding: 12px 24px; border-radius: 999px; font-size: 14px; font-weight: 600;
+  opacity: 0; transition: transform .3s, opacity .3s; pointer-events: none; z-index: 99;
+}
+.toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 860px) {
+  .quees, .extras, .escuela { grid-template-columns: 1fr; }
+  .flujo { grid-template-columns: 1fr 1fr; }
+  .flujo .step::after { content: ""; }
+  section { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero" id="hero"></div>
+
+  <section id="sec-explicacion">
+    <h2><span class="num">1</span> Qué hace este prompt</h2>
+    <p class="lede">Radiografía del prompt: objetivo, mecánica, contexto anclado, flujo y entregables. Léela antes de tocar nada — si algo no encaja, la sección 2 es tu sitio.</p>
+    <div class="quees" id="explicacion"></div>
+  </section>
+
+  <section id="sec-certs">
+    <h2><span class="num">2</span> ¿He entendido bien? — certifícalo</h2>
+    <p class="lede">Esto es lo que el modelo ha entendido del prompt. Cada afirmación empieza en <strong>SÍ</strong>. Si algo NO es lo que quieres decir, márcalo y escribe el matiz: se inyecta en el prompt final como <strong>🔍 ACLARACIONES</strong> — el orquestador lo leerá antes que nada.</p>
+    <div class="certs" id="certificaciones"></div>
+  </section>
+
+  <section id="sec-destino">
+    <h2><span class="num">3</span> ¿Para qué lo quieres? — destino del prompt</h2>
+    <p class="lede">El mismo concepto se prompteart distinto según el destino. Elegir aquí cambia la cabecera, las instrucciones de trabajo y el cierre del prompt reconstruido. Excluyente (radio).</p>
+    <div class="destinos" id="destinos"></div>
+  </section>
+
+  <section id="sec-decisiones">
+    <h2><span class="num">4</span> Decisiones a ratificar</h2>
+    <p class="lede">Cada decisión trae la opción <strong>Esperada</strong> (lo que el prompt insinúa por defecto), variantes <strong>Potenciadas</strong> (más ambiciosas) y, si la hay, la ya <strong>Ratificada</strong> por ti. El campo ✍️ manda sobre todas: si escribes ahí, tu versión sustituye a la elegida.</p>
+    <div id="decisiones"></div>
+  </section>
+
+  <section id="sec-extras">
+    <h2><span class="num">5</span> Mejoras extra propuestas</h2>
+    <p class="lede">Cosas que el prompt no pide pero que lo potenciarían. Acumulables (checkbox): marca las que quieras en esta versión; las demás quedan de backlog.</p>
+    <div class="extras" id="extras"></div>
+  </section>
+
+  <section id="sec-escuela">
+    <h2><span class="num">6</span> Escuela de prompteArt</h2>
+    <p class="lede">Lo que este potenciador te enseña para el próximo prompt — y debajo, la <strong>anatomía viva</strong>: qué tiene y qué le falta al prompt reconstruido, recalculado en tiempo real.</p>
+    <div class="escuela" id="lecciones"></div>
+    <h3 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--latido);margin-bottom:10px">Anatomía del prompt reconstruido</h3>
+    <div class="anatomia" id="anatomia"></div>
+  </section>
+
+  <section id="sec-salida">
+    <h2><span class="num">7</span> Prompt reconstruido</h2>
+    <p class="lede">Se regenera en tiempo real con todo lo que has marcado arriba. Cuando estés conforme: cópialo o descárgalo. Este HTML <strong>nunca ejecuta</strong> el prompt — solo lo prepara.</p>
+    <div class="preview-head">
+      <div class="info" id="contadores"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-pacha" onclick="copiarPrompt()">📋 Copiar</button>
+        <button class="btn btn-sec" onclick="descargarMd()">⬇️ Descargar .md</button>
+        <button class="btn btn-sec" onclick="descargarHtml()">⬇️ Descargar .html</button>
+        <button class="btn btn-primary" onclick="resetear()">↺ Resetear</button>
+        <button class="btn btn-ghost" onclick="borrarEstado()">🧹 Borrar estado guardado</button>
+      </div>
+    </div>
+    <textarea id="promptOut" spellcheck="false"></textarea>
+  </section>
+
+  <footer>
+    <div>HTML vivo · pensado para revisar decisiones con calma, no para ejecutarlas.</div>
+    <div class="corazon-final" id="cierre"></div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast">Copiado ✓</div>
+
+<script type="application/json" id="potenciador-datos">
+{
+ "id": "guia-hierro-v1",
+ "titulo": "Guía El Hierro — Potenciador v1",
+ "titulo_html": "Guía El Hierro — <span class=\"k\">Potenciador v1</span>",
+ "subtitulo": "De artefacto prototipo a web publicada en dominio propio: despliegue en Vercel desde GitHub, identidad de marca de Agustín, guía de isla ampliada y posicionamiento del Dive Master.",
+ "tags": [
+  "🟡 6 decisiones abiertas",
+  "🚀 Vercel + GitHub",
+  "🤿 Agustín Fragero Blesa",
+  "🌋 El Hierro",
+  "⚠️ contradice la fase 1"
+ ],
+ "explicacion": {
+  "objetivo": "Sacar la <strong>Guía Fauna Marina de El Hierro</strong> del artefacto de Claude y publicarla como web real en <code>Vercel</code> desde <code>GitHub</code>, con el logotipo corporativo de Agustín, la guía de isla ampliada (conexiones entre islas, alojamiento, servicios) y una estrategia de posicionamiento que convierta la web en el canal por el que <strong>a Agustín Fragero Blesa lo contratan como Dive Master</strong>.",
+  "mecanica": "El prototipo ya existe y funciona: <strong>120 especies</strong>, taxonomía verificada en WoRMS, 117 fotografías con licencia comercial y atribución, bitácora personal con exportar/importar. Esta vuelta <strong>no reinventa el contenido</strong>: lo migra a una arquitectura publicable, le pone marca y le añade la capa de viaje. El riesgo principal no es técnico sino de arquitectura: el diseño aprobado de fase 1 dice WordPress en hosting compartido, y Vercel lo contradice.",
+  "contexto": [
+   "docs/superpowers/specs/2026-08-17-fauna-el-hierro-fase1-design.md — diseño aprobado (WordPress)",
+   "artifact/fauna-el-hierro.html — el prototipo actual, 4,38 MB, autocontenido",
+   "docs/prompts/fichas-infografia.md — sistema de prompts para completar las fichas",
+   "tools/commons-ingest.py — ingestor de fotografía con filtro de licencia",
+   "tools/inat-commons-hunt.py — buscador multi-fuente con resolución de sinónimos"
+  ],
+  "flujo": [
+   "Leer el spec de fase 1 y decidir explícitamente qué se conserva y qué se deroga",
+   "Elegir arquitectura de publicación y estructura del repositorio",
+   "Separar datos, fotografías y plantilla; sacar el base64 del HTML",
+   "Aplicar identidad de marca a partir del logotipo de Agustín",
+   "Añadir la capa de viaje: conexiones entre islas, alojamiento, servicios",
+   "Desplegar en Vercel desde GitHub con dominio propio y medir"
+  ],
+  "entregables": [
+   "<strong>Repositorio GitHub</strong> desplegable en Vercel con un clic, sin secretos en el código",
+   "<strong>Web publicada</strong> con el logotipo de Agustín y ficha de especie enlazable",
+   "<strong>Capa de viaje</strong>: cómo llegar, cómo moverse, dónde dormir, qué hacer sin bucear",
+   "<strong>Plan de posicionamiento</strong> medible para que la web genere contactos reales"
+  ]
+ },
+ "certificaciones": [
+  {
+   "id": "c1",
+   "afirmacion": "El objetivo de la web es <strong>comercial antes que científico</strong>: existe para que a Agustín lo contraten como Dive Master. El rigor taxonómico es el argumento de venta, no el fin."
+  },
+  {
+   "id": "c2",
+   "afirmacion": "Vercel <strong>sustituye</strong> al plan de WordPress en hosting compartido de la fase 1. No conviven: si se publica en Vercel, el spec aprobado queda derogado en su sección 11 y hay que reescribirlo."
+  },
+  {
+   "id": "c3",
+   "afirmacion": "El artefacto de Claude deja de ser el producto y pasa a ser el <strong>prototipo de referencia</strong>. El producto vivirá en un dominio propio de Agustín."
+  },
+  {
+   "id": "c4",
+   "afirmacion": "Lo de la inmobiliaria es para que <strong>sus amigos y clientes encuentren dónde alojarse</strong> cuando vengan a bucear, no para que Agustín venda casas ni monte una agencia."
+  },
+  {
+   "id": "c5",
+   "afirmacion": "Los <strong>horarios y precios de ferris y vuelos NO se guardan en la web</strong>. Se enlaza a Naviera Armas, Fred Olsen, Binter y Canaryfly, porque un horario caducado en una web de buceo destruye la confianza que la guía intenta construir."
+  },
+  {
+   "id": "c6",
+   "afirmacion": "El contenido biológico sigue siendo <strong>borrador hasta que Agustín lo valide especie por especie</strong>. Mientras tanto la web lo declara visiblemente, aunque eso reste apariencia de autoridad."
+  },
+  {
+   "id": "c7",
+   "afirmacion": "La bitácora de avistamientos debe pasar a ser <strong>multiusuario real</strong> con base de datos. La versión de exportar/importar ficheros era una limitación del artefacto, no una decisión de producto."
+  }
+ ],
+ "destinos": [
+  {
+   "id": "sdd",
+   "icono": "📐",
+   "titulo": "SDD primero",
+   "descripcion": "Escribir la especificación de la fase 2 antes de tocar código: deroga formalmente lo que Vercel invalida del spec de fase 1 y deja el plan cerrado.",
+   "cabecera": [
+    "# ESPECIFICACIÓN — FASE 2: PUBLICACIÓN Y MARCA",
+    "",
+    "Eres el arquitecto de este proyecto. **NO escribas código todavía.**",
+    "Tu entregable es un documento de diseño en `docs/superpowers/specs/`,",
+    "con el mismo rigor y estructura que el de la fase 1.",
+    "",
+    "Empieza leyendo el spec de fase 1 completo. Tu primera sección debe ser",
+    "**Qué se deroga y por qué**: Vercel contradice su sección 11 entera."
+   ],
+   "cierre": [
+    "",
+    "## CIERRE",
+    "",
+    "Entrega el documento y para. No implementes nada.",
+    "Termina con una lista de riesgos abiertos y las decisiones que aún",
+    "necesitan respuesta de Alipio o de Agustín."
+   ]
+  },
+  {
+   "id": "hacer",
+   "icono": "⚡",
+   "titulo": "Hacer YA",
+   "descripcion": "Plan de cinco líneas y directo a construir: repositorio, despliegue y web en línea en esta misma sesión.",
+   "cabecera": [
+    "# CONSTRUIR Y DESPLEGAR — GUÍA EL HIERRO",
+    "",
+    "Plan de 5 líneas y a construir. Nada de documentos largos.",
+    "Objetivo de la sesión: **la web en línea en Vercel, funcionando**,",
+    "con el logotipo de Agustín y el contenido que ya existe."
+   ],
+   "cierre": [
+    "",
+    "## CIERRE",
+    "",
+    "Termina con la URL desplegada, el enlace al repositorio y una lista",
+    "corta de lo que queda pendiente. Verifica el despliegue de verdad",
+    "antes de decir que funciona."
+   ]
+  },
+  {
+   "id": "orquestador",
+   "icono": "🎼",
+   "titulo": "Orquestador + subagentes",
+   "descripcion": "Opus acota y planifica; subagentes ejecutan en paralelo las cuatro patas: repositorio, marca, capa de viaje y datos.",
+   "cabecera": [
+    "# ORQUESTADOR — GUÍA EL HIERRO FASE 2",
+    "",
+    "Acota y planifica; delega la ejecución en subagentes.",
+    "Las cuatro patas son independientes y paralelizables:",
+    "",
+    "  A) Repositorio + despliegue en Vercel",
+    "  B) Identidad de marca a partir del logotipo",
+    "  C) Capa de viaje (islas, alojamiento, servicios)",
+    "  D) Completar los datos que faltan en las fichas",
+    "",
+    "Escribe primero el plan corto. Cada subagente recibe su encargo",
+    "autocontenido y devuelve trabajo verificado."
+   ],
+   "cierre": [
+    "",
+    "## CIERRE",
+    "",
+    "Integra el trabajo de los subagentes, verifica el conjunto y publica.",
+    "No des por bueno el resultado de un subagente sin comprobarlo."
+   ]
+  },
+  {
+   "id": "skill",
+   "icono": "🧬",
+   "titulo": "Convertir en skill",
+   "descripcion": "Empaquetar el método completo como skill reutilizable para futuras guías de fauna de otras islas o destinos.",
+   "cabecera": [
+    "# EMPAQUETAR COMO SKILL — GUÍA DE FAUNA POR DESTINO",
+    "",
+    "El método ya está probado en El Hierro. Conviértelo en una skill",
+    "reutilizable para cualquier destino de buceo: ingesta de fotografía",
+    "con filtro de licencia, verificación en WoRMS, fichas y despliegue."
+   ],
+   "cierre": [
+    "",
+    "## CIERRE",
+    "",
+    "Entrega la skill con su SKILL.md, sus assets y un caso de prueba",
+    "distinto de El Hierro que demuestre que generaliza."
+   ]
+  }
+ ],
+ "destino_defecto": "sdd",
+ "decisiones": [
+  {
+   "id": "d1",
+   "titulo": "Arquitectura de publicación",
+   "pregunta": "El spec de fase 1 aprobó WordPress en hosting compartido. Ahora quieres Vercel desde GitHub. ¿Qué se construye realmente?",
+   "defecto": "estatico",
+   "opciones": [
+    {
+     "id": "estatico",
+     "tipo": "esperada",
+     "etiqueta": "Lo esperado",
+     "titulo": "HTML estático tal cual en Vercel",
+     "descripcion": "Se sube el fichero actual al repositorio y Vercel lo sirve. Cero cambios de código.",
+     "nota": "Lo más rápido, pero arrastra los 4,38 MB de fotos en base64 dentro del HTML.",
+     "consecuencia": "La primera carga descarga 4,4 MB antes de pintar nada, y el navegador no puede cachear las fotos por separado.",
+     "resultado": "Publicado en una tarde, pero lento en móvil con datos y sin ninguna página indexable por especie.",
+     "resumen": "Publicar el HTML actual tal cual como sitio estático en Vercel, sin reestructurar."
+    },
+    {
+     "id": "extraer",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Separar datos, fotos y plantilla",
+     "descripcion": "Las fotografías salen del HTML a <code>/public/fotos/*.webp</code>, los datos a <code>species.json</code>, y la página los carga. Cabeceras de caché largas sobre las imágenes.",
+     "nota": "El HTML baja a menos de 200 KB. Las fotos se cachean y se cargan solo las visibles.",
+     "consecuencia": "Hay que reescribir la capa de render para que lea de JSON y use rutas de fichero en vez de data URI.",
+     "resultado": "Carga inicial 20 veces más ligera, navegación instantánea y las fotos se sirven desde el CDN de Vercel.",
+     "resumen": "Extraer fotografías a ficheros estáticos y datos a JSON; el HTML pasa a ser plantilla ligera que los consume."
+    },
+    {
+     "id": "astro",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Astro con una página por especie",
+     "descripcion": "Generación estática con ruta propia por especie: <code>/fauna/vieja</code>, <code>/fauna/mero</code>. Cada ficha es una página real, enlazable e indexable.",
+     "nota": "Es lo que convierte la guía en un activo de posicionamiento en vez de una página bonita.",
+     "consecuencia": "Introduce un framework y un paso de build; hay que aprender Astro o delegarlo.",
+     "resultado": "120 páginas indexables. Quien busque «vieja Canarias» o «angelote El Hierro» puede llegar directamente a la ficha de Agustín.",
+     "resumen": "Migrar a Astro con generación estática y una ruta propia por especie, para que cada ficha sea indexable."
+    },
+    {
+     "id": "wordpress",
+     "tipo": "potenciada",
+     "etiqueta": "Mantener lo aprobado",
+     "titulo": "Seguir el spec de fase 1 en WordPress",
+     "descripcion": "Se descarta Vercel y se ejecuta el diseño ya aprobado: plugin <code>hierro-core</code>, tema <code>hierro</code>, hosting compartido.",
+     "nota": "Agustín gestiona el contenido solo, sin depender del desarrollador. Es la razón por la que se eligió WordPress.",
+     "consecuencia": "Se renuncia a Vercel y al flujo desde GitHub, y se asume la superficie de ataque y el mantenimiento de un CMS.",
+     "resultado": "Autonomía total del autor para publicar, pero más lento de arrancar y más caro de mantener.",
+     "resumen": "Descartar Vercel y ejecutar el diseño de WordPress ya aprobado en la fase 1."
+    }
+   ]
+  },
+  {
+   "id": "d2",
+   "titulo": "Qué gestiona Agustín sin tocar código",
+   "pregunta": "Si se va a Vercel, ¿cómo añade Agustín una especie, sube una foto suya o corrige un dato?",
+   "defecto": "git",
+   "opciones": [
+    {
+     "id": "git",
+     "tipo": "esperada",
+     "etiqueta": "Lo esperado",
+     "titulo": "Editando JSON en GitHub",
+     "descripcion": "Agustín edita <code>species.json</code> desde la interfaz web de GitHub y Vercel redespliega solo.",
+     "nota": "Cero infraestructura extra, pero exige que Agustín pierda el miedo a un fichero de datos.",
+     "consecuencia": "Un error de coma rompe el despliegue; hace falta validación automática en el commit.",
+     "resultado": "Funciona si Agustín es paciente con la sintaxis; frustrante si no lo es.",
+     "resumen": "Agustín edita los datos como JSON directamente en GitHub; Vercel redespliega automáticamente."
+    },
+    {
+     "id": "cms",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "CMS ligero sobre el repositorio",
+     "descripcion": "Un editor visual tipo Decap o Sveltia que escribe en el repositorio: formularios con campos, subida de fotos y vista previa.",
+     "nota": "Le da a Agustín la comodidad de WordPress sin el mantenimiento de WordPress.",
+     "consecuencia": "Añade autenticación y una capa más que configurar y mantener.",
+     "resultado": "Agustín publica solo, con formularios, y el contenido sigue versionado en Git.",
+     "resumen": "Montar un CMS ligero basado en Git (Decap o Sveltia) para que Agustín edite con formularios y suba fotos."
+    },
+    {
+     "id": "yo",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Lo mantienes tú, él solo aporta material",
+     "descripcion": "Agustín manda fotos y correcciones por WhatsApp; tú las integras por lotes.",
+     "nota": "Honesto con la realidad: al principio el volumen de cambios va a ser bajo.",
+     "consecuencia": "La web depende de tu disponibilidad y se convierte en una dependencia personal.",
+     "resultado": "Arranque rapidísimo, pero no escala y a los seis meses el contenido se estanca.",
+     "resumen": "Alipio mantiene el contenido; Agustín solo aporta fotografías y correcciones."
+    }
+   ]
+  },
+  {
+   "id": "d3",
+   "titulo": "Cómo posiciona la web a Agustín",
+   "pregunta": "¿Qué convierte esta guía en contactos reales para el Dive Master?",
+   "defecto": "contacto",
+   "opciones": [
+    {
+     "id": "contacto",
+     "tipo": "esperada",
+     "etiqueta": "Lo esperado",
+     "titulo": "Datos de contacto e Instagram",
+     "descripcion": "Un bloque con quién es Agustín, su Instagram y un formulario o WhatsApp.",
+     "nota": "Es el mínimo, y hoy la web no lo tiene: solo enlaza al Instagram.",
+     "consecuencia": "Depende de que alguien llegue a la web por otro canal; la guía no atrae por sí sola.",
+     "resultado": "Convierte visitas en contactos, pero no genera visitas.",
+     "resumen": "Añadir bloque de autor con biografía, contacto directo y llamada a la acción clara."
+    },
+    {
+     "id": "seo",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Datos estructurados y página por especie",
+     "descripcion": "Schema.org <code>Taxon</code> en cada ficha, <code>Person</code> y <code>LocalBusiness</code> para Agustín, sitemap y Open Graph con la foto de cada especie.",
+     "nota": "La guía deja de ser una web bonita y pasa a ser la puerta de entrada de quien busca buceo en El Hierro.",
+     "consecuencia": "Solo tiene sentido con una URL por especie: obliga a la opción Astro de la decisión 1.",
+     "resultado": "Tráfico de búsqueda sostenido y sin coste publicitario, con Agustín como cara visible de cada resultado.",
+     "resumen": "Datos estructurados Schema.org, sitemap, Open Graph por especie y URL propia por ficha para captar tráfico de búsqueda."
+    },
+    {
+     "id": "experiencia",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "La bitácora como gancho de fidelización",
+     "descripcion": "Quien bucea con Agustín se lleva su bitácora personal: especies vistas, fechas y progreso. Vuelve a la web para completarla.",
+     "nota": "Convierte un servicio puntual en una relación que dura años.",
+     "consecuencia": "Exige cuentas de usuario y base de datos real, no localStorage.",
+     "resultado": "Los clientes vuelven solos y traen amigos para competir por el inventario.",
+     "resumen": "Convertir la bitácora en producto de fidelización con cuentas reales, progreso personal y comparativa entre amigos."
+    }
+   ]
+  },
+  {
+   "id": "d4",
+   "titulo": "La capa de viaje",
+   "pregunta": "Conexiones entre islas, alojamiento y qué hacer fuera del agua. ¿Hasta dónde llega?",
+   "defecto": "enlaces",
+   "opciones": [
+    {
+     "id": "enlaces",
+     "tipo": "esperada",
+     "etiqueta": "Lo esperado",
+     "titulo": "Tabla de conexiones con enlaces a operadores",
+     "descripcion": "Cómo llegar desde Tenerife y desde El Hierro a las demás islas, con duraciones aproximadas y enlace a Naviera Armas, Fred Olsen, Binter y Canaryfly.",
+     "nota": "Duraciones sí; horarios y precios no, porque caducan.",
+     "consecuencia": "Hay que revisar las duraciones una vez al año y avisar de que se confirmen en el operador.",
+     "resultado": "Resuelve la pregunta real del visitante sin asumir responsabilidad sobre horarios cambiantes.",
+     "resumen": "Tabla de conexiones marítimas y aéreas con duraciones aproximadas y enlace directo a cada operador, sin horarios ni precios."
+    },
+    {
+     "id": "planes",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Itinerarios de buceo por días",
+     "descripcion": "Planes cerrados de 3, 5 y 7 días que combinan inmersiones, desaturación, miradores, piscinas naturales y estrellas.",
+     "nota": "Es el contenido que de verdad diferencia a un Dive Master local de un buscador genérico.",
+     "consecuencia": "Requiere el criterio de campo de Agustín; no se puede redactar sin él.",
+     "resultado": "El visitante llega con el viaje ya pensado y con Agustín dentro del plan.",
+     "resumen": "Itinerarios cerrados de 3, 5 y 7 días combinando inmersiones, desaturación y paisaje, diseñados con Agustín."
+    },
+    {
+     "id": "alojamiento",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Alojamiento cerca de La Restinga",
+     "descripcion": "Selección de dónde dormir para quien viene a bucear: qué hay en La Restinga, El Pinar y Frontera, y a cuánto está cada uno del puerto.",
+     "nota": "Esto es lo que probablemente querías decir con «mirar una inmobiliaria»: alojarse, no comprar.",
+     "consecuencia": "Si se enlaza a alojamientos concretos, hay que decidir si hay acuerdo comercial y declararlo.",
+     "resultado": "Elimina la fricción principal del viaje a El Hierro y da a Agustín una vía de acuerdos con alojamientos locales.",
+     "resumen": "Sección de alojamiento orientada a buceadores, con distancias al puerto de La Restinga y declaración de cualquier acuerdo comercial."
+    },
+    {
+     "id": "vivir",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Vivir en El Hierro",
+     "descripcion": "Contenido para quien se plantea quedarse: alquiler de larga estancia, coste de vida, servicios, conexión a internet y trabajo remoto.",
+     "nota": "Nicho pequeño pero muy fiel, y encaja con «para él y todos sus amigos».",
+     "consecuencia": "Es un tema sensible y cambiante; mal documentado genera desinformación con consecuencias reales.",
+     "resultado": "Atrae a un público que se queda meses en vez de días, con mucho más valor por persona.",
+     "resumen": "Sección sobre instalarse en El Hierro: alquiler de larga estancia, coste de vida, servicios y trabajo remoto."
+    }
+   ]
+  },
+  {
+   "id": "d5",
+   "titulo": "Identidad de marca",
+   "pregunta": "El logotipo de la máscara de buceo. ¿Cuánto manda sobre el diseño actual?",
+   "defecto": "insertar",
+   "opciones": [
+    {
+     "id": "insertar",
+     "tipo": "esperada",
+     "etiqueta": "Lo esperado",
+     "titulo": "Colocar el logotipo y punto",
+     "descripcion": "El logotipo va en cabecera y pie, sobre el diseño actual de tonos turquesa y abismo.",
+     "nota": "Ya hay una reconstrucción vectorial del logotipo dentro del artefacto, como <code>&lt;symbol id=\"mark\"&gt;</code>. Reutilízala o pide el fichero original a Agustín.",
+     "consecuencia": "El azul marino del logotipo y el turquesa de la web conviven sin estar armonizados del todo.",
+     "resultado": "Web reconocible como suya, pero sin un sistema de marca detrás.",
+     "resumen": "Insertar el logotipo en cabecera y pie manteniendo la paleta actual de la guía."
+    },
+    {
+     "id": "sistema",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Sistema de marca derivado del logotipo",
+     "descripcion": "Se extrae la paleta del logotipo (navy <code>#122C3F</code>, teal <code>#1BA9A4</code>, naranja <code>#F47B20</code>, lima <code>#B4D923</code>) y se reconstruye el sistema completo: tokens, tipografía, iconografía y las láminas de especie.",
+     "nota": "El naranja y el lima del logotipo hoy no aparecen en ninguna parte de la web.",
+     "consecuencia": "Obliga a repasar todos los componentes y a rehacer las capturas y láminas ya generadas.",
+     "resultado": "Todo el material —web, láminas, redes, tarjetas— se reconoce como de Agustín antes de leer su nombre.",
+     "resumen": "Derivar del logotipo un sistema de marca completo con tokens de color, tipografía e iconografía, y aplicarlo a toda la web."
+    },
+    {
+     "id": "kit",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Kit de marca exportable",
+     "descripcion": "Además del sistema en web: SVG del logotipo en sus variantes, favicon, imagen de Open Graph, plantillas para Instagram y firma de correo.",
+     "nota": "Todo lo que Agustín necesita para verse profesional fuera de la web.",
+     "consecuencia": "Es trabajo de diseño que no mejora la web en sí misma.",
+     "resultado": "Agustín deja de improvisar cada publicación y su imagen es coherente en todos los canales.",
+     "resumen": "Producir un kit de marca exportable: variantes del logotipo, favicon, Open Graph, plantillas de Instagram y firma de correo."
+    }
+   ]
+  },
+  {
+   "id": "d6",
+   "titulo": "Los datos que faltan",
+   "pregunta": "Quedan huecos conocidos en el contenido. ¿Se cierran antes de publicar o se publica y se completa?",
+   "defecto": "publicar",
+   "opciones": [
+    {
+     "id": "publicar",
+     "tipo": "esperada",
+     "etiqueta": "Lo esperado",
+     "titulo": "Publicar con los huecos declarados",
+     "descripcion": "Se publica ya, con los avisos que la web ya lleva: «Foto pendiente», «Presencia por confirmar» y el aviso de borrador pendiente de revisión.",
+     "nota": "Hoy faltan 3 fotografías, 4 campos por especie y quedan 29 presencias sin contrastar.",
+     "consecuencia": "La web sale con avisos visibles que restan apariencia de autoridad.",
+     "resultado": "En línea esta semana, y la honestidad de los avisos es en sí misma un argumento de rigor.",
+     "resumen": "Publicar ya con los huecos declarados visiblemente y completarlos en iteraciones posteriores."
+    },
+    {
+     "id": "completar",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Completar las fichas primero",
+     "descripcion": "Ejecutar el sistema de prompts de <code>docs/prompts/fichas-infografia.md</code> para rellenar alimentación, reproducción, defensa y papel ecológico en las 120 especies, con su pasada de control de calidad.",
+     "nota": "Son los cuatro bloques que hoy dejan hueco en la columna derecha de cada ficha.",
+     "consecuencia": "Añade una ronda de generación más revisión humana antes de poder publicar.",
+     "resultado": "La ficha se ve completa y la web compite de tú a tú con cualquier guía publicada.",
+     "resumen": "Ejecutar el sistema de prompts para completar los cuatro campos que faltan en las 120 fichas antes de publicar."
+    },
+    {
+     "id": "agustin",
+     "tipo": "potenciada",
+     "etiqueta": "Potenciada",
+     "titulo": "Sesión de validación con Agustín",
+     "descripcion": "Antes que generar más texto, sentarse con Agustín a revisar las 29 presencias dudosas y a marcar qué especies ve él de verdad en el Mar de las Calmas.",
+     "nota": "Su criterio de campo vale más que cualquier fuente bibliográfica para la parte local.",
+     "consecuencia": "Depende de su agenda y no se puede paralelizar.",
+     "resultado": "La guía pasa de compilación bibliográfica a documento de autoridad local, que es justo lo que la diferencia.",
+     "resumen": "Sesión de validación con Agustín sobre las 29 presencias dudosas y el contenido local, antes de generar más texto."
+    }
+   ]
+  }
+ ],
+ "extras": [
+  {
+   "id": "pwa",
+   "titulo": "Funcionamiento sin conexión",
+   "descripcion": "En La Restinga la cobertura es irregular y bajo el agua no hay ninguna. Una PWA con las fichas y fotos cacheadas permite consultar la guía en el barco y registrar avistamientos justo al salir del agua."
+  },
+  {
+   "id": "idiomas",
+   "titulo": "Inglés y alemán",
+   "descripcion": "El buceo en El Hierro es turismo internacional. Los nombres científicos ya son universales; traducir la interfaz y los textos multiplica el alcance sin rehacer los datos."
+  },
+  {
+   "id": "analitica",
+   "titulo": "Analítica respetuosa",
+   "descripcion": "Vercel Analytics o Plausible, sin cookies ni banner. Sin medir qué especies se consultan y de dónde llega la gente, el posicionamiento es a ciegas."
+  },
+  {
+   "id": "laminas",
+   "titulo": "Exportar la ficha como lámina imprimible",
+   "descripcion": "Botón que genera el PNG de la ficha a 3072 px. Sirve para imprimir en el centro de buceo, para redes y como material de briefing."
+  },
+  {
+   "id": "creditos",
+   "titulo": "Auditoría de licencias automática",
+   "descripcion": "Comando que recorre todas las fotografías y falla si alguna no tiene autor, licencia admitida y enlace a la fuente. Es la sección 5.4 del spec convertida en prueba de despliegue."
+  },
+  {
+   "id": "mapa",
+   "titulo": "Mapa real de puntos de inmersión",
+   "descripcion": "Sustituir el esquema actual de la isla por un mapa con los puntos reales del Mar de las Calmas, marcados por Agustín, con profundidad y nivel requerido."
+  },
+  {
+   "id": "redpromar",
+   "titulo": "Reporte a REDPROMAR desde la ficha",
+   "descripcion": "Para especies sensibles como el angelote o la mobula, un botón que lleve al formulario oficial de avistamientos con los datos ya rellenados. Convierte a los clientes de Agustín en red de observadores."
+  },
+  {
+   "id": "dominio",
+   "titulo": "Dominio propio y correo",
+   "descripcion": "Un dominio de Agustín en vez de una URL de plataforma, con correo profesional. Es la diferencia entre parecer un proyecto y parecer un negocio."
+  }
+ ],
+ "lecciones": [
+  {
+   "titulo": "Declara qué derogas",
+   "texto": "Cuando un encargo nuevo contradice un diseño ya aprobado, el prompt debe decirlo en la primera línea. Si no, el modelo intenta cumplir los dos a la vez y produce un híbrido que no sirve para ninguno. Aquí Vercel deroga la sección 11 entera del spec de fase 1: decirlo evita media sesión de confusión."
+  },
+  {
+   "titulo": "Separa el objetivo real del objetivo aparente",
+   "texto": "El objetivo aparente es «una guía de fauna marina». El real es «que contraten a Agustín». Son compatibles, pero cuando hay que elegir entre rigor y conversión, solo el objetivo real desempata. Un prompt que no lo declara deja esa decisión al azar."
+  },
+  {
+   "titulo": "Ancla lo que ya existe",
+   "texto": "Este proyecto ya tiene 120 especies verificadas, 117 fotos con licencia y dos herramientas de ingesta funcionando. Un prompt que no lo enumera invita al modelo a rehacerlo desde cero. Enumerar el punto de partida es lo que convierte una sesión nueva en continuación y no en reinicio."
+  },
+  {
+   "titulo": "Los datos que caducan no se guardan",
+   "texto": "Horarios de ferry, precios y teléfonos envejecen mal y su error es visible y embarazoso. La regla que lo resuelve es sencilla: guarda lo estable (duraciones, distancias, geografía) y enlaza lo volátil (horarios, precios, disponibilidad). Dilo en el prompt o el modelo rellenará la tabla con datos plausibles inventados."
+  },
+  {
+   "titulo": "Certifica lo que rompería el proyecto",
+   "texto": "Una certificación útil es la que, si estuviera mal, invalidaría el trabajo entero. «La inmobiliaria es para alojar amigos, no para vender casas» cambia radicalmente lo que se construye. «La web es sobre buceo» no aporta nada porque nadie lo dudaba."
+  }
+ ],
+ "anatomia": [
+  {
+   "etiqueta": "🎯 Objetivo",
+   "patron": "## 🎯 OBJETIVO"
+  },
+  {
+   "etiqueta": "🧭 Punto de partida",
+   "patron": "## 🧭 PUNTO DE PARTIDA"
+  },
+  {
+   "etiqueta": "🔍 Comprensión",
+   "patron": "## 🔍 COMPRENSIÓN CERTIFICADA"
+  },
+  {
+   "etiqueta": "✅ Decisiones",
+   "patron": "## ✅ DECISIONES RATIFICADAS"
+  },
+  {
+   "etiqueta": "📎 Contexto",
+   "patron": "## 📎 CONTEXTO ANCLADO"
+  },
+  {
+   "etiqueta": "🚧 Guardarraíles",
+   "patron": "## 🚧 GUARDARRAÍLES"
+  },
+  {
+   "etiqueta": "📦 Entregables",
+   "patron": "## 📦 ENTREGABLES"
+  },
+  {
+   "etiqueta": "🏁 Cierre",
+   "patron": "## CIERRE"
+  }
+ ],
+ "prompt_base": [
+  "{{DESTINO}}",
+  "",
+  "## 🎯 OBJETIVO",
+  "",
+  "Llevar la **Guía Fauna Marina de El Hierro** de prototipo a web publicada en",
+  "dominio propio, desplegada en **Vercel desde GitHub**, con el logotipo",
+  "corporativo de **Agustín Fragero Blesa · Dive Master** y una capa de viaje que",
+  "cubra cómo llegar a la isla, cómo moverse entre islas y dónde alojarse.",
+  "",
+  "El objetivo de negocio manda sobre el técnico: la web existe para que **a",
+  "Agustín lo contraten como Dive Master** y para que él y su gente disfruten",
+  "mejor de El Hierro. El rigor científico es el argumento de venta.",
+  "",
+  "## 🧭 PUNTO DE PARTIDA — NO LO REHAGAS",
+  "",
+  "Ya existe y funciona. Léelo antes de proponer nada:",
+  "",
+  "| Qué | Dónde | Estado |",
+  "|---|---|---|",
+  "| Prototipo completo, 4,38 MB autocontenido | `artifact/fauna-el-hierro.html` | funcionando |",
+  "| Diseño aprobado de la fase 1 (WordPress) | `docs/superpowers/specs/2026-08-17-fauna-el-hierro-fase1-design.md` | **en conflicto con Vercel** |",
+  "| Sistema de prompts para completar fichas | `docs/prompts/fichas-infografia.md` | listo para ejecutar |",
+  "| Ingestor de fotografía con filtro de licencia | `tools/commons-ingest.py` | probado |",
+  "| Buscador multi-fuente con sinónimos | `tools/inat-commons-hunt.py` | probado |",
+  "",
+  "**Contenido ya consolidado:**",
+  "",
+  "- 120 especies con ficha redactada en tres niveles (básico, profesional, experto)",
+  "- Taxonomía verificada en WoRMS: 120 con autoridad, orden y familia; 5 nombres corregidos",
+  "- 117 especies con fotografía de licencia comercial, con autor y licencia visibles",
+  "- Bitácora personal con exportar e importar, y modal de ficha en formato infografía",
+  "- Logotipo reconstruido en SVG dentro del artefacto, como `<symbol id=\"mark\">`",
+  "",
+  "**Huecos conocidos:** 3 especies sin fotografía utilizable, 4 campos por especie sin",
+  "redactar (alimentación, reproducción, defensa, papel ecológico), 24 presencias por",
+  "confirmar y 5 especies probablemente ausentes de Canarias.",
+  "",
+  "{{ACLARACIONES}}",
+  "",
+  "{{DECISIONES}}",
+  "",
+  "## 📎 CONTEXTO ANCLADO",
+  "",
+  "- Autor del contenido: **Agustín Fragero Blesa**, Dive Master en El Hierro, `@agustin_fragero`",
+  "- Base de operaciones: **La Restinga**, Reserva Marina del **Mar de las Calmas**",
+  "- Responsable técnico: Alipio (Rural Makers) — español, directo y técnico, código en inglés",
+  "- Paleta del logotipo: navy `#122C3F` · teal `#1BA9A4` · naranja `#F47B20` · lima `#B4D923`",
+  "",
+  "## 🚧 GUARDARRAÍLES",
+  "",
+  "1. **No inventes datos biológicos ni de horarios.** Guarda lo estable (duraciones,",
+  "   distancias, geografía) y enlaza lo volátil (horarios, precios, disponibilidad) a",
+  "   Naviera Armas, Fred Olsen, Binter y Canaryfly.",
+  "2. **Ninguna fotografía sin autor, licencia admitida y enlace a la fuente.** Solo CC0,",
+  "   CC BY y CC BY-SA: la web es actividad comercial y NonCommercial no vale.",
+  "3. **Nunca muestres una especie con la foto de otra.** Sin coincidencia exacta, lámina",
+  "   generada y etiqueta de foto pendiente.",
+  "4. **El contenido biológico es borrador** hasta que Agustín lo valide. Dilo en la web.",
+  "5. **Sin secretos en el repositorio.** Variables de entorno en Vercel, `.env.local`",
+  "   fuera de Git, y nunca claves en el código.",
+  "6. **Esta web no es documentación de seguridad de buceo.** No sustituye al briefing",
+  "   del centro ni a la información oficial de navegación o meteorología.",
+  "7. **Verifica el despliegue de verdad** antes de decir que funciona: carga la URL,",
+  "   comprueba una ficha y mide el peso de la primera carga.",
+  "",
+  "{{EXTRAS}}",
+  "",
+  "## 📦 ENTREGABLES",
+  "",
+  "1. Repositorio en GitHub desplegable en Vercel, con `README` de puesta en marcha",
+  "2. Web publicada y verificada, con el logotipo de Agustín y ficha de especie enlazable",
+  "3. Capa de viaje: llegar, moverse entre islas, alojarse y qué hacer sin bucear",
+  "4. Plan de posicionamiento con métricas concretas y cómo se miden",
+  "5. Actualización del spec: qué queda derogado de la fase 1 y por qué",
+  "",
+  "{{CIERRE_DESTINO}}"
+ ],
+ "cierre": "Conjuga. Juega. Teje. Late. → graciASAmArt"
+}
+</script>
+
+<script>
+"use strict";
+/* =====================================================================
+   MOTOR DEL POTENCIADOR — 100 % data-driven.
+   Todo el contenido vive en el JSON de arriba. Este JS solo renderiza,
+   reconstruye el prompt y persiste el estado en localStorage.
+   ===================================================================== */
+const DATOS = JSON.parse(document.getElementById("potenciador-datos").textContent);
+const CLAVE = "potenciador-" + DATOS.id;
+
+/* ---------- estado ---------- */
+let estado = estadoInicial();
+
+function estadoInicial() {
+  const e = { destino: DATOS.destino_defecto, certs: {}, decisiones: {}, custom: {}, extras: {} };
+  for (const c of DATOS.certificaciones) e.certs[c.id] = { ok: true, matiz: "" };
+  for (const d of DATOS.decisiones) { e.decisiones[d.id] = d.defecto; e.custom[d.id] = ""; }
+  for (const x of DATOS.extras) e.extras[x.id] = false;
+  return e;
+}
+function guardar() { try { localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch (_) {} }
+function cargar() {
+  try {
+    const raw = localStorage.getItem(CLAVE);
+    if (!raw) return;
+    const prev = JSON.parse(raw);
+    if (prev && typeof prev === "object") estado = Object.assign(estadoInicial(), prev);
+  } catch (_) {}
+}
+
+/* ---------- utilidades ---------- */
+const $ = (sel) => document.querySelector(sel);
+function el(tag, cls, html) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (html !== undefined) n.innerHTML = html;
+  return n;
+}
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/* ---------- render: hero ---------- */
+function renderHero() {
+  const h = $("#hero");
+  h.innerHTML = "";
+  h.appendChild(el("h1", null, DATOS.titulo_html || esc(DATOS.titulo)));
+  h.appendChild(el("div", "sub", esc(DATOS.subtitulo)));
+  const meta = el("div", "meta");
+  for (const t of DATOS.tags) meta.appendChild(el("span", "tag", esc(t)));
+  h.appendChild(meta);
+}
+
+/* ---------- render: explicación ---------- */
+function renderExplicacion() {
+  const cont = $("#explicacion");
+  cont.innerHTML = "";
+  const ex = DATOS.explicacion;
+  cont.appendChild(el("div", "q-card", "<h3>🎯 Objetivo</h3><p>" + ex.objetivo + "</p>"));
+  cont.appendChild(el("div", "q-card", "<h3>🧭 Mecánica</h3><p>" + ex.mecanica + "</p>"));
+  cont.appendChild(el("div", "q-card full", "<h3>📚 Contexto anclado</h3><ul>" +
+    ex.contexto.map((c) => "<li><code>" + esc(c) + "</code></li>").join("") + "</ul>"));
+  if (ex.flujo && ex.flujo.length) {
+    const f = el("div", "q-card full", "<h3>🔄 Flujo</h3>");
+    const fl = el("div", "flujo");
+    ex.flujo.forEach((paso, i) => {
+      fl.appendChild(el("div", "step", '<div class="n">' + (i + 1) + '</div><div class="t">' + esc(paso) + "</div>"));
+    });
+    f.appendChild(fl);
+    cont.appendChild(f);
+  }
+  cont.appendChild(el("div", "q-card full", "<h3>📦 Entregables</h3><ul>" +
+    ex.entregables.map((e2) => "<li>" + e2 + "</li>").join("") + "</ul>"));
+}
+
+/* ---------- render: certificaciones ---------- */
+function renderCertificaciones() {
+  const cont = $("#certificaciones");
+  cont.innerHTML = "";
+  for (const c of DATOS.certificaciones) {
+    const st = estado.certs[c.id];
+    const card = el("div", "cert" + (st.ok ? "" : " matizada"));
+    card.appendChild(el("div", "afirmacion", "«" + c.afirmacion + "»"));
+    const ctr = el("div", "controles");
+    const si = el("span", "toggle si" + (st.ok ? " activo" : ""), "✓ Sí, es esto");
+    const no = el("span", "toggle no" + (st.ok ? "" : " activo"), "✗ No exactamente…");
+    si.onclick = () => { estado.certs[c.id].ok = true; renderCertificaciones(); actualizar(); };
+    no.onclick = () => { estado.certs[c.id].ok = false; renderCertificaciones(); actualizar(); };
+    ctr.appendChild(si); ctr.appendChild(no);
+    card.appendChild(ctr);
+    const ta = el("textarea");
+    ta.placeholder = "✍️ ¿Qué querías decir realmente? Este matiz se inyecta en el prompt.";
+    ta.value = st.matiz;
+    ta.oninput = () => { estado.certs[c.id].matiz = ta.value; actualizar(); };
+    card.appendChild(ta);
+    cont.appendChild(card);
+  }
+}
+
+/* ---------- render: destinos ---------- */
+function renderDestinos() {
+  const cont = $("#destinos");
+  cont.innerHTML = "";
+  for (const d of DATOS.destinos) {
+    const card = el("label", "destino-card");
+    const input = document.createElement("input");
+    input.type = "radio"; input.name = "destino"; input.value = d.id;
+    input.checked = estado.destino === d.id;
+    input.onchange = () => { estado.destino = d.id; actualizar(); };
+    card.appendChild(input);
+    card.appendChild(el("div", "ico", d.icono || "🧭"));
+    card.appendChild(el("div", "d-t", esc(d.titulo)));
+    card.appendChild(el("div", "d-d", d.descripcion));
+    cont.appendChild(card);
+  }
+}
+
+/* ---------- render: decisiones ---------- */
+function renderDecisiones() {
+  const cont = $("#decisiones");
+  cont.innerHTML = "";
+  DATOS.decisiones.forEach((d, i) => {
+    const dec = el("div", "dec");
+    dec.appendChild(el("div", "dec-head",
+      '<div class="id">' + (i + 1) + "</div><div><h3>" + esc(d.titulo) +
+      '</h3><div class="preg">' + esc(d.pregunta) + "</div></div>"));
+    const ops = el("div", "dec-opciones");
+    for (const op of d.opciones) {
+      const lab = el("label", "op " + op.tipo);
+      const input = document.createElement("input");
+      input.type = "radio"; input.name = d.id; input.value = op.id;
+      input.checked = estado.decisiones[d.id] === op.id;
+      input.onchange = () => { estado.decisiones[d.id] = op.id; actualizar(); };
+      lab.appendChild(input);
+      const etiquetas = { esperado: "Esperado", potenciado: "Potenciado", ratificado: "Ratificado por ti" };
+      lab.appendChild(el("span", "optipo", op.etiqueta || etiquetas[op.tipo] || op.tipo));
+      lab.appendChild(el("div", "optit", esc(op.titulo)));
+      lab.appendChild(el("div", "opdesc", op.descripcion));
+      if (op.consecuencia || op.resultado) {
+        const ef = el("div", "opefecto");
+        if (op.consecuencia)
+          ef.appendChild(el("div", "ef", "<b>Si eliges esto</b>" + esc(op.consecuencia)));
+        if (op.resultado)
+          ef.appendChild(el("div", "ef", "<b>Cuando esté hecho</b>" + esc(op.resultado)));
+        lab.appendChild(ef);
+      }
+      if (op.nota) lab.appendChild(el("div", "opnota", op.nota));
+      ops.appendChild(lab);
+    }
+    dec.appendChild(ops);
+    const ta = el("textarea", "custom-input");
+    ta.placeholder = "✍️ Tu propia versión (si escribes aquí, manda sobre la opción elegida)";
+    ta.value = estado.custom[d.id] || "";
+    ta.oninput = () => { estado.custom[d.id] = ta.value; actualizar(); };
+    dec.appendChild(ta);
+    cont.appendChild(dec);
+  });
+}
+
+/* ---------- render: extras ---------- */
+function renderExtras() {
+  const cont = $("#extras");
+  cont.innerHTML = "";
+  for (const x of DATOS.extras) {
+    const lab = el("label", "extra");
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.checked = !!estado.extras[x.id];
+    input.onchange = () => { estado.extras[x.id] = input.checked; actualizar(); };
+    lab.appendChild(input);
+    lab.appendChild(el("div", null, '<div class="ex-t">' + esc(x.titulo) + '</div><div class="ex-d">' + x.descripcion + "</div>"));
+    cont.appendChild(lab);
+  }
+}
+
+/* ---------- render: escuela ---------- */
+function renderEscuela() {
+  const cont = $("#lecciones");
+  cont.innerHTML = "";
+  for (const l of DATOS.lecciones) {
+    cont.appendChild(el("div", "leccion", '<div class="l-t">' + esc(l.titulo) + '</div><div class="l-d">' + l.texto + "</div>"));
+  }
+}
+
+/* ---------- construcción del prompt ---------- */
+function textoOpcion(d) {
+  const custom = (estado.custom[d.id] || "").trim();
+  if (custom) return custom + " *(versión propia)*";
+  const op = d.opciones.find((o) => o.id === estado.decisiones[d.id]) || d.opciones[0];
+  return op.resumen || op.descripcion.replace(/<[^>]+>/g, "");
+}
+
+function buildPrompt() {
+  const destino = DATOS.destinos.find((d) => d.id === estado.destino) || DATOS.destinos[0];
+
+  // 🔍 aclaraciones
+  const matices = DATOS.certificaciones
+    .filter((c) => !estado.certs[c.id].ok)
+    .map((c) => "- ⚠️ NO exactamente: «" + c.afirmacion.replace(/<[^>]+>/g, "") + "»\n  → MATIZ DE ALIPIO: " +
+      ((estado.certs[c.id].matiz || "").trim() || "(pendiente de redactar — pregúntame antes de asumir nada)"));
+  const certificadas = DATOS.certificaciones.filter((c) => estado.certs[c.id].ok).length;
+  let aclaraciones = "Comprensión certificada: " + certificadas + "/" + DATOS.certificaciones.length +
+    " afirmaciones confirmadas por Alipio en el potenciador.";
+  if (matices.length) {
+    aclaraciones += "\nMatices que CORRIGEN la lectura por defecto (prioridad máxima):\n" + matices.join("\n");
+  }
+
+  // 🟡 decisiones
+  const decisiones = DATOS.decisiones
+    .map((d, i) => (i + 1) + ". **" + d.titulo + "** → " + textoOpcion(d))
+    .join("\n\n");
+
+  // mejoras extra
+  const marcadas = DATOS.extras.filter((x) => estado.extras[x.id]);
+  const extras = marcadas.length
+    ? marcadas.map((x, i) => (i + 1) + ". " + x.titulo + ": " + x.descripcion.replace(/<[^>]+>/g, "")).join("\n\n")
+    : "(ninguna activada en esta pasada — el resto queda en backlog)";
+
+  let base = DATOS.prompt_base.join("\n");
+  base = base
+    .replace("{{DESTINO}}", destino.cabecera.join("\n"))
+    .replace("{{ACLARACIONES}}", aclaraciones)
+    .replace("{{DECISIONES}}", decisiones)
+    .replace("{{EXTRAS}}", extras)
+    .replace("{{CIERRE_DESTINO}}", destino.cierre.join("\n"));
+  return base;
+}
+
+/* ---------- anatomía ---------- */
+function renderAnatomia(prompt) {
+  const cont = $("#anatomia");
+  cont.innerHTML = "";
+  for (const a of DATOS.anatomia) {
+    const ok = prompt.includes(a.patron);
+    cont.appendChild(el("span", "ana-item " + (ok ? "ok" : "falta"),
+      (ok ? "✓ " : "✗ ") + esc(a.etiqueta)));
+  }
+}
+
+/* ---------- actualización global ---------- */
+function actualizar() {
+  const prompt = buildPrompt();
+  $("#promptOut").value = prompt;
+  const nPot = DATOS.decisiones.filter((d) => {
+    const op = d.opciones.find((o) => o.id === estado.decisiones[d.id]);
+    return op && op.tipo === "potenciado";
+  }).length;
+  const nCustom = DATOS.decisiones.filter((d) => (estado.custom[d.id] || "").trim()).length;
+  const nExtras = DATOS.extras.filter((x) => estado.extras[x.id]).length;
+  const nMatices = DATOS.certificaciones.filter((c) => !estado.certs[c.id].ok).length;
+  const destino = DATOS.destinos.find((d) => d.id === estado.destino);
+  $("#contadores").innerHTML =
+    "<strong>" + DATOS.decisiones.length + "</strong> decisiones · " +
+    "<strong>" + nPot + "</strong> potenciadas · " +
+    "<strong>" + nCustom + "</strong> propias · " +
+    "<strong>" + nExtras + "</strong> extras · " +
+    "<strong>" + nMatices + "</strong> matices · destino: <strong>" +
+    esc(destino ? destino.titulo : "—") + "</strong>";
+  renderAnatomia(prompt);
+  guardar();
+}
+
+/* ---------- acciones ---------- */
+function mostrarToast(msg) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("visible");
+  setTimeout(() => t.classList.remove("visible"), 2200);
+}
+function copiarPrompt() {
+  navigator.clipboard.writeText($("#promptOut").value).then(
+    () => mostrarToast("Copiado ✓"),
+    () => mostrarToast("No se pudo copiar — selecciónalo manualmente")
+  );
+}
+function descargar(nombre, contenido, tipo) {
+  const blob = new Blob([contenido], { type: tipo });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = nombre;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function descargarMd() {
+  descargar(DATOS.id + "-prompt.md", $("#promptOut").value, "text/markdown;charset=utf-8");
+  mostrarToast("Descargado .md ✓");
+}
+function descargarHtml() {
+  descargar(DATOS.id + "-potenciador.html", "<!doctype html>\n" + document.documentElement.outerHTML, "text/html;charset=utf-8");
+  mostrarToast("Descargado .html ✓");
+}
+function resetear() {
+  estado = estadoInicial();
+  renderTodo();
+  mostrarToast("Formulario reseteado ↺");
+}
+function borrarEstado() {
+  try { localStorage.removeItem(CLAVE); } catch (_) {}
+  estado = estadoInicial();
+  renderTodo();
+  mostrarToast("Estado guardado borrado 🧹");
+}
+
+/* ---------- init ---------- */
+function renderTodo() {
+  renderHero();
+  renderExplicacion();
+  renderCertificaciones();
+  renderDestinos();
+  renderDecisiones();
+  renderExtras();
+  renderEscuela();
+  $("#cierre").textContent = DATOS.cierre;
+  document.title = DATOS.titulo + " — Potenciador de Prompts";
+  actualizar();
+}
+cargar();
+renderTodo();
+</script>
+</body>
+</html>

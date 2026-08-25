@@ -1,0 +1,595 @@
+{
+  "id": "guia-hierro-v1",
+  "titulo": "Guía El Hierro — Potenciador v1",
+  "titulo_html": "Guía El Hierro — <span class=\"k\">Potenciador v1</span>",
+  "subtitulo": "De artefacto prototipo a web publicada en dominio propio: despliegue en Vercel desde GitHub, identidad de marca de Agustín, guía de isla ampliada y posicionamiento del Dive Master.",
+  "tags": [
+    "🟡 6 decisiones abiertas",
+    "🚀 Vercel + GitHub",
+    "🤿 Agustín Fragero Blesa",
+    "🌋 El Hierro",
+    "⚠️ contradice la fase 1"
+  ],
+
+  "explicacion": {
+    "objetivo": "Sacar la <strong>Guía Fauna Marina de El Hierro</strong> del artefacto de Claude y publicarla como web real en <code>Vercel</code> desde <code>GitHub</code>, con el logotipo corporativo de Agustín, la guía de isla ampliada (conexiones entre islas, alojamiento, servicios) y una estrategia de posicionamiento que convierta la web en el canal por el que <strong>a Agustín Fragero Blesa lo contratan como Dive Master</strong>.",
+    "mecanica": "El prototipo ya existe y funciona: <strong>120 especies</strong>, taxonomía verificada en WoRMS, 117 fotografías con licencia comercial y atribución, bitácora personal con exportar/importar. Esta vuelta <strong>no reinventa el contenido</strong>: lo migra a una arquitectura publicable, le pone marca y le añade la capa de viaje. El riesgo principal no es técnico sino de arquitectura: el diseño aprobado de fase 1 dice WordPress en hosting compartido, y Vercel lo contradice.",
+    "contexto": [
+      "docs/superpowers/specs/2026-08-17-fauna-el-hierro-fase1-design.md — diseño aprobado (WordPress)",
+      "artifact/fauna-el-hierro.html — el prototipo actual, 4,38 MB, autocontenido",
+      "docs/prompts/fichas-infografia.md — sistema de prompts para completar las fichas",
+      "tools/commons-ingest.py — ingestor de fotografía con filtro de licencia",
+      "tools/inat-commons-hunt.py — buscador multi-fuente con resolución de sinónimos"
+    ],
+    "flujo": [
+      "Leer el spec de fase 1 y decidir explícitamente qué se conserva y qué se deroga",
+      "Elegir arquitectura de publicación y estructura del repositorio",
+      "Separar datos, fotografías y plantilla; sacar el base64 del HTML",
+      "Aplicar identidad de marca a partir del logotipo de Agustín",
+      "Añadir la capa de viaje: conexiones entre islas, alojamiento, servicios",
+      "Desplegar en Vercel desde GitHub con dominio propio y medir"
+    ],
+    "entregables": [
+      "<strong>Repositorio GitHub</strong> desplegable en Vercel con un clic, sin secretos en el código",
+      "<strong>Web publicada</strong> con el logotipo de Agustín y ficha de especie enlazable",
+      "<strong>Capa de viaje</strong>: cómo llegar, cómo moverse, dónde dormir, qué hacer sin bucear",
+      "<strong>Plan de posicionamiento</strong> medible para que la web genere contactos reales"
+    ]
+  },
+
+  "certificaciones": [
+    {
+      "id": "c1",
+      "afirmacion": "El objetivo de la web es <strong>comercial antes que científico</strong>: existe para que a Agustín lo contraten como Dive Master. El rigor taxonómico es el argumento de venta, no el fin."
+    },
+    {
+      "id": "c2",
+      "afirmacion": "Vercel <strong>sustituye</strong> al plan de WordPress en hosting compartido de la fase 1. No conviven: si se publica en Vercel, el spec aprobado queda derogado en su sección 11 y hay que reescribirlo."
+    },
+    {
+      "id": "c3",
+      "afirmacion": "El artefacto de Claude deja de ser el producto y pasa a ser el <strong>prototipo de referencia</strong>. El producto vivirá en un dominio propio de Agustín."
+    },
+    {
+      "id": "c4",
+      "afirmacion": "Lo de la inmobiliaria es para que <strong>sus amigos y clientes encuentren dónde alojarse</strong> cuando vengan a bucear, no para que Agustín venda casas ni monte una agencia."
+    },
+    {
+      "id": "c5",
+      "afirmacion": "Los <strong>horarios y precios de ferris y vuelos NO se guardan en la web</strong>. Se enlaza a Naviera Armas, Fred Olsen, Binter y Canaryfly, porque un horario caducado en una web de buceo destruye la confianza que la guía intenta construir."
+    },
+    {
+      "id": "c6",
+      "afirmacion": "El contenido biológico sigue siendo <strong>borrador hasta que Agustín lo valide especie por especie</strong>. Mientras tanto la web lo declara visiblemente, aunque eso reste apariencia de autoridad."
+    },
+    {
+      "id": "c7",
+      "afirmacion": "La bitácora de avistamientos debe pasar a ser <strong>multiusuario real</strong> con base de datos. La versión de exportar/importar ficheros era una limitación del artefacto, no una decisión de producto."
+    }
+  ],
+
+  "destinos": [
+    {
+      "id": "sdd",
+      "icono": "📐",
+      "titulo": "SDD primero",
+      "descripcion": "Escribir la especificación de la fase 2 antes de tocar código: deroga formalmente lo que Vercel invalida del spec de fase 1 y deja el plan cerrado.",
+      "cabecera": [
+        "# ESPECIFICACIÓN — FASE 2: PUBLICACIÓN Y MARCA",
+        "",
+        "Eres el arquitecto de este proyecto. **NO escribas código todavía.**",
+        "Tu entregable es un documento de diseño en `docs/superpowers/specs/`,",
+        "con el mismo rigor y estructura que el de la fase 1.",
+        "",
+        "Empieza leyendo el spec de fase 1 completo. Tu primera sección debe ser",
+        "**Qué se deroga y por qué**: Vercel contradice su sección 11 entera."
+      ],
+      "cierre": [
+        "",
+        "## CIERRE",
+        "",
+        "Entrega el documento y para. No implementes nada.",
+        "Termina con una lista de riesgos abiertos y las decisiones que aún",
+        "necesitan respuesta de Alipio o de Agustín."
+      ]
+    },
+    {
+      "id": "hacer",
+      "icono": "⚡",
+      "titulo": "Hacer YA",
+      "descripcion": "Plan de cinco líneas y directo a construir: repositorio, despliegue y web en línea en esta misma sesión.",
+      "cabecera": [
+        "# CONSTRUIR Y DESPLEGAR — GUÍA EL HIERRO",
+        "",
+        "Plan de 5 líneas y a construir. Nada de documentos largos.",
+        "Objetivo de la sesión: **la web en línea en Vercel, funcionando**,",
+        "con el logotipo de Agustín y el contenido que ya existe."
+      ],
+      "cierre": [
+        "",
+        "## CIERRE",
+        "",
+        "Termina con la URL desplegada, el enlace al repositorio y una lista",
+        "corta de lo que queda pendiente. Verifica el despliegue de verdad",
+        "antes de decir que funciona."
+      ]
+    },
+    {
+      "id": "orquestador",
+      "icono": "🎼",
+      "titulo": "Orquestador + subagentes",
+      "descripcion": "Opus acota y planifica; subagentes ejecutan en paralelo las cuatro patas: repositorio, marca, capa de viaje y datos.",
+      "cabecera": [
+        "# ORQUESTADOR — GUÍA EL HIERRO FASE 2",
+        "",
+        "Acota y planifica; delega la ejecución en subagentes.",
+        "Las cuatro patas son independientes y paralelizables:",
+        "",
+        "  A) Repositorio + despliegue en Vercel",
+        "  B) Identidad de marca a partir del logotipo",
+        "  C) Capa de viaje (islas, alojamiento, servicios)",
+        "  D) Completar los datos que faltan en las fichas",
+        "",
+        "Escribe primero el plan corto. Cada subagente recibe su encargo",
+        "autocontenido y devuelve trabajo verificado."
+      ],
+      "cierre": [
+        "",
+        "## CIERRE",
+        "",
+        "Integra el trabajo de los subagentes, verifica el conjunto y publica.",
+        "No des por bueno el resultado de un subagente sin comprobarlo."
+      ]
+    },
+    {
+      "id": "skill",
+      "icono": "🧬",
+      "titulo": "Convertir en skill",
+      "descripcion": "Empaquetar el método completo como skill reutilizable para futuras guías de fauna de otras islas o destinos.",
+      "cabecera": [
+        "# EMPAQUETAR COMO SKILL — GUÍA DE FAUNA POR DESTINO",
+        "",
+        "El método ya está probado en El Hierro. Conviértelo en una skill",
+        "reutilizable para cualquier destino de buceo: ingesta de fotografía",
+        "con filtro de licencia, verificación en WoRMS, fichas y despliegue."
+      ],
+      "cierre": [
+        "",
+        "## CIERRE",
+        "",
+        "Entrega la skill con su SKILL.md, sus assets y un caso de prueba",
+        "distinto de El Hierro que demuestre que generaliza."
+      ]
+    }
+  ],
+  "destino_defecto": "sdd",
+
+  "decisiones": [
+    {
+      "id": "d1",
+      "titulo": "Arquitectura de publicación",
+      "pregunta": "El spec de fase 1 aprobó WordPress en hosting compartido. Ahora quieres Vercel desde GitHub. ¿Qué se construye realmente?",
+      "defecto": "estatico",
+      "opciones": [
+        {
+          "id": "estatico",
+          "tipo": "esperada",
+          "etiqueta": "Lo esperado",
+          "titulo": "HTML estático tal cual en Vercel",
+          "descripcion": "Se sube el fichero actual al repositorio y Vercel lo sirve. Cero cambios de código.",
+          "nota": "Lo más rápido, pero arrastra los 4,38 MB de fotos en base64 dentro del HTML.",
+          "consecuencia": "La primera carga descarga 4,4 MB antes de pintar nada, y el navegador no puede cachear las fotos por separado.",
+          "resultado": "Publicado en una tarde, pero lento en móvil con datos y sin ninguna página indexable por especie.",
+          "resumen": "Publicar el HTML actual tal cual como sitio estático en Vercel, sin reestructurar."
+        },
+        {
+          "id": "extraer",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Separar datos, fotos y plantilla",
+          "descripcion": "Las fotografías salen del HTML a <code>/public/fotos/*.webp</code>, los datos a <code>species.json</code>, y la página los carga. Cabeceras de caché largas sobre las imágenes.",
+          "nota": "El HTML baja a menos de 200 KB. Las fotos se cachean y se cargan solo las visibles.",
+          "consecuencia": "Hay que reescribir la capa de render para que lea de JSON y use rutas de fichero en vez de data URI.",
+          "resultado": "Carga inicial 20 veces más ligera, navegación instantánea y las fotos se sirven desde el CDN de Vercel.",
+          "resumen": "Extraer fotografías a ficheros estáticos y datos a JSON; el HTML pasa a ser plantilla ligera que los consume."
+        },
+        {
+          "id": "astro",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Astro con una página por especie",
+          "descripcion": "Generación estática con ruta propia por especie: <code>/fauna/vieja</code>, <code>/fauna/mero</code>. Cada ficha es una página real, enlazable e indexable.",
+          "nota": "Es lo que convierte la guía en un activo de posicionamiento en vez de una página bonita.",
+          "consecuencia": "Introduce un framework y un paso de build; hay que aprender Astro o delegarlo.",
+          "resultado": "120 páginas indexables. Quien busque «vieja Canarias» o «angelote El Hierro» puede llegar directamente a la ficha de Agustín.",
+          "resumen": "Migrar a Astro con generación estática y una ruta propia por especie, para que cada ficha sea indexable."
+        },
+        {
+          "id": "wordpress",
+          "tipo": "potenciada",
+          "etiqueta": "Mantener lo aprobado",
+          "titulo": "Seguir el spec de fase 1 en WordPress",
+          "descripcion": "Se descarta Vercel y se ejecuta el diseño ya aprobado: plugin <code>hierro-core</code>, tema <code>hierro</code>, hosting compartido.",
+          "nota": "Agustín gestiona el contenido solo, sin depender del desarrollador. Es la razón por la que se eligió WordPress.",
+          "consecuencia": "Se renuncia a Vercel y al flujo desde GitHub, y se asume la superficie de ataque y el mantenimiento de un CMS.",
+          "resultado": "Autonomía total del autor para publicar, pero más lento de arrancar y más caro de mantener.",
+          "resumen": "Descartar Vercel y ejecutar el diseño de WordPress ya aprobado en la fase 1."
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "titulo": "Qué gestiona Agustín sin tocar código",
+      "pregunta": "Si se va a Vercel, ¿cómo añade Agustín una especie, sube una foto suya o corrige un dato?",
+      "defecto": "git",
+      "opciones": [
+        {
+          "id": "git",
+          "tipo": "esperada",
+          "etiqueta": "Lo esperado",
+          "titulo": "Editando JSON en GitHub",
+          "descripcion": "Agustín edita <code>species.json</code> desde la interfaz web de GitHub y Vercel redespliega solo.",
+          "nota": "Cero infraestructura extra, pero exige que Agustín pierda el miedo a un fichero de datos.",
+          "consecuencia": "Un error de coma rompe el despliegue; hace falta validación automática en el commit.",
+          "resultado": "Funciona si Agustín es paciente con la sintaxis; frustrante si no lo es.",
+          "resumen": "Agustín edita los datos como JSON directamente en GitHub; Vercel redespliega automáticamente."
+        },
+        {
+          "id": "cms",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "CMS ligero sobre el repositorio",
+          "descripcion": "Un editor visual tipo Decap o Sveltia que escribe en el repositorio: formularios con campos, subida de fotos y vista previa.",
+          "nota": "Le da a Agustín la comodidad de WordPress sin el mantenimiento de WordPress.",
+          "consecuencia": "Añade autenticación y una capa más que configurar y mantener.",
+          "resultado": "Agustín publica solo, con formularios, y el contenido sigue versionado en Git.",
+          "resumen": "Montar un CMS ligero basado en Git (Decap o Sveltia) para que Agustín edite con formularios y suba fotos."
+        },
+        {
+          "id": "yo",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Lo mantienes tú, él solo aporta material",
+          "descripcion": "Agustín manda fotos y correcciones por WhatsApp; tú las integras por lotes.",
+          "nota": "Honesto con la realidad: al principio el volumen de cambios va a ser bajo.",
+          "consecuencia": "La web depende de tu disponibilidad y se convierte en una dependencia personal.",
+          "resultado": "Arranque rapidísimo, pero no escala y a los seis meses el contenido se estanca.",
+          "resumen": "Alipio mantiene el contenido; Agustín solo aporta fotografías y correcciones."
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "titulo": "Cómo posiciona la web a Agustín",
+      "pregunta": "¿Qué convierte esta guía en contactos reales para el Dive Master?",
+      "defecto": "contacto",
+      "opciones": [
+        {
+          "id": "contacto",
+          "tipo": "esperada",
+          "etiqueta": "Lo esperado",
+          "titulo": "Datos de contacto e Instagram",
+          "descripcion": "Un bloque con quién es Agustín, su Instagram y un formulario o WhatsApp.",
+          "nota": "Es el mínimo, y hoy la web no lo tiene: solo enlaza al Instagram.",
+          "consecuencia": "Depende de que alguien llegue a la web por otro canal; la guía no atrae por sí sola.",
+          "resultado": "Convierte visitas en contactos, pero no genera visitas.",
+          "resumen": "Añadir bloque de autor con biografía, contacto directo y llamada a la acción clara."
+        },
+        {
+          "id": "seo",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Datos estructurados y página por especie",
+          "descripcion": "Schema.org <code>Taxon</code> en cada ficha, <code>Person</code> y <code>LocalBusiness</code> para Agustín, sitemap y Open Graph con la foto de cada especie.",
+          "nota": "La guía deja de ser una web bonita y pasa a ser la puerta de entrada de quien busca buceo en El Hierro.",
+          "consecuencia": "Solo tiene sentido con una URL por especie: obliga a la opción Astro de la decisión 1.",
+          "resultado": "Tráfico de búsqueda sostenido y sin coste publicitario, con Agustín como cara visible de cada resultado.",
+          "resumen": "Datos estructurados Schema.org, sitemap, Open Graph por especie y URL propia por ficha para captar tráfico de búsqueda."
+        },
+        {
+          "id": "experiencia",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "La bitácora como gancho de fidelización",
+          "descripcion": "Quien bucea con Agustín se lleva su bitácora personal: especies vistas, fechas y progreso. Vuelve a la web para completarla.",
+          "nota": "Convierte un servicio puntual en una relación que dura años.",
+          "consecuencia": "Exige cuentas de usuario y base de datos real, no localStorage.",
+          "resultado": "Los clientes vuelven solos y traen amigos para competir por el inventario.",
+          "resumen": "Convertir la bitácora en producto de fidelización con cuentas reales, progreso personal y comparativa entre amigos."
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "titulo": "La capa de viaje",
+      "pregunta": "Conexiones entre islas, alojamiento y qué hacer fuera del agua. ¿Hasta dónde llega?",
+      "defecto": "enlaces",
+      "opciones": [
+        {
+          "id": "enlaces",
+          "tipo": "esperada",
+          "etiqueta": "Lo esperado",
+          "titulo": "Tabla de conexiones con enlaces a operadores",
+          "descripcion": "Cómo llegar desde Tenerife y desde El Hierro a las demás islas, con duraciones aproximadas y enlace a Naviera Armas, Fred Olsen, Binter y Canaryfly.",
+          "nota": "Duraciones sí; horarios y precios no, porque caducan.",
+          "consecuencia": "Hay que revisar las duraciones una vez al año y avisar de que se confirmen en el operador.",
+          "resultado": "Resuelve la pregunta real del visitante sin asumir responsabilidad sobre horarios cambiantes.",
+          "resumen": "Tabla de conexiones marítimas y aéreas con duraciones aproximadas y enlace directo a cada operador, sin horarios ni precios."
+        },
+        {
+          "id": "planes",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Itinerarios de buceo por días",
+          "descripcion": "Planes cerrados de 3, 5 y 7 días que combinan inmersiones, desaturación, miradores, piscinas naturales y estrellas.",
+          "nota": "Es el contenido que de verdad diferencia a un Dive Master local de un buscador genérico.",
+          "consecuencia": "Requiere el criterio de campo de Agustín; no se puede redactar sin él.",
+          "resultado": "El visitante llega con el viaje ya pensado y con Agustín dentro del plan.",
+          "resumen": "Itinerarios cerrados de 3, 5 y 7 días combinando inmersiones, desaturación y paisaje, diseñados con Agustín."
+        },
+        {
+          "id": "alojamiento",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Alojamiento cerca de La Restinga",
+          "descripcion": "Selección de dónde dormir para quien viene a bucear: qué hay en La Restinga, El Pinar y Frontera, y a cuánto está cada uno del puerto.",
+          "nota": "Esto es lo que probablemente querías decir con «mirar una inmobiliaria»: alojarse, no comprar.",
+          "consecuencia": "Si se enlaza a alojamientos concretos, hay que decidir si hay acuerdo comercial y declararlo.",
+          "resultado": "Elimina la fricción principal del viaje a El Hierro y da a Agustín una vía de acuerdos con alojamientos locales.",
+          "resumen": "Sección de alojamiento orientada a buceadores, con distancias al puerto de La Restinga y declaración de cualquier acuerdo comercial."
+        },
+        {
+          "id": "vivir",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Vivir en El Hierro",
+          "descripcion": "Contenido para quien se plantea quedarse: alquiler de larga estancia, coste de vida, servicios, conexión a internet y trabajo remoto.",
+          "nota": "Nicho pequeño pero muy fiel, y encaja con «para él y todos sus amigos».",
+          "consecuencia": "Es un tema sensible y cambiante; mal documentado genera desinformación con consecuencias reales.",
+          "resultado": "Atrae a un público que se queda meses en vez de días, con mucho más valor por persona.",
+          "resumen": "Sección sobre instalarse en El Hierro: alquiler de larga estancia, coste de vida, servicios y trabajo remoto."
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "titulo": "Identidad de marca",
+      "pregunta": "El logotipo de la máscara de buceo. ¿Cuánto manda sobre el diseño actual?",
+      "defecto": "insertar",
+      "opciones": [
+        {
+          "id": "insertar",
+          "tipo": "esperada",
+          "etiqueta": "Lo esperado",
+          "titulo": "Colocar el logotipo y punto",
+          "descripcion": "El logotipo va en cabecera y pie, sobre el diseño actual de tonos turquesa y abismo.",
+          "nota": "Ya hay una reconstrucción vectorial del logotipo dentro del artefacto, como <code>&lt;symbol id=\"mark\"&gt;</code>. Reutilízala o pide el fichero original a Agustín.",
+          "consecuencia": "El azul marino del logotipo y el turquesa de la web conviven sin estar armonizados del todo.",
+          "resultado": "Web reconocible como suya, pero sin un sistema de marca detrás.",
+          "resumen": "Insertar el logotipo en cabecera y pie manteniendo la paleta actual de la guía."
+        },
+        {
+          "id": "sistema",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Sistema de marca derivado del logotipo",
+          "descripcion": "Se extrae la paleta del logotipo (navy <code>#122C3F</code>, teal <code>#1BA9A4</code>, naranja <code>#F47B20</code>, lima <code>#B4D923</code>) y se reconstruye el sistema completo: tokens, tipografía, iconografía y las láminas de especie.",
+          "nota": "El naranja y el lima del logotipo hoy no aparecen en ninguna parte de la web.",
+          "consecuencia": "Obliga a repasar todos los componentes y a rehacer las capturas y láminas ya generadas.",
+          "resultado": "Todo el material —web, láminas, redes, tarjetas— se reconoce como de Agustín antes de leer su nombre.",
+          "resumen": "Derivar del logotipo un sistema de marca completo con tokens de color, tipografía e iconografía, y aplicarlo a toda la web."
+        },
+        {
+          "id": "kit",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Kit de marca exportable",
+          "descripcion": "Además del sistema en web: SVG del logotipo en sus variantes, favicon, imagen de Open Graph, plantillas para Instagram y firma de correo.",
+          "nota": "Todo lo que Agustín necesita para verse profesional fuera de la web.",
+          "consecuencia": "Es trabajo de diseño que no mejora la web en sí misma.",
+          "resultado": "Agustín deja de improvisar cada publicación y su imagen es coherente en todos los canales.",
+          "resumen": "Producir un kit de marca exportable: variantes del logotipo, favicon, Open Graph, plantillas de Instagram y firma de correo."
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "titulo": "Los datos que faltan",
+      "pregunta": "Quedan huecos conocidos en el contenido. ¿Se cierran antes de publicar o se publica y se completa?",
+      "defecto": "publicar",
+      "opciones": [
+        {
+          "id": "publicar",
+          "tipo": "esperada",
+          "etiqueta": "Lo esperado",
+          "titulo": "Publicar con los huecos declarados",
+          "descripcion": "Se publica ya, con los avisos que la web ya lleva: «Foto pendiente», «Presencia por confirmar» y el aviso de borrador pendiente de revisión.",
+          "nota": "Hoy faltan 3 fotografías, 4 campos por especie y quedan 29 presencias sin contrastar.",
+          "consecuencia": "La web sale con avisos visibles que restan apariencia de autoridad.",
+          "resultado": "En línea esta semana, y la honestidad de los avisos es en sí misma un argumento de rigor.",
+          "resumen": "Publicar ya con los huecos declarados visiblemente y completarlos en iteraciones posteriores."
+        },
+        {
+          "id": "completar",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Completar las fichas primero",
+          "descripcion": "Ejecutar el sistema de prompts de <code>docs/prompts/fichas-infografia.md</code> para rellenar alimentación, reproducción, defensa y papel ecológico en las 120 especies, con su pasada de control de calidad.",
+          "nota": "Son los cuatro bloques que hoy dejan hueco en la columna derecha de cada ficha.",
+          "consecuencia": "Añade una ronda de generación más revisión humana antes de poder publicar.",
+          "resultado": "La ficha se ve completa y la web compite de tú a tú con cualquier guía publicada.",
+          "resumen": "Ejecutar el sistema de prompts para completar los cuatro campos que faltan en las 120 fichas antes de publicar."
+        },
+        {
+          "id": "agustin",
+          "tipo": "potenciada",
+          "etiqueta": "Potenciada",
+          "titulo": "Sesión de validación con Agustín",
+          "descripcion": "Antes que generar más texto, sentarse con Agustín a revisar las 29 presencias dudosas y a marcar qué especies ve él de verdad en el Mar de las Calmas.",
+          "nota": "Su criterio de campo vale más que cualquier fuente bibliográfica para la parte local.",
+          "consecuencia": "Depende de su agenda y no se puede paralelizar.",
+          "resultado": "La guía pasa de compilación bibliográfica a documento de autoridad local, que es justo lo que la diferencia.",
+          "resumen": "Sesión de validación con Agustín sobre las 29 presencias dudosas y el contenido local, antes de generar más texto."
+        }
+      ]
+    }
+  ],
+
+  "extras": [
+    {
+      "id": "pwa",
+      "titulo": "Funcionamiento sin conexión",
+      "descripcion": "En La Restinga la cobertura es irregular y bajo el agua no hay ninguna. Una PWA con las fichas y fotos cacheadas permite consultar la guía en el barco y registrar avistamientos justo al salir del agua."
+    },
+    {
+      "id": "idiomas",
+      "titulo": "Inglés y alemán",
+      "descripcion": "El buceo en El Hierro es turismo internacional. Los nombres científicos ya son universales; traducir la interfaz y los textos multiplica el alcance sin rehacer los datos."
+    },
+    {
+      "id": "analitica",
+      "titulo": "Analítica respetuosa",
+      "descripcion": "Vercel Analytics o Plausible, sin cookies ni banner. Sin medir qué especies se consultan y de dónde llega la gente, el posicionamiento es a ciegas."
+    },
+    {
+      "id": "laminas",
+      "titulo": "Exportar la ficha como lámina imprimible",
+      "descripcion": "Botón que genera el PNG de la ficha a 3072 px. Sirve para imprimir en el centro de buceo, para redes y como material de briefing."
+    },
+    {
+      "id": "creditos",
+      "titulo": "Auditoría de licencias automática",
+      "descripcion": "Comando que recorre todas las fotografías y falla si alguna no tiene autor, licencia admitida y enlace a la fuente. Es la sección 5.4 del spec convertida en prueba de despliegue."
+    },
+    {
+      "id": "mapa",
+      "titulo": "Mapa real de puntos de inmersión",
+      "descripcion": "Sustituir el esquema actual de la isla por un mapa con los puntos reales del Mar de las Calmas, marcados por Agustín, con profundidad y nivel requerido."
+    },
+    {
+      "id": "redpromar",
+      "titulo": "Reporte a REDPROMAR desde la ficha",
+      "descripcion": "Para especies sensibles como el angelote o la mobula, un botón que lleve al formulario oficial de avistamientos con los datos ya rellenados. Convierte a los clientes de Agustín en red de observadores."
+    },
+    {
+      "id": "dominio",
+      "titulo": "Dominio propio y correo",
+      "descripcion": "Un dominio de Agustín en vez de una URL de plataforma, con correo profesional. Es la diferencia entre parecer un proyecto y parecer un negocio."
+    }
+  ],
+
+  "lecciones": [
+    {
+      "titulo": "Declara qué derogas",
+      "texto": "Cuando un encargo nuevo contradice un diseño ya aprobado, el prompt debe decirlo en la primera línea. Si no, el modelo intenta cumplir los dos a la vez y produce un híbrido que no sirve para ninguno. Aquí Vercel deroga la sección 11 entera del spec de fase 1: decirlo evita media sesión de confusión."
+    },
+    {
+      "titulo": "Separa el objetivo real del objetivo aparente",
+      "texto": "El objetivo aparente es «una guía de fauna marina». El real es «que contraten a Agustín». Son compatibles, pero cuando hay que elegir entre rigor y conversión, solo el objetivo real desempata. Un prompt que no lo declara deja esa decisión al azar."
+    },
+    {
+      "titulo": "Ancla lo que ya existe",
+      "texto": "Este proyecto ya tiene 120 especies verificadas, 117 fotos con licencia y dos herramientas de ingesta funcionando. Un prompt que no lo enumera invita al modelo a rehacerlo desde cero. Enumerar el punto de partida es lo que convierte una sesión nueva en continuación y no en reinicio."
+    },
+    {
+      "titulo": "Los datos que caducan no se guardan",
+      "texto": "Horarios de ferry, precios y teléfonos envejecen mal y su error es visible y embarazoso. La regla que lo resuelve es sencilla: guarda lo estable (duraciones, distancias, geografía) y enlaza lo volátil (horarios, precios, disponibilidad). Dilo en el prompt o el modelo rellenará la tabla con datos plausibles inventados."
+    },
+    {
+      "titulo": "Certifica lo que rompería el proyecto",
+      "texto": "Una certificación útil es la que, si estuviera mal, invalidaría el trabajo entero. «La inmobiliaria es para alojar amigos, no para vender casas» cambia radicalmente lo que se construye. «La web es sobre buceo» no aporta nada porque nadie lo dudaba."
+    }
+  ],
+
+  "anatomia": [
+    { "etiqueta": "🎯 Objetivo", "patron": "## 🎯 OBJETIVO" },
+    { "etiqueta": "🧭 Punto de partida", "patron": "## 🧭 PUNTO DE PARTIDA" },
+    { "etiqueta": "🔍 Comprensión", "patron": "## 🔍 COMPRENSIÓN CERTIFICADA" },
+    { "etiqueta": "✅ Decisiones", "patron": "## ✅ DECISIONES RATIFICADAS" },
+    { "etiqueta": "📎 Contexto", "patron": "## 📎 CONTEXTO ANCLADO" },
+    { "etiqueta": "🚧 Guardarraíles", "patron": "## 🚧 GUARDARRAÍLES" },
+    { "etiqueta": "📦 Entregables", "patron": "## 📦 ENTREGABLES" },
+    { "etiqueta": "🏁 Cierre", "patron": "## CIERRE" }
+  ],
+
+  "prompt_base": [
+    "{{DESTINO}}",
+    "",
+    "## 🎯 OBJETIVO",
+    "",
+    "Llevar la **Guía Fauna Marina de El Hierro** de prototipo a web publicada en",
+    "dominio propio, desplegada en **Vercel desde GitHub**, con el logotipo",
+    "corporativo de **Agustín Fragero Blesa · Dive Master** y una capa de viaje que",
+    "cubra cómo llegar a la isla, cómo moverse entre islas y dónde alojarse.",
+    "",
+    "El objetivo de negocio manda sobre el técnico: la web existe para que **a",
+    "Agustín lo contraten como Dive Master** y para que él y su gente disfruten",
+    "mejor de El Hierro. El rigor científico es el argumento de venta.",
+    "",
+    "## 🧭 PUNTO DE PARTIDA — NO LO REHAGAS",
+    "",
+    "Ya existe y funciona. Léelo antes de proponer nada:",
+    "",
+    "| Qué | Dónde | Estado |",
+    "|---|---|---|",
+    "| Prototipo completo, 4,38 MB autocontenido | `artifact/fauna-el-hierro.html` | funcionando |",
+    "| Diseño aprobado de la fase 1 (WordPress) | `docs/superpowers/specs/2026-08-17-fauna-el-hierro-fase1-design.md` | **en conflicto con Vercel** |",
+    "| Sistema de prompts para completar fichas | `docs/prompts/fichas-infografia.md` | listo para ejecutar |",
+    "| Ingestor de fotografía con filtro de licencia | `tools/commons-ingest.py` | probado |",
+    "| Buscador multi-fuente con sinónimos | `tools/inat-commons-hunt.py` | probado |",
+    "",
+    "**Contenido ya consolidado:**",
+    "",
+    "- 120 especies con ficha redactada en tres niveles (básico, profesional, experto)",
+    "- Taxonomía verificada en WoRMS: 120 con autoridad, orden y familia; 5 nombres corregidos",
+    "- 117 especies con fotografía de licencia comercial, con autor y licencia visibles",
+    "- Bitácora personal con exportar e importar, y modal de ficha en formato infografía",
+    "- Logotipo reconstruido en SVG dentro del artefacto, como `<symbol id=\"mark\">`",
+    "",
+    "**Huecos conocidos:** 3 especies sin fotografía utilizable, 4 campos por especie sin",
+    "redactar (alimentación, reproducción, defensa, papel ecológico), 24 presencias por",
+    "confirmar y 5 especies probablemente ausentes de Canarias.",
+    "",
+    "{{ACLARACIONES}}",
+    "",
+    "{{DECISIONES}}",
+    "",
+    "## 📎 CONTEXTO ANCLADO",
+    "",
+    "- Autor del contenido: **Agustín Fragero Blesa**, Dive Master en El Hierro, `@agustin_fragero`",
+    "- Base de operaciones: **La Restinga**, Reserva Marina del **Mar de las Calmas**",
+    "- Responsable técnico: Alipio (Rural Makers) — español, directo y técnico, código en inglés",
+    "- Paleta del logotipo: navy `#122C3F` · teal `#1BA9A4` · naranja `#F47B20` · lima `#B4D923`",
+    "",
+    "## 🚧 GUARDARRAÍLES",
+    "",
+    "1. **No inventes datos biológicos ni de horarios.** Guarda lo estable (duraciones,",
+    "   distancias, geografía) y enlaza lo volátil (horarios, precios, disponibilidad) a",
+    "   Naviera Armas, Fred Olsen, Binter y Canaryfly.",
+    "2. **Ninguna fotografía sin autor, licencia admitida y enlace a la fuente.** Solo CC0,",
+    "   CC BY y CC BY-SA: la web es actividad comercial y NonCommercial no vale.",
+    "3. **Nunca muestres una especie con la foto de otra.** Sin coincidencia exacta, lámina",
+    "   generada y etiqueta de foto pendiente.",
+    "4. **El contenido biológico es borrador** hasta que Agustín lo valide. Dilo en la web.",
+    "5. **Sin secretos en el repositorio.** Variables de entorno en Vercel, `.env.local`",
+    "   fuera de Git, y nunca claves en el código.",
+    "6. **Esta web no es documentación de seguridad de buceo.** No sustituye al briefing",
+    "   del centro ni a la información oficial de navegación o meteorología.",
+    "7. **Verifica el despliegue de verdad** antes de decir que funciona: carga la URL,",
+    "   comprueba una ficha y mide el peso de la primera carga.",
+    "",
+    "{{EXTRAS}}",
+    "",
+    "## 📦 ENTREGABLES",
+    "",
+    "1. Repositorio en GitHub desplegable en Vercel, con `README` de puesta en marcha",
+    "2. Web publicada y verificada, con el logotipo de Agustín y ficha de especie enlazable",
+    "3. Capa de viaje: llegar, moverse entre islas, alojarse y qué hacer sin bucear",
+    "4. Plan de posicionamiento con métricas concretas y cómo se miden",
+    "5. Actualización del spec: qué queda derogado de la fase 1 y por qué",
+    "",
+    "{{CIERRE_DESTINO}}"
+  ],
+
+  "cierre": "Conjuga. Juega. Teje. Late. → graciASAmArt"
+}

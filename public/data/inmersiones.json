@@ -1,0 +1,84 @@
+{
+ "fuente": "Fichas oficiales de Turismo de El Hierro (elhierro.travel). Coordenadas, profundidad, nivel y acceso tal como los publica la fuente.",
+ "aviso": "Datos de partida, no planificación de inmersión. Profundidad, nivel y condiciones los fija el centro de buceo en el briefing del día.",
+ "puntos": [
+  {
+   "n": "Muelle de La Restinga",
+   "lat": 27.639715,
+   "lon": -17.980496,
+   "prof": "Máx. 16 m",
+   "nivel": "Bajo",
+   "acceso": "Desde costa, por la escalera del muelle",
+   "reserva": true,
+   "d": "El punto de bautismos y de nocturnas. Fondo rocoso al abrigo del muelle, con angelotes, langostas y congrios.",
+   "url": "https://elhierro.travel/puntos-de-inmersion/el-hierro/muelle-la-restinga/"
+  },
+  {
+   "n": "Punta Restinga",
+   "lat": 27.639348,
+   "lon": -17.978083,
+   "prof": "21–30 m",
+   "nivel": "Bajo",
+   "acceso": "Barco, a dos minutos del puerto",
+   "reserva": true,
+   "d": "Lengua de lava frente al puerto con veriles, plataformas de arena y cuevas. Rutas El Arco, El Veril y Los Cañones.",
+   "url": "https://elhierro.travel/puntos-de-inmersion/el-hierro/punta-restinga/"
+  },
+  {
+   "n": "El Bajón",
+   "lat": 27.640944,
+   "lon": -17.980142,
+   "prof": "41–50 m · cimas a 6 y 9 m",
+   "nivel": "Medio",
+   "acceso": "Barco",
+   "reserva": true,
+   "d": "La inmersión de referencia del Mar de las Calmas: montaña submarina de paredes verticales que cae hasta cotas muy profundas. Corriente variable.",
+   "url": "https://elhierro.travel/puntos-de-inmersion/el-hierro/el-bajon/"
+  },
+  {
+   "n": "El Desierto",
+   "lat": 27.68,
+   "lon": -18.0325,
+   "prof": "Máx. 25 m",
+   "nivel": "Medio",
+   "acceso": "Barco",
+   "reserva": true,
+   "d": "Gran extensión de arena con grietas y cuevas, y una de las mayores colonias de anguilas jardineras de Canarias.",
+   "url": "https://elhierro.travel/puntos-de-inmersion/el-hierro/el-desierto/"
+  },
+  {
+   "n": "Baja Bocarones",
+   "lat": null,
+   "lon": null,
+   "prof": "20–40 m · cimas a 7 y 12 m",
+   "nivel": "Medio",
+   "acceso": "Barco, unas 3 millas al sur de la punta",
+   "reserva": false,
+   "d": "Dos torres de roca volcánica en mar abierto, con coral negro en las grietas.",
+   "nota": "La ficha oficial repite aquí la coordenada de El Bajón, que no puede ser correcta. Sin punto en el mapa hasta confirmarla.",
+   "url": "https://elhierro.travel/puntos-de-inmersion/el-hierro/baja-bocarones/"
+  },
+  {
+   "n": "Roque de La Bonanza",
+   "lat": 27.728778,
+   "lon": -17.941389,
+   "prof": "Máx. 40 m",
+   "nivel": "Alto",
+   "acceso": "Barco",
+   "reserva": false,
+   "d": "Dique volcánico frente a Las Playas, en la costa este. Fuera del Mar de las Calmas y con condiciones propias.",
+   "url": "https://elhierro.travel/puntos-de-inmersion/el-hierro/roque-de-la-bonanza/"
+  },
+  {
+   "n": "La Caleta",
+   "lat": 27.800222,
+   "lon": -17.887722,
+   "prof": "Máx. 45 m",
+   "nivel": "Bajo",
+   "acceso": "Desde costa",
+   "reserva": false,
+   "d": "Veril que cae a plomo en la costa noreste, con arco cubierto de coral negro y bancos de jureles y barracudas.",
+   "url": "https://elhierro.travel/puntos-de-inmersion/el-hierro/la-caleta/"
+  }
+ ]
+}
