@@ -908,9 +908,9 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
       <div>
         <p class="eyebrow">Para el barco</p>
         <h2>Llévate la guía sin conexión</h2>
-        <p class="muted">En La Restinga la cobertura falla y bajo el agua no hay ninguna. Descarga las
-        128 fotografías de una vez y la guía completa quedará disponible aunque te quedes sin datos.
-        Son unos 3 MB: hazlo con wifi, antes de salir.</p>
+        <p class="muted">En La Restinga la cobertura falla y bajo el agua no hay ninguna. Descarga
+        <b id="offlineCount">las fotografías</b> de una vez y la guía completa quedará disponible
+        aunque te quedes sin datos. Hazlo con wifi, antes de salir.</p>
         <p class="tiny" id="offlineState">Comprobando…</p>
       </div>
       <div class="offline-actions">
@@ -2376,6 +2376,13 @@ async function offlineStatus(){
   const ui = offlineUI();
   if(!ui) return;
   const total = Object.keys(PHOTOS).length;
+
+  /* El recuento y el peso salen de los datos: si Agustín añade fotos suyas, el
+     texto se ajusta solo en vez de quedarse mintiendo. */
+  const bytes = Object.values(PHOTOS).reduce((a, p)=>a + (p.b || 0), 0);
+  const label = $("#offlineCount");
+  if(label) label.textContent = "las " + total + " fotografías (unos "
+    + Math.round(bytes / 1048576) + " MB)";
   let cached = 0;
   try{
     const names = await caches.keys();

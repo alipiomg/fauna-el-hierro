@@ -70,7 +70,7 @@ let bytes = 0;
 for (const [key, p] of Object.entries(PHOTOS)) {
   const { file, bytes: n } = dump(key, p.d, key);
   bytes += n;
-  photos[key] = { f: file, a: p.a, l: p.l, u: p.u };
+  photos[key] = { f: file, b: n, a: p.a, l: p.l, u: p.u };
 }
 
 /* The hero shot lives in the markup, not in PHOTOS. */
