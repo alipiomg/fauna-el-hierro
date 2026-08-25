@@ -688,6 +688,19 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
 .author p + p{margin-top:10px}
 .author-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 
+/* ── Descarga para uso sin conexión ─────────────────────────── */
+.offline-box{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;align-items:center;
+  padding:24px 26px;border:1px solid var(--line-hi);border-radius:var(--r-xl);
+  background:linear-gradient(140deg,#11333d,#0a212b 70%);
+}
+.offline-box h2{font-size:23px;margin-bottom:8px}
+.offline-box p.muted{max-width:62ch;font-size:14.5px;line-height:1.55}
+.offline-box .tiny{margin-top:10px}
+.offline-actions{display:grid;gap:10px;justify-items:stretch;min-width:270px}
+.offline-bar{height:8px;border-radius:999px;background:var(--basalt);overflow:hidden}
+.offline-bar i{display:block;height:100%;width:0;background:var(--turquoise);transition:width .25s ease}
+
 /* ── Riesgo y acciones de la ficha ──────────────────────────── */
 .box--risk{border-color:rgba(255,157,122,.5) !important;background:rgba(255,157,122,.07)}
 .box--risk h3{color:var(--doubt)}
@@ -695,6 +708,8 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
 .mapBox .island{width:100%;height:auto;max-height:260px}
 
 @media (max-width:900px){
+  .offline-box{grid-template-columns:1fr}
+  .offline-actions{min-width:0}
   .divemap{grid-template-columns:1fr}
   .dive-list{max-height:none}
   .author{grid-template-columns:1fr;text-align:left}
@@ -884,6 +899,24 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     <div class="note" id="storageNote" style="margin-top:16px" hidden>
       <span aria-hidden="true">▲</span>
       <span><strong>Sin almacenamiento persistente:</strong> este visor no permite guardar en el navegador. Tu bitácora funciona durante la sesión, pero se pierde al cerrar. Exporta antes de salir.</span>
+    </div>
+  </section>
+
+  <!-- ═══ Sin conexión ════════════════════════════════════════ -->
+  <section class="section" id="offline">
+    <div class="offline-box">
+      <div>
+        <p class="eyebrow">Para el barco</p>
+        <h2>Llévate la guía sin conexión</h2>
+        <p class="muted">En La Restinga la cobertura falla y bajo el agua no hay ninguna. Descarga las
+        128 fotografías de una vez y la guía completa quedará disponible aunque te quedes sin datos.
+        Son unos 3 MB: hazlo con wifi, antes de salir.</p>
+        <p class="tiny" id="offlineState">Comprobando…</p>
+      </div>
+      <div class="offline-actions">
+        <button class="btn btn--primary" id="offlineBtn">↓ Descargar para usar sin conexión</button>
+        <div class="offline-bar" id="offlineBar" hidden><i></i></div>
+      </div>
     </div>
   </section>
 
@@ -2121,23 +2154,71 @@ function renderAutor(){
    sobre canvas, no se captura el DOM: asi el resultado no depende del navegador
    ni del tamano de la ventana. */
 async function exportPlate(sp){
-  const W = 3072, H = 4096, S = W / 1024;
+  /* La lamina se compone en unidades virtuales de 1024x1365 y se escala al
+     tamano final. Asi el reparto vertical no depende del pixel y se puede
+     razonar sobre el como sobre una pagina. */
+  const U = 1024, V = 1365, W = 3072, S = W / U, H = Math.round(V * S);
+  const PAD = 60, GUT = 40, COL = (U - PAD * 2 - GUT) / 2;
+
   const cv = document.createElement("canvas");
   cv.width = W; cv.height = H;
   const g = cv.getContext("2d");
+  const p = n => n * S;
+
+  const SANS = 'ui-sans-serif, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+  const SERIF = 'Georgia, "Times New Roman", serif';
+  const face = (weight, size, family, italic) =>
+    (italic ? "italic " : "") + weight + " " + p(size) + "px " + family;
+
+  const wrap = (text, maxW) => {
+    const out = [];
+    for(const para of String(text).split("\n")){
+      let line = "";
+      for(const word of para.split(/\s+/)){
+        const t = line ? line + " " + word : word;
+        if(g.measureText(t).width > p(maxW) && line){ out.push(line); line = word; }
+        else line = t;
+      }
+      out.push(line);
+    }
+    return out;
+  };
 
   const grad = g.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, "#14414c"); grad.addColorStop(.45, "#0a2029"); grad.addColorStop(1, "#061418");
+  grad.addColorStop(0, "#14414c"); grad.addColorStop(.42, "#0a2029"); grad.addColorStop(1, "#061418");
   g.fillStyle = grad; g.fillRect(0, 0, W, H);
 
   const band = BANDS[sp.b] || BANDS.som;
   const ph = PHOTOS["s" + sp.i];
-  const pad = 72 * S;
+  g.textAlign = "left";
+  g.textBaseline = "alphabetic";
 
-  /* Fotografia o lamina generada, en una caja fija con recorte centrado. */
-  const boxY = 300 * S, boxH = 420 * S, boxW = 1024 * S - pad * 2;
+  /* ── Cabecera ── */
+  g.fillStyle = "#2fd4c0";
+  g.font = face(700, 15, SANS);
+  g.fillText("RESERVA MARINA · MAR DE LAS CALMAS · EL HIERRO", p(PAD), p(84));
+
+  g.fillStyle = "#eaf6f7";
+  let nameSize = 46;
+  g.font = face(600, nameSize, SERIF);
+  while(g.measureText(sp.n).width > p(U - PAD * 2) && nameSize > 26){
+    nameSize -= 2;
+    g.font = face(600, nameSize, SERIF);
+  }
+  g.fillText(sp.n, p(PAD), p(134));
+
+  /* El nombre cientifico con autoridad se sale a poco que la autoria sea larga:
+     se parte en dos lineas en vez de recortarse. */
+  g.fillStyle = "#8fb3ba";
+  g.font = face(400, 21, SERIF, true);
+  const sciLines = wrap(sp.s + (sp.auth ? "  " + sp.auth : ""), U - PAD * 2).slice(0, 2);
+  sciLines.forEach((l, k)=>g.fillText(l, p(PAD), p(170 + k * 26)));
+
+  /* ── Fotografía ── */
+  const boxY = 200 + (sciLines.length > 1 ? 22 : 0), boxH = 318, boxW = U - PAD * 2;
   g.save();
-  g.beginPath(); g.roundRect(pad, boxY, boxW, boxH, 26 * S); g.clip();
+  g.beginPath(); g.roundRect(p(PAD), p(boxY), p(boxW), p(boxH), p(14)); g.clip();
+  let drawn = false;
   if(ph){
     const img = await new Promise((res, rej)=>{
       const im = new Image();
@@ -2145,77 +2226,54 @@ async function exportPlate(sp){
       im.src = photoSrc(ph);
     }).catch(()=>null);
     if(img){
-      const r = Math.max(boxW / img.width, boxH / img.height);
+      const r = Math.max(p(boxW) / img.width, p(boxH) / img.height);
       const w = img.width * r, h = img.height * r;
-      g.drawImage(img, pad + (boxW - w) / 2, boxY + (boxH - h) / 2, w, h);
-    }else{
-      g.fillStyle = "#0f2f38"; g.fillRect(pad, boxY, boxW, boxH);
+      g.drawImage(img, p(PAD) + (p(boxW) - w) / 2, p(boxY) + (p(boxH) - h) / 2, w, h);
+      drawn = true;
     }
-  }else{
-    g.fillStyle = "#0f2f38"; g.fillRect(pad, boxY, boxW, boxH);
-    g.fillStyle = band.color; g.font = `600 ${34 * S}px Georgia, serif`;
+  }
+  if(!drawn){
+    g.fillStyle = "#0f2f38"; g.fillRect(p(PAD), p(boxY), p(boxW), p(boxH));
+    g.fillStyle = band.color;
+    g.font = face(600, 26, SERIF);
     g.textAlign = "center";
-    g.fillText("Foto pendiente", pad + boxW / 2, boxY + boxH / 2);
+    g.fillText("Foto pendiente", p(PAD + boxW / 2), p(boxY + boxH / 2));
     g.textAlign = "left";
   }
   g.restore();
 
-  let y = 120 * S;
-  g.textAlign = "left";
-  g.fillStyle = "#2fd4c0";
-  g.font = `700 ${19 * S}px ui-sans-serif, Segoe UI, sans-serif`;
-  g.fillText("RESERVA MARINA · MAR DE LAS CALMAS · EL HIERRO", pad, y);
-
-  y += 62 * S;
-  g.fillStyle = "#eaf6f7";
-  g.font = `600 ${58 * S}px Georgia, serif`;
-  g.fillText(sp.n, pad, y);
-
-  y += 48 * S;
-  g.fillStyle = "#8fb3ba";
-  g.font = `italic ${30 * S}px Georgia, serif`;
-  g.fillText(sp.s + (sp.auth ? "  " + sp.auth : ""), pad, y);
-
-  y = boxY + boxH + 44 * S;
+  let y = boxY + boxH + 28;
   if(ph){
     g.fillStyle = "#63868f";
-    g.font = `${19 * S}px ui-sans-serif, Segoe UI, sans-serif`;
-    g.fillText("Foto: " + ph.a + " · " + ph.l + " · Wikimedia Commons", pad, y);
-    y += 44 * S;
+    g.font = face(400, 14, SANS);
+    g.fillText("Foto: " + ph.a + " · " + ph.l + " · Wikimedia Commons", p(PAD), p(y));
   }
+  y += 34;
 
-  /* Fila de datos duros */
+  /* ── Datos duros ──
+     Cada valor se ajusta a su columna: con "Caparazón 5–8 cm, púas hasta 20 cm"
+     el texto invadía la columna siguiente. */
   const facts = [["Grupo", sp.g], ["Talla", sp.sz], ["Profundidad", sp.dp], ["Frecuencia", sp.f]];
-  const colW = (1024 * S - pad * 2) / facts.length;
+  const colW = (U - PAD * 2) / facts.length;
   facts.forEach(([k, v], n)=>{
-    const x = pad + colW * n;
+    const x = PAD + colW * n;
     g.fillStyle = "#63868f";
-    g.font = `700 ${17 * S}px ui-sans-serif, Segoe UI, sans-serif`;
-    g.fillText(k.toUpperCase(), x, y);
+    g.font = face(700, 13, SANS);
+    g.fillText(k.toUpperCase(), p(x), p(y));
     g.fillStyle = "#eaf6f7";
-    g.font = `600 ${25 * S}px ui-sans-serif, Segoe UI, sans-serif`;
-    g.fillText(String(v), x, y + 34 * S);
+    g.font = face(600, 17, SANS);
+    wrap(String(v), colW - 14).slice(0, 2).forEach((l, i)=>g.fillText(l, p(x), p(y + 24 + i * 21)));
   });
-  y += 96 * S;
+  y += 70;
 
   g.fillStyle = band.color;
-  g.fillRect(pad, y, (1024 * S - pad * 2), 5 * S);
-  y += 46 * S;
+  g.fillRect(p(PAD), p(y), p(U - PAD * 2), p(3));
+  y += 30;
 
-  const wrap = (text, maxW)=>{
-    const words = String(text).split(/\s+/);
-    const lines = []; let line = "";
-    for(const w of words){
-      const t = line ? line + " " + w : w;
-      if(g.measureText(t).width > maxW && line){ lines.push(line); line = w; }
-      else line = t;
-    }
-    if(line) lines.push(line);
-    return lines;
-  };
-
+  /* ── Bloques, en dos columnas ──
+     A una sola columna solo cabía el primero; el resto se perdía en silencio. */
   const blocks = [
-    ["¿Cómo reconocerla?", sp.id],
+    ["Cómo reconocerla", sp.id],
     ["Alimentación", sp.food],
     ["Reproducción", sp.repro],
     ["Defensa", sp.def],
@@ -2224,36 +2282,52 @@ async function exportPlate(sp){
     ["Precaución", sp.risk]
   ].filter(b=>b[1]);
 
-  const maxW = 1024 * S - pad * 2;
+  const footTop = V - 92;
+  let col = 0, cy = y;
+  const colX = k => PAD + k * (COL + GUT);
+  let cortados = 0;
+
   for(const [title, body] of blocks){
-    if(y > H - 320 * S) break;
-    g.fillStyle = title === "Precaución" ? "#ff9d7a" : "#2fd4c0";
-    g.font = `700 ${19 * S}px ui-sans-serif, Segoe UI, sans-serif`;
-    g.fillText(title.toUpperCase(), pad, y);
-    y += 36 * S;
-    g.fillStyle = "#eaf6f7";
-    g.font = `${25 * S}px ui-sans-serif, Segoe UI, sans-serif`;
-    for(const line of wrap(body, maxW)){
-      g.fillText(line, pad, y);
-      y += 36 * S;
+    g.font = face(400, 16, SANS);
+    const lines = wrap(body, COL);
+    const need = 22 + lines.length * 23 + 16;
+    if(cy + need > footTop){
+      if(col === 0){ col = 1; cy = y; }
+      else { cortados++; continue; }
+      if(cy + need > footTop){ cortados++; continue; }
     }
-    y += 26 * S;
+    g.fillStyle = title === "Precaución" ? "#ff9d7a" : "#2fd4c0";
+    g.font = face(700, 13, SANS);
+    g.fillText(title.toUpperCase(), p(colX(col)), p(cy));
+    cy += 22;
+    g.fillStyle = "#eaf6f7";
+    g.font = face(400, 16, SANS);
+    for(const line of lines){ g.fillText(line, p(colX(col)), p(cy)); cy += 23; }
+    cy += 16;
   }
 
-  /* Pie: autoria y aviso de borrador, que viajan con la lamina */
+  /* ── Pie: autoría y aviso, que viajan con la lámina ── */
   g.fillStyle = "#63868f";
-  g.font = `${20 * S}px ui-sans-serif, Segoe UI, sans-serif`;
-  g.fillText("Fauna Marina de El Hierro · Agustín Fragero Blesa, Dive Master · La Restinga", pad, H - 108 * S);
-  g.fillText("Contenido biológico en borrador, pendiente de validación. No sustituye al briefing del centro de buceo.", pad, H - 68 * S);
+  g.font = face(400, 14, SANS);
+  g.fillText("Fauna Marina de El Hierro · Agustín Fragero Blesa, Dive Master · La Restinga",
+             p(PAD), p(V - 56));
+  g.fillText("Contenido biológico en borrador, pendiente de validación. No sustituye al briefing del centro de buceo.",
+             p(PAD), p(V - 32));
 
   const blob = await new Promise(res=>cv.toBlob(res, "image/png"));
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
   a.download = "ficha-" + sp.s.toLowerCase().replace(/[^a-z0-9]+/g, "-") + ".png";
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url), 4000);
-  toast("Lámina descargada a 3072 px");
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  /* El PNG pesa varios megas: si se revoca el blob antes de que el navegador
+     acabe de escribirlo, la descarga se cancela a medias. Se le da margen. */
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 60000);
+  toast(cortados
+    ? "Lámina descargada; " + cortados + " bloques no cabían"
+    : "Lámina descargada a " + W + " px");
 }
 
 /* ═══ REDPROMAR ═══════════════════════════════════════════════ */
@@ -2279,6 +2353,87 @@ async function reportSighting(sp){
     toast("Abriendo REDPROMAR");
   }
   window.open("https://redpromar.org/report-sighting", "_blank", "noopener");
+}
+
+/* ═══ Descarga para uso sin conexión ══════════════════════════ */
+
+/* El service worker cachea fotos segun se ven, que en el muelle con wifi no es
+   suficiente: quien va a bucear necesita las 128 antes de soltar amarras. Este
+   boton se las lleva de una vez, con el peso declarado por delante. */
+
+function offlineUI(){
+  const state = $("#offlineState"), btn = $("#offlineBtn"), bar = $("#offlineBar");
+  if(!state || !btn) return null;
+  if(!("serviceWorker" in navigator) || !("caches" in window)){
+    state.textContent = "Este navegador no permite guardar la guía para usarla sin conexión.";
+    btn.disabled = true;
+    return null;
+  }
+  return {state, btn, bar};
+}
+
+async function offlineStatus(){
+  const ui = offlineUI();
+  if(!ui) return;
+  const total = Object.keys(PHOTOS).length;
+  let cached = 0;
+  try{
+    const names = await caches.keys();
+    for(const n of names.filter(n=>n.includes("fotos"))){
+      const c = await caches.open(n);
+      cached = (await c.keys()).length;
+    }
+  }catch(err){ /* almacenamiento no disponible: se informa abajo */ }
+
+  if(cached >= total){
+    ui.state.textContent = "Guía descargada: las " + total + " fotografías están guardadas en este dispositivo.";
+    ui.btn.textContent = "✓ Ya la tienes sin conexión";
+    ui.btn.disabled = true;
+  }else{
+    ui.state.textContent = cached
+      ? cached + " de " + total + " fotografías guardadas. Descarga el resto antes de salir."
+      : "Todavía no has descargado las fotografías. Sin ellas la guía funciona, pero las fichas saldrán sin foto.";
+    ui.btn.disabled = false;
+  }
+}
+
+async function downloadOffline(){
+  const ui = offlineUI();
+  if(!ui) return;
+  const reg = await navigator.serviceWorker.ready.catch(()=>null);
+  if(!reg || !reg.active){
+    toast("Recarga la página y vuelve a intentarlo");
+    return;
+  }
+  const urls = Object.values(PHOTOS).map(photoSrc);
+  ui.btn.disabled = true;
+  ui.bar.hidden = false;
+
+  const done = await new Promise(resolve=>{
+    const ch = new MessageChannel();
+    ch.port1.onmessage = ev=>{
+      const m = ev.data || {};
+      if(m.type === "progreso"){
+        const pct = Math.round(m.hechas / m.total * 100);
+        ui.bar.firstElementChild.style.width = pct + "%";
+        ui.state.textContent = "Descargando… " + m.hechas + " de " + m.total;
+      }
+      if(m.type === "listo") resolve(m);
+    };
+    reg.active.postMessage({type:"precache-fotos", urls}, [ch.port2]);
+    setTimeout(()=>resolve(null), 180000);
+  });
+
+  ui.bar.hidden = true;
+  ui.bar.firstElementChild.style.width = "0";
+  if(done && done.fallos === 0){
+    toast("Guía descargada: ya funciona sin conexión");
+  }else if(done){
+    toast(done.fallos + " fotografías no se han podido descargar");
+  }else{
+    toast("La descarga ha tardado demasiado. Inténtalo con mejor cobertura");
+  }
+  offlineStatus();
 }
 
 /* ═══ Arranque ════════════════════════════════════════════════ */
@@ -2307,6 +2462,7 @@ document.addEventListener("click", event=>{
     renderDives(diveActive);
     return;
   }
+  if(event.target.closest("#offlineBtn")){ downloadOffline(); return; }
 });
 
 async function boot(){
@@ -2345,6 +2501,7 @@ async function boot(){
   renderDives(diveActive);
   renderStats();
   render();
+  offlineStatus();
 }
 
 boot();

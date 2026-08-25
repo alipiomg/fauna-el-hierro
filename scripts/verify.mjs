@@ -27,11 +27,14 @@ page.on("console", (m) => { if (m.type() === "error") errors.push("console: " + 
 page.on("requestfailed", (r) => errors.push(`request failed: ${r.url()} — ${r.failure()?.errorText}`));
 page.on("response", async (r) => {
   const h = r.headers();
+  /* Content-Length falta en algunos servidores; entonces se pesa el cuerpo. */
+  let bytes = Number(h["content-length"] || 0);
+  if (!bytes) bytes = await r.buffer().then((b) => b.length).catch(() => 0);
   requests.push({
     url: r.url(),
     status: r.status(),
     type: r.request().resourceType(),
-    bytes: Number(h["content-length"] || 0),
+    bytes,
     cache: h["cache-control"] || ""
   });
 });
@@ -94,6 +97,50 @@ const sheet = await page.evaluate(async () => {
   };
 });
 
+/* La lámina imprimible: se pulsa el botón y se comprueba que el navegador
+   recibe de verdad un PNG, no que la función exista. */
+const plate = await (async () => {
+  const { readdirSync, statSync, mkdirSync, readFileSync, rmSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const dir = join(process.cwd(), ".work", "descargas");
+  rmSync(dir, { recursive: true, force: true });
+  mkdirSync(dir, { recursive: true });
+
+  /* Sesión CDP a nivel de navegador, no de pestaña: con la de pestaña Chrome
+     transfiere el fichero entero y luego cancela la escritura. */
+  const cdp = await browser.target().createCDPSession();
+  let name = null;
+  cdp.on("Browser.downloadWillBegin", (e) => { name = e.suggestedFilename; });
+  const finished = new Promise((res) => {
+    cdp.on("Browser.downloadProgress", (e) => { if (e.state !== "inProgress") res(e.state); });
+    setTimeout(() => res("timeout"), 90000);
+  });
+  await cdp.send("Browser.setDownloadBehavior", {
+    behavior: "allowAndName", downloadPath: dir, eventsEnabled: true
+  });
+
+  /* El botón vive dentro del panel desplazable de la ficha, muy por debajo del
+     viewport: se pulsa por JS y no por coordenadas. */
+  await page.$eval("[data-plate]", (el) => el.click()).catch(() => {});
+  const state = await finished;
+  if (state !== "completed") return null;
+
+  const files = readdirSync(dir);
+  if (!files.length) return null;
+  const f = join(dir, files[0]);
+  const buf = readFileSync(f);
+  /* Cabecera PNG y dimensiones del chunk IHDR: que sea una imagen de verdad y
+     del tamaño prometido, no un fichero cualquiera con la extensión puesta. */
+  const isPng = buf.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  return {
+    file: name || files[0],
+    bytes: statSync(f).size,
+    png: isPng,
+    w: isPng ? buf.readUInt32BE(16) : 0,
+    h: isPng ? buf.readUInt32BE(20) : 0
+  };
+})();
+
 const firstLoad = requests
   .filter((r) => r.status < 400 && ["document", "script", "stylesheet", "fetch", "xhr", "image", "font"].includes(r.type))
   .reduce((a, r) => a + r.bytes, 0);
@@ -130,6 +177,9 @@ if (sheet) {
 } else {
   console.log("ficha      NO SE HA PODIDO ABRIR");
 }
+console.log(plate
+  ? `lámina     ${plate.file} · ${plate.w}×${plate.h} px · ${(plate.bytes / 1048576).toFixed(1)} MB · ${plate.png ? "PNG válido" : "NO ES PNG"}`
+  : "lámina     NO SE HA DESCARGADO");
 
 const notFound = requests.filter((r) => r.status >= 400);
 if (notFound.length) {
@@ -145,4 +195,4 @@ if (errors.length) {
 }
 
 await browser.close();
-process.exit(errors.length || notFound.length ? 1 : 0);
+process.exit(errors.length || notFound.length || !plate || !plate.png || plate.w !== 3072 ? 1 : 0);

@@ -56,6 +56,38 @@ async function trim(cacheName, max) {
   for (let i = 0; i < keys.length - max; i++) await cache.delete(keys[i]);
 }
 
+/* Descarga completa a peticion del usuario: en el muelle, con wifi, antes de
+   salir. De ocho en ocho para no saturar una conexion mala, informando del
+   avance por el puerto que abre la pagina. */
+self.addEventListener("message", (event) => {
+  const msg = event.data || {};
+  if (msg.type !== "precache-fotos") return;
+  const port = event.ports && event.ports[0];
+  const urls = msg.urls || [];
+
+  event.waitUntil((async () => {
+    const cache = await caches.open(FOTOS);
+    let hechas = 0, fallos = 0;
+    for (let i = 0; i < urls.length; i += 8) {
+      await Promise.all(urls.slice(i, i + 8).map(async (u) => {
+        try {
+          if (await cache.match(u)) return;
+          const res = await fetch(u, { cache: "reload" });
+          if (res.ok) await cache.put(u, res); else fallos++;
+        } catch (err) {
+          fallos++;
+        }
+      }));
+      hechas = Math.min(i + 8, urls.length);
+      if (port) port.postMessage({ type: "progreso", hechas, total: urls.length });
+    }
+    /* El tope de recorte tiene que caber la coleccion entera o se mordería la
+       cola justo despues de descargarla. */
+    await trim(FOTOS, Math.max(MAX_FOTOS, urls.length));
+    if (port) port.postMessage({ type: "listo", total: urls.length, fallos });
+  })());
+});
+
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
