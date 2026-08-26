@@ -25,19 +25,25 @@ const requests = [];
 page.on("pageerror", (e) => errors.push("pageerror: " + e.message));
 page.on("console", (m) => { if (m.type() === "error") errors.push("console: " + m.text()); });
 page.on("requestfailed", (r) => errors.push(`request failed: ${r.url()} — ${r.failure()?.errorText}`));
-page.on("response", async (r) => {
-  const h = r.headers();
-  /* Content-Length falta en algunos servidores; entonces se pesa el cuerpo. */
-  let bytes = Number(h["content-length"] || 0);
-  if (!bytes) bytes = await r.buffer().then((b) => b.length).catch(() => 0);
-  requests.push({
-    url: r.url(),
-    status: r.status(),
-    type: r.request().resourceType(),
-    bytes,
-    cache: h["cache-control"] || ""
-  });
-});
+/* El peso de la primera carga es lo que viaja por el cable, no lo que el
+   navegador tiene tras descomprimir. Vercel sirve con Brotli y a menudo sin
+   Content-Length, asi que el dato honesto solo lo da encodedDataLength de CDP. */
+const cdp = await page.target().createCDPSession();
+await cdp.send("Network.enable");
+const meta = new Map();
+cdp.on("Network.responseReceived", (e) => meta.set(e.requestId, {
+  url: e.response.url,
+  status: e.response.status,
+  type: (e.type || "other").toLowerCase(),
+  cache: e.response.headers["cache-control"] || "",
+  enc: e.response.headers["content-encoding"] || ""
+}));
+const finish = (e) => {
+  const m = meta.get(e.requestId);
+  if (m) requests.push({ ...m, bytes: e.encodedDataLength || 0 });
+};
+cdp.on("Network.loadingFinished", finish);
+cdp.on("Network.loadingFailed", finish);
 
 const t0 = Date.now();
 await page.goto(URL, { waitUntil: "networkidle2", timeout: 60000 });
