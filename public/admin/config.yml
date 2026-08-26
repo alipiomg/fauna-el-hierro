@@ -1,0 +1,297 @@
+# ═══════════════════════════════════════════════════════════════════
+# Sveltia CMS — la superficie de edición de la guía.
+#
+# No hay base de datos. Este panel habla directamente con la API de GitHub:
+# al guardar hace un commit sobre este repositorio, y Vercel redespliega.
+# El contenido sigue siendo los mismos JSON que se pueden editar a mano.
+#
+# Entrada: https://fauna-el-hierro.vercel.app/admin/
+# ═══════════════════════════════════════════════════════════════════
+
+backend:
+  name: github
+  repo: alipiomg/fauna-el-hierro
+  branch: main
+  commit_messages:
+    update: 'content: actualiza {{collection}}'
+    uploadMedia: 'content: sube la fotografía {{path}}'
+    deleteMedia: 'content: retira la fotografía {{path}}'
+
+# Las fotos van a la misma carpeta que ya sirve la guía. La ruta pública no
+# lleva barra inicial porque el sitio se sirve desde la raíz y el service
+# worker cachea rutas relativas.
+media_folder: public/fotos
+public_folder: fotos
+
+locale: es
+
+collections:
+  # ── Especies ────────────────────────────────────────────────────
+  - name: fauna
+    label: Fauna
+    files:
+      - name: especies
+        label: Las 120 especies
+        file: public/data/species.json
+        description: >-
+          Cada ficha es un registro. Marca "validado" sólo cuando hayas
+          comprobado el texto entero: ese tick es lo que la web enseña como
+          contenido revisado por ti.
+        fields:
+          - name: especies
+            label: Especies
+            label_singular: Especie
+            widget: list
+            summary: '{{fields.n}} — {{fields.s}}'
+            collapsed: true
+            fields:
+              - { name: i, label: Número, widget: number, value_type: int, hint: 'No lo cambies: enlaza la ficha con su fotografía.' }
+              - { name: validado, label: '✓ Validado por Agustín', widget: boolean, default: false, required: false, hint: 'Actívalo sólo cuando hayas revisado la ficha entera.' }
+              - { name: n, label: Nombre común, widget: string }
+              - { name: s, label: Nombre científico, widget: string }
+              - { name: auth, label: Autoridad, widget: string, required: false }
+              - { name: syn, label: Sinónimo en bibliografía de buceo, widget: string, required: false }
+              - { name: g, label: Grupo, widget: string }
+              - { name: ord, label: Orden, widget: string, required: false }
+              - { name: fam, label: Familia, widget: string, required: false }
+              - name: b
+                label: Banda de profundidad
+                widget: select
+                options:
+                  - { label: 'Superficie · 0–5 m', value: sup }
+                  - { label: 'Somero · 5–20 m', value: som }
+                  - { label: 'Veril · 20–40 m', value: ver }
+                  - { label: 'Hondo · más de 40 m', value: hon }
+                  - { label: 'Pelágico · columna de agua', value: pel }
+              - name: loc
+                label: Presencia en El Hierro
+                widget: select
+                options:
+                  - { label: 'Contrastada', value: si }
+                  - { label: 'Por confirmar', value: dudosa }
+                  - { label: 'No citada en Canarias', value: 'no' }
+              - name: f
+                label: Frecuencia
+                widget: select
+                options: [Común, Frecuente, Estacional, Ocasional, Rara, Excepcional]
+              - { name: sz, label: Talla, widget: string }
+              - { name: dp, label: Profundidad, widget: string }
+
+              - { name: id, label: Cómo reconocerla, widget: text }
+              - { name: ha, label: Hábitat en El Hierro, widget: text, required: false }
+              - { name: be, label: Observación, widget: text, required: false }
+              - { name: ex, label: '¿Sabías que?', widget: text, required: false }
+              - { name: food, label: Alimentación, widget: text, required: false }
+              - { name: repro, label: Reproducción, widget: text, required: false }
+              - { name: def, label: Defensa, widget: text, required: false }
+              - { name: eco, label: Papel ecológico, widget: text, required: false }
+              - name: risk
+                label: ⚠ Aviso de peligro real
+                widget: text
+                required: false
+                hint: >-
+                  Sólo si hay riesgo real (urticante, venenosa, espinas,
+                  mordedura) y con la actuación concreta. "Observa sin tocar"
+                  no es un riesgo: es una norma general y ya está en otro sitio.
+              - { name: rp, label: Reportable a REDPROMAR, widget: boolean, default: false, required: false }
+
+              # ── Fotografía propia ────────────────────────────────
+              # Si subes una foto tuya, sustituye a la de Commons en la ficha.
+              # Autor y licencia son obligatorios en cuanto hay imagen: es el
+              # guardarraíl del proyecto, aplicado en el formulario.
+              - name: foto
+                label: Fotografía propia
+                widget: image
+                required: false
+                hint: 'Opcional. Si la pones, sustituye a la de Wikimedia Commons.'
+              - name: fa
+                label: Autor de la fotografía
+                widget: string
+                required: false
+                default: Agustín Fragero Blesa
+                hint: 'Obligatorio si has subido foto. Sin autor, la web no la muestra.'
+              - name: fl
+                label: Licencia de la fotografía
+                widget: select
+                required: false
+                default: CC BY-SA 4.0
+                options: ['CC0', 'CC BY 4.0', 'CC BY-SA 4.0', 'Todos los derechos reservados · Agustín Fragero']
+                hint: 'Obligatorio si has subido foto.'
+              - name: fu
+                label: Enlace a la fuente
+                widget: string
+                required: false
+                hint: 'Sólo si la foto viene de algún sitio. Si es tuya y original, déjalo vacío.'
+
+  # ── La isla ─────────────────────────────────────────────────────
+  - name: isla
+    label: La isla
+    files:
+      - name: quever
+        label: Qué ver y recorridos
+        file: public/data/quever.json
+        fields:
+          - { name: aviso, label: Aviso de cabecera, widget: text }
+          - { name: altitud, label: Aviso de altitud tras bucear, widget: text }
+          - name: imprescindibles
+            label: Imprescindibles
+            label_singular: Lugar
+            widget: list
+            summary: '{{fields.n}} · {{fields.zona}}'
+            collapsed: true
+            fields:
+              - { name: id, label: Identificador, widget: string }
+              - { name: n, label: Nombre, widget: string }
+              - { name: zona, label: Zona, widget: string, hint: 'Municipio · comarca. Por ejemplo: Frontera · El Golfo' }
+              - { name: destacado, label: Destacado, widget: boolean, default: false, required: false }
+              - { name: d, label: Descripción, widget: text }
+              - { name: dato, label: Dato corto, widget: string, required: false, hint: 'Cota, tiempo o aviso. Sale en negrita debajo.' }
+              - { name: url, label: Ficha oficial, widget: string, required: false }
+              - { name: maps, label: Enlace de mapa, widget: string, required: false }
+              - name: leyendas
+                label: Leyendas
+                label_singular: Leyenda
+                widget: list
+                required: false
+                summary: '{{fields.t}}'
+                hint: 'Si añades leyendas, el lugar sube a ficha grande arriba del todo.'
+                fields:
+                  - { name: t, label: Título, widget: string }
+                  - { name: d, label: Texto, widget: text }
+          - name: recorridos
+            label: Recorridos
+            label_singular: Recorrido
+            widget: list
+            summary: '{{fields.n}} · {{fields.dur}}'
+            collapsed: true
+            fields:
+              - { name: id, label: Identificador, widget: string }
+              - { name: n, label: Nombre, widget: string }
+              - { name: cuando, label: Cuándo, widget: string, hint: 'Por ejemplo: Día sin buceo' }
+              - { name: dur, label: Duración, widget: string }
+              - name: altitud
+                label: Altitud
+                widget: select
+                options: ['nivel del mar', 'sube a la cumbre']
+                hint: 'Esto pinta el distintivo que avisa de si el plan cabe el mismo día que se bucea.'
+              - { name: d, label: Descripción, widget: text }
+              - { name: paradas, label: Paradas, widget: list, field: { name: parada, label: Parada, widget: string } }
+
+      - name: inmersiones
+        label: Puntos de inmersión
+        file: public/data/inmersiones.json
+        fields:
+          - { name: fuente, label: Fuente de los datos, widget: string, required: false }
+          - { name: aviso, label: Aviso, widget: text }
+          - name: puntos
+            label: Puntos
+            label_singular: Punto
+            widget: list
+            summary: '{{fields.n}}'
+            collapsed: true
+            fields:
+              - { name: n, label: Nombre, widget: string }
+              - { name: lat, label: Latitud, widget: number, value_type: float, required: false }
+              - { name: lon, label: Longitud, widget: number, value_type: float, required: false }
+              - { name: prof, label: Profundidad, widget: string, required: false }
+              - { name: nivel, label: Nivel requerido, widget: string, required: false }
+              - { name: acceso, label: Acceso, widget: string, required: false }
+              - { name: reserva, label: Dentro de la Reserva Marina, widget: boolean, default: true, required: false }
+              - { name: d, label: Descripción, widget: text, required: false }
+              - { name: url, label: Ficha oficial, widget: string, required: false }
+
+      - name: bici
+        label: Rutas en bici
+        file: public/data/bici.json
+        fields:
+          - { name: aviso, label: Aviso de cabecera, widget: text }
+          - { name: altitud, label: Aviso de bici después de bucear, widget: text }
+          - name: rutas
+            label: Rutas
+            label_singular: Ruta
+            widget: list
+            summary: '{{fields.n}} · {{fields.km}} km'
+            collapsed: true
+            fields:
+              - { name: id, label: Identificador, widget: string }
+              - { name: n, label: Nombre, widget: string }
+              - { name: desde, label: Salida, widget: string }
+              - { name: hasta, label: Llegada, widget: string }
+              - { name: km, label: Kilómetros, widget: number, value_type: float }
+              - { name: desnivel, label: Desnivel positivo (m), widget: number, value_type: int }
+              - { name: cima, label: Altitud máxima (m), widget: number, value_type: int, required: false }
+              - name: dureza
+                label: Dureza
+                widget: select
+                options: [Suave, Media, Dura, Muy dura]
+              - { name: superficie, label: Superficie, widget: string, required: false }
+              - { name: d, label: Descripción, widget: text }
+              - { name: truco, label: El truco, widget: text, required: false, hint: 'Lo que sólo sabe quien la ha hecho.' }
+              - { name: agua, label: Dónde hay agua, widget: string, required: false }
+
+  # ── Práctico ────────────────────────────────────────────────────
+  - name: practico
+    label: Práctico
+    files:
+      - name: viaje
+        label: Cómo llegar y moverse
+        file: public/data/viaje.json
+        fields:
+          - { name: aviso, label: Aviso, widget: text }
+          - name: llegar
+            label: Conexiones
+            label_singular: Conexión
+            widget: list
+            summary: '{{fields.op}} · {{fields.ruta}}'
+            collapsed: true
+            fields:
+              - { name: modo, label: Modo, widget: select, options: [avion, barco] }
+              - { name: op, label: Operador, widget: string }
+              - { name: ruta, label: Ruta, widget: string }
+              - { name: dur, label: Duración aproximada, widget: string }
+              - { name: nota, label: Nota, widget: text }
+              - { name: url, label: Web del operador, widget: string, hint: 'Nunca guardamos horarios ni precios: se enlazan.' }
+          - name: moverse
+            label: Moverse por la isla
+            label_singular: Opción
+            widget: list
+            summary: '{{fields.t}}'
+            collapsed: true
+            fields:
+              - { name: t, label: Título, widget: string }
+              - { name: d, label: Descripción, widget: text }
+              - { name: dato, label: Dato corto, widget: string, required: false }
+              - { name: url, label: Enlace, widget: string, required: false }
+          - name: dormir
+            label: Dónde alojarse
+            widget: object
+            fields:
+              - { name: d, label: Texto, widget: text }
+              - name: enlaces
+                label: Enlaces
+                widget: list
+                summary: '{{fields.t}}'
+                fields:
+                  - { name: t, label: Título, widget: string }
+                  - { name: d, label: Descripción, widget: text }
+                  - { name: url, label: Enlace, widget: string, required: false }
+              - { name: declaracion, label: Declaración de acuerdos comerciales, widget: text }
+
+      - name: autor
+        label: Quién firma la guía
+        file: public/data/autor.json
+        fields:
+          - { name: nombre, label: Nombre, widget: string }
+          - { name: rol, label: Rol, widget: string }
+          - { name: bio, label: Biografía, widget: list, field: { name: parrafo, label: Párrafo, widget: text } }
+          - { name: cta, label: Texto del botón principal, widget: string }
+          - name: contacto
+            label: Canales de contacto
+            label_singular: Canal
+            widget: list
+            summary: '{{fields.t}} · {{fields.v}}'
+            fields:
+              - { name: t, label: Canal, widget: string }
+              - { name: v, label: Valor visible, widget: string }
+              - { name: url, label: Enlace, widget: string }
+              - { name: primario, label: Es el botón principal, widget: boolean, default: false, required: false }

@@ -74,7 +74,8 @@ const offline = await page.evaluate(async () => {
     ));
     for (const r of res) r ? ok++ : fail++;
   }
-  const species = await fetch("data/species.json").then((r) => r.json()).catch(() => []);
+  const rawSp = await fetch("data/species.json").then((r) => r.json()).catch(() => []);
+  const species = Array.isArray(rawSp) ? rawSp : (rawSp.especies || []);
   return {
     cards: document.querySelectorAll("#grid .card").length,
     imgs: urls.length,

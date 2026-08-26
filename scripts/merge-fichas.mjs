@@ -15,7 +15,9 @@ const ROOT = process.cwd();
 const DIR = join(ROOT, "scripts", "content");
 const DATA = join(ROOT, "public", "data", "species.json");
 
-const species = JSON.parse(readFileSync(DATA, "utf8"));
+/* {especies:[...]} desde que hay CMS; se acepta el array suelto. */
+const rawSpecies = JSON.parse(readFileSync(DATA, "utf8"));
+const species = Array.isArray(rawSpecies) ? rawSpecies : rawSpecies.especies;
 const byId = new Map(species.map((s) => [s.i, s]));
 
 const FIELDS = ["food", "repro", "def", "eco", "risk"];
@@ -87,5 +89,5 @@ if (problems.length) {
   process.exit(1);
 }
 
-writeFileSync(DATA, JSON.stringify(species, null, 1) + "\n", "utf8");
+writeFileSync(DATA, JSON.stringify({ especies: species }, null, 1) + "\n", "utf8");
 console.log(`\nescrito ${DATA}`);

@@ -24,6 +24,47 @@ public/                 ← lo que Vercel publica
 
 ---
 
+## El panel de edición
+
+**https://fauna-el-hierro.vercel.app/admin/**
+
+Sveltia CMS. No hay base de datos ni servidor: el panel es una página que corre
+en el navegador y habla directamente con la API de GitHub. Al guardar hace un
+commit sobre este repositorio y Vercel redespliega solo. El contenido siguen
+siendo los mismos JSON de `public/data/`, editables también a mano.
+
+### Entrar la primera vez
+
+1. En GitHub: **Settings → Developer settings → Personal access tokens →
+   Fine-grained tokens → Generate new token**.
+2. *Repository access*: sólo `alipiomg/fauna-el-hierro`.
+3. *Permissions → Repository permissions*: **Contents → Read and write**.
+4. Copiar el token y pegarlo en el panel, en **Sign In with Token**.
+
+El token se queda guardado en ese navegador. Si caduca, se genera otro igual.
+
+No hace falta registrar ninguna aplicación OAuth ni desplegar nada. Si algún día
+molesta tener que renovar el token, se despliega el autenticador de Sveltia en
+Cloudflare Workers (también gratis) y se añade `base_url` a `config.yml`.
+
+### Actualizar el CMS
+
+El paquete se sirve desde el propio sitio, no desde un CDN, para que el panel no
+dependa de que unpkg esté en pie:
+
+```bash
+npm run cms:update
+```
+
+### Lo que el panel no toca
+
+`photos.json` lo genera `npm run extract` y sus claves están ligadas a los
+ficheros de `public/fotos/`. Editarlo a mano rompe el vínculo. Para poner una
+foto propia en una especie están los campos de fotografía dentro de su ficha,
+que obligan a declarar autor y licencia.
+
+---
+
 ## Lo que Agustín puede cambiar sin tocar código
 
 Todo está en `public/data/`. Se editan desde GitHub: abrir el fichero, botón del
@@ -36,6 +77,7 @@ lápiz, guardar. Son JSON: respeta las comillas y las comas.
 | `inmersiones.json` | Puntos de inmersión: profundidad, nivel, acceso, descripción |
 | `viaje.json` | Cómo llegar y moverse: operadores, duraciones, alojamiento |
 | `quever.json` | Imprescindibles de la isla, con sus leyendas, y los recorridos por días |
+| `bici.json` | Rutas en bicicleta y los trucos de la isla |
 | `autor.json` | Biografía, canales de contacto y llamada a la acción |
 | `isla.json` | Costa y límites del mapa. **No lo toques**: se genera con un script |
 
@@ -66,6 +108,17 @@ como el Garoé.
 Un recorrido va en `recorridos`, y su `altitud` sólo admite dos valores:
 `"nivel del mar"` o `"sube a la cumbre"`. Ese campo es el que pinta el distintivo
 que avisa de si el plan se puede hacer el mismo día que se bucea.
+
+### Marcar una especie como validada
+
+El campo `validado` de cada especie es el que decide si la web la enseña como
+contenido revisado o como borrador. Con él a `false` —o ausente— la ficha lleva
+el aviso de borrador; con él a `true` sale el distintivo verde y la especie entra
+en el filtro *Validadas por Agustín*.
+
+El aviso general de la sección de fuentes cuenta solas cuántas quedan, y
+desaparece cuando estén las 120. **Actívalo sólo cuando hayas leído la ficha
+entera**: es lo único que separa una redacción de trabajo de una edición firmada.
 
 ### Corregir el texto de una especie
 

@@ -10,7 +10,9 @@
     "fichas": "node scripts/merge-fichas.mjs",
     "assets": "node scripts/build-assets.mjs",
     "mapa": "node scripts/build-mapa.mjs",
-    "extract": "node scripts/extract.mjs"
+    "extract": "node scripts/extract.mjs",
+    "enlaces": "node scripts/check-links.mjs",
+    "cms:update": "curl -sL -o public/admin/sveltia-cms.js https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js && node -e \"console.log(require('fs').statSync('public/admin/sveltia-cms.js').size + ' bytes')\""
   },
   "devDependencies": {
     "puppeteer-core": "^23.11.1"

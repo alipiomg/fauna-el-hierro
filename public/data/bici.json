@@ -1,0 +1,98 @@
+{
+ "modalidad": "bici",
+ "destino": "el-hierro",
+
+ "aviso": "El Hierro no tiene un solo kilómetro llano de verdad: sube del mar a los 1.501 m del Malpaso en muy poco horizontal, y eso convierte cualquier salida en un puerto. Las distancias de abajo están contrastadas; los desniveles marcados como pendientes hay que medirlos sobre el terreno antes de darlos por buenos.",
+
+ "altitud": "Este es el aviso que ninguna guía de bici te va a dar y una guía de buceo sí: saliendo de La Restinga, pedalear es ganar altitud. Una salida corta te pone por encima de los 600 m en menos de veinte kilómetros. Después de bucear eso es exposición a altitud igual que ir en coche, y el intervalo lo marcan tu ordenador, tus tablas y el briefing de tu centro. La bici no lo cambia; sólo hace que subas más despacio.",
+
+ "rutas": [
+  {
+   "id": "restinga-pinar",
+   "n": "La Restinga → El Pinar",
+   "desde": "La Restinga · nivel del mar",
+   "hasta": "El Pinar (Taibique)",
+   "km": 19,
+   "desnivel": null,
+   "cima": null,
+   "dureza": "Dura",
+   "superficie": "Asfalto, carretera de montaña",
+   "verificado": false,
+   "d": "La salida natural si te alojas junto al puerto: casi diecinueve kilómetros por la montaña desde el nivel del mar hasta el pueblo de El Pinar. Es subida continua, sin tregua, y de vuelta son diecinueve de bajada con la misma pendiente a favor. La ruta de referencia para un día sin inmersiones.",
+   "truco": "Sal temprano. A media mañana el sol pega de lleno en la vertiente sur y no hay una sombra en todo el ascenso: es la misma orientación resguardada del alisio que hace tan tranquilo el Mar de las Calmas.",
+   "agua": "Llena en La Restinga antes de salir. La primera fuente fiable está ya arriba, en El Pinar."
+  },
+  {
+   "id": "restinga-morcillo",
+   "n": "La Restinga → Hoya del Morcillo",
+   "desde": "La Restinga · nivel del mar",
+   "hasta": "Hoya del Morcillo · pinar",
+   "km": 34,
+   "desnivel": null,
+   "cima": null,
+   "dureza": "Muy dura",
+   "superficie": "Asfalto",
+   "verificado": false,
+   "d": "La anterior, alargada hasta la zona recreativa del pinar, y contada de ida y vuelta: treinta y cuatro kilómetros con el desnivel entero de la isla dentro. La subida es continua pero no desesperada de pendiente; lo que cansa es que no acaba nunca. Arriba cambia el paisaje por completo: del malpaís negro al pinar canario.",
+   "truco": "Es la ruta que mejor explica la isla en una mañana: sales del mar volcánico y acabas entre pinos a mil y pico metros. Lleva chaqueta aunque salgas en manga corta.",
+   "agua": "Zona recreativa arriba. Abajo, sólo La Restinga."
+  },
+  {
+   "id": "estaca-valverde",
+   "n": "Puerto de La Estaca → Valverde",
+   "desde": "Puerto de La Estaca · nivel del mar",
+   "hasta": "Valverde",
+   "km": 14.6,
+   "desnivel": 900,
+   "cima": null,
+   "dureza": "Muy dura",
+   "superficie": "Asfalto",
+   "verificado": true,
+   "d": "Si llegas en barco con tu bici, ésta es la bienvenida: novecientos metros de desnivel en catorce kilómetros y medio, nada más bajar del ferry. Es el puerto más citado de la isla y el que marca el tono de todo lo demás.",
+   "truco": "El ferry de Los Cristianos llega de noche. Subir esto a oscuras, cargado y sin haber cenado es mala idea: duerme en la costa y súbelo por la mañana.",
+   "agua": "Valverde arriba. En el puerto, poca cosa."
+  },
+  {
+   "id": "vuelta",
+   "n": "La vuelta a la isla",
+   "desde": "Puerto de La Estaca",
+   "hasta": "Puerto de La Estaca",
+   "km": 177,
+   "desnivel": null,
+   "cima": 1300,
+   "dureza": "Muy dura",
+   "superficie": "Asfalto",
+   "verificado": false,
+   "d": "El circuito completo, que se suele partir en cinco o seis etapas cortas: Estaca–Valverde, Valverde–Frontera, Frontera–Orchilla, Orchilla–Hoya del Morcillo, Morcillo–La Restinga y vuelta a Estaca. Las etapas son cortas en kilómetros y largas en desnivel; el tramo de Frontera cruza la cumbre y sube del mar a los mil trescientos metros en veintitrés kilómetros.",
+   "truco": "No lo midas en kilómetros, mídelo en metros de desnivel. Etapas de treinta kilómetros aquí cuestan lo que ochenta en llano, y la de Frontera a Orchilla es la más bonita de las seis.",
+   "agua": "Planifícala pueblo a pueblo: en el oeste, entre La Dehesa y Orchilla, no hay nada."
+  }
+ ],
+
+ "trucos": [
+  {
+   "t": "Todo lo que bajas, lo subes",
+   "d": "No hay un circuito llano en toda la isla. Cualquier bajada a la costa se paga entera a la vuelta, y las bajadas son largas y rápidas: se enfría el cuerpo y luego hay que volver a subir con el sudor frío encima."
+  },
+  {
+   "t": "El norte tiene viento, el sur no",
+   "d": "El alisio entra por el norte y El Golfo lo recibe de cara; la vertiente sur, la de La Restinga, está a resguardo. Es exactamente la misma razón por la que el Mar de las Calmas se bucea tan tranquilo. Planifica para tener el viento a favor en el tramo largo, no en el corto."
+  },
+  {
+   "t": "Sales con sol y llegas a la niebla",
+   "d": "Por encima de los mil metros el alisio condensa y entra el mar de nubes. Puedes salir de La Restinga en manga corta con veinticinco grados y encontrarte arriba con niebla cerrada y diez. Es el mismo fenómeno que daba de beber al Garoé: lluvia horizontal. Lleva chaqueta y luces siempre."
+  },
+  {
+   "t": "Avituallarse no es opcional",
+   "d": "Hay pocas tiendas y muchas cierran a mediodía. Sal con comida y agua para toda la salida, y no cuentes con encontrar nada abierto entre pueblos. En el oeste, directamente no hay."
+  },
+  {
+   "t": "La eléctrica no es hacer trampa",
+   "d": "En una isla que es cien por cien subida, una bici eléctrica es lo que separa ver El Hierro de sufrirlo. Si vienes a bucear y quieres además recorrer la isla, es la opción sensata: no vas a llegar fresco a la inmersión del día siguiente con mil metros de desnivel en las piernas."
+  },
+  {
+   "t": "El ferry admite bicicleta",
+   "d": "Traer la tuya en el barco desde Los Cristianos sale a cuenta si vas a rodar varios días. Confirma condiciones y suplemento con la naviera antes de comprar, porque cambian."
+  }
+ ]
+}

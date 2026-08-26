@@ -259,6 +259,21 @@ select.field{cursor:pointer}
   background:rgba(4,14,18,.74);border:1px solid rgba(255,157,122,.5);
   color:var(--doubt);font-size:10.5px;font-weight:700;letter-spacing:.06em;
 }
+.plate-ok{
+  position:absolute;left:10px;bottom:10px;
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 9px;border-radius:999px;
+  background:rgba(4,14,18,.74);border:1px solid rgba(111,227,154,.5);
+  color:var(--logged);font-size:10.5px;font-weight:700;letter-spacing:.06em;
+}
+.idValid{
+  display:inline-flex;align-items:center;gap:7px;margin-top:10px;
+  padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600;
+  border:1px solid rgba(111,227,154,.45);background:rgba(111,227,154,.09);color:var(--logged);
+}
+.idValid[data-ok="false"]{
+  border-color:rgba(255,209,102,.45);background:rgba(255,209,102,.09);color:var(--lumen);
+}
 .plate-seen{
   position:absolute;right:10px;bottom:10px;
   width:30px;height:30px;border-radius:50%;
@@ -722,6 +737,42 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
   .moves{grid-template-columns:1fr}
 }
 
+/* ── Bici ───────────────────────────────────────────────────── */
+.rutas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.ruta{
+  display:flex;flex-direction:column;gap:8px;
+  padding:18px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--basalt);
+}
+.ruta-top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between}
+.ruta-tramo{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--calm-dim)}
+.ruta-dureza{
+  font-size:11px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--line);color:var(--calm);
+}
+.ruta-dureza[data-d="Dura"]{color:var(--lumen);border-color:rgba(255,209,102,.45)}
+.ruta-dureza[data-d="Muy dura"]{color:var(--doubt);border-color:rgba(255,157,122,.5)}
+.ruta h4{font-family:var(--serif);font-size:18px}
+.ruta-cifras{display:flex;flex-wrap:wrap;gap:14px;padding:9px 0;border-block:1px solid var(--line)}
+.ruta-cifras span{font-size:12.5px;color:var(--calm)}
+.ruta-cifras b{color:var(--foam);font-size:16px;margin-right:3px}
+.ruta-cifras .pend{color:var(--lumen);font-style:italic}
+.ruta p{font-size:13.8px;color:var(--calm);line-height:1.55}
+.ruta-truco{
+  padding:11px 13px;border-radius:var(--r-sm);
+  background:rgba(47,212,192,.06);border-left:2px solid var(--turquoise);
+}
+.ruta-truco b,.ruta-agua b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--turquoise);margin-bottom:4px;font-weight:700;
+}
+.ruta-agua b{display:inline;margin:0 6px 0 0;color:var(--calm-dim)}
+.ruta-nota{color:var(--calm-dim);margin-top:auto}
+
+.trucos{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:12px}
+.truco{padding:16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--shelf)}
+.truco h4{font-family:var(--serif);font-size:16px;margin-bottom:7px}
+.truco p{font-size:13.5px;color:var(--calm);line-height:1.55}
+
 /* ── Qué ver: recorridos e imprescindibles ──────────────────── */
 .subhead{margin:30px 0 12px}
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:12px}
@@ -841,6 +892,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     <a href="#viaje" data-close-drawer>Cómo llegar y moverse</a>
     <a href="#inmersiones" data-close-drawer>Puntos de inmersión</a>
     <a href="#quever" data-close-drawer>Qué ver en la isla</a>
+    <a href="#bici" data-close-drawer>En bici por El Hierro</a>
     <a href="#isla" data-close-drawer>Más, por categorías</a>
     <a href="#restinga" data-close-drawer>La Restinga y el Mar de las Calmas</a>
     <a href="#autor" data-close-drawer>Quién firma esta guía</a>
@@ -1017,6 +1069,19 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     <h3 class="eyebrow subhead">Imprescindibles</h3>
     <div id="spotFeature"></div>
     <div class="spots" id="spotList"></div>
+  </section>
+
+  <!-- ═══ Bici ════════════════════════════════════════════════ -->
+  <section class="section" id="bici">
+    <div class="section-head">
+      <p class="eyebrow">La isla a pedales</p>
+      <h2>En bici por El Hierro</h2>
+      <p id="biciAviso"></p>
+    </div>
+    <div class="note note--turq" id="biciAltitud"></div>
+    <div class="rutas" id="rutaList"></div>
+    <h3 class="eyebrow subhead">Los trucos</h3>
+    <div class="trucos" id="trucoList"></div>
   </section>
 
   <!-- ═══ Guía de la isla ═════════════════════════════════════ -->
@@ -1264,7 +1329,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     </div>
     <div class="note" style="margin-top:18px">
       <span aria-hidden="true">▲</span>
-      <span><strong>Borrador pendiente de revisión.</strong> Los textos de identificación, talla, profundidad y comportamiento son una redacción de trabajo preparada para que Agustín la valide especie por especie antes de publicarse como edición definitiva. Las especies marcadas <em>presencia por confirmar</em> aparecen en la lista de partida pero su cita en aguas de El Hierro necesita contraste con registros locales.</span>
+      <span id="draftNotice"></span>
     </div>
   </section>
 </main>
@@ -1485,16 +1550,24 @@ function plate(sp,{square=false}={}){
   + '</svg>';
 }
 
+/* Una sola puerta de entrada a la fotografia de una especie. La foto propia de
+   Agustin, si la hay, manda sobre la de Commons; y la licencia viaja siempre con
+   ella, porque el guardarrail dice que ninguna imagen se muestra sin atribucion. */
+function photoOf(sp){
+  if(sp && sp.foto && sp.fa && sp.fl) return {f:sp.foto, a:sp.fa, l:sp.fl, u:sp.fu || "", propia:true};
+  return PHOTOS["s" + sp.i] || null;
+}
+
 /* Foto verificada si la hay; si no, la lámina generada como estado propio. */
 function media(sp,square){
-  const ph = PHOTOS["s"+sp.i];
+  const ph = photoOf(sp);
   if(!ph) return plate(sp,{square:square})
     + '<span class="pending">Foto pendiente</span>';
   return '<img class="shot" loading="lazy" decoding="async" src="'+photoSrc(ph)+'"'
        + ' alt="'+esc(sp.n)+' — '+esc(sp.s)+'">'
        + '<span class="credit">'+esc(ph.a)+' · '+esc(ph.l)+'</span>';
 }
-const hasPhoto = sp => Boolean(PHOTOS["s"+sp.i]);
+const hasPhoto = sp => Boolean(photoOf(sp));
 
 /* ═══ Estado de la vista ══════════════════════════════════════ */
 
@@ -1509,6 +1582,8 @@ function matches(sp){
   if(state.record === "pending" &&  e.seen) return false;
   if(state.record === "doubt"   && sp.loc === "si") return false;
   if(state.record === "nophoto" && hasPhoto(sp)) return false;
+  if(state.record === "ok"      && !sp.validado) return false;
+  if(state.record === "draft"   &&  sp.validado) return false;
   const q = state.q.trim().toLowerCase();
   if(!q) return true;
   return (sp.n+" "+sp.s+" "+sp.g).toLowerCase().includes(q);
@@ -1528,11 +1603,36 @@ function renderStats(){
   const seen    = values.filter(v=>v.seen).length;
   const reports = values.reduce((sum,v)=>sum+(v.count||0),0);
   const pct     = Math.round(seen / SPECIES.length * 100);
+  const oks     = SPECIES.filter(s=>s.validado).length;
+  const okPct   = Math.round(oks / SPECIES.length * 100);
   $("#stats").innerHTML =
       '<div class="stat"><b>'+seen+'</b><span>especies registradas</span><div class="stat-bar"><i style="width:'+pct+'%"></i></div></div>'
     + '<div class="stat"><b>'+reports+'</b><span>ejemplares anotados</span></div>'
     + '<div class="stat"><b>'+SPECIES.length+'</b><span>especies en la guía</span></div>'
-    + '<div class="stat"><b>'+pct+'%</b><span>del inventario</span></div>';
+    + '<div class="stat"><b>'+oks+'</b><span>validadas por Agustín</span>'
+    +   '<div class="stat-bar"><i style="width:'+okPct+'%;background:var(--logged)"></i></div></div>';
+}
+
+/* El aviso general cuenta el estado real, no una frase fija. Cuando Agustin
+   valide las 120, el aviso se retira solo en vez de quedarse mintiendo. */
+function renderDraftNotice(){
+  const host = $("#draftNotice");
+  if(!host) return;
+  const oks = SPECIES.filter(s=>s.validado).length;
+  const dudosas = SPECIES.filter(s=>s.loc !== "si").length;
+  const cola = dudosas
+    ? ' Las ' + dudosas + ' especies marcadas <em>presencia por confirmar</em> aparecen en la lista '
+      + 'de partida, pero su cita en aguas de El Hierro necesita contraste con registros locales.'
+    : '';
+
+  host.innerHTML = oks >= SPECIES.length
+    ? '<strong>Edición validada.</strong> Agustín Fragero ha revisado las '
+      + SPECIES.length + ' fichas de esta guía.' + cola
+    : '<strong>' + (SPECIES.length - oks) + ' de ' + SPECIES.length
+      + ' fichas siguen en borrador.</strong> Los textos de identificación, talla, profundidad y '
+      + 'comportamiento son una redacción de trabajo hasta que Agustín los valida especie por especie. '
+      + 'Cada ficha dice en qué estado está, y el filtro <em>Validadas por Agustín</em> deja ver sólo '
+      + 'las revisadas.' + cola;
 }
 
 function cardMarkup(sp){
@@ -1541,6 +1641,7 @@ function cardMarkup(sp){
     + '<div class="plate">'+media(sp,false)
       + '<span class="plate-band"><span class="chip-dot" style="background:'+band.color+'"></span>'+esc(band.name)+'</span>'
       + (sp.loc !== "si" ? '<span class="plate-flag">Por confirmar</span>' : '')
+      + (sp.validado ? '<span class="plate-ok" title="Contenido validado por Agustín Fragero">✓ Validada</span>' : '')
       + (e.seen ? '<span class="plate-seen" aria-label="Registrada">✓</span>' : '')
     + '</div>'
     + '<div class="card-body">'
@@ -1624,7 +1725,7 @@ function renderGroupCounts(){
 let modalSpecies = null, lastFocus = null;
 
 function fillModal(sp){
-  const e = entry(sp.i), band = BANDS[sp.b] || BANDS.som, ph = PHOTOS["s"+sp.i];
+  const e = entry(sp.i), band = BANDS[sp.b] || BANDS.som, ph = photoOf(sp);
   const grp = GROUPS[sp.g] || {};
 
   /* Frecuencia dibujada en puntos: la forma comunica el dato, no lo decora */
@@ -1662,7 +1763,14 @@ function fillModal(sp){
           return '<span' + (k === lv ? ' class="on"' : '') + '><i style="background:' + L[1] + '"></i>' + L[0] + '</span>';
         }).join("")
     + '</div>'
-    + '<section class="idRecog"><h3>\u00bfC\u00f3mo reconocerla?</h3><p>' + esc(sp.id) + '</p></section>';
+    + '<section class="idRecog"><h3>\u00bfC\u00f3mo reconocerla?</h3><p>' + esc(sp.id) + '</p></section>'
+    /* El estado de validacion se dice en la ficha, no solo en un aviso general:
+       quien lee esta ficha bajo el agua tiene que saber si Agustin la ha revisado. */
+    + '<p class="idValid" data-ok="' + Boolean(sp.validado) + '">'
+    +   (sp.validado
+          ? '\u2713 Contenido validado por Agust\u00edn Fragero'
+          : '\u25cb Borrador: a\u00fan sin validar por el autor')
+    + '</p>';
 
   /* Se dibuja solo el bloque que tiene dato. Cuando el pipeline de extraccion
      anada alimentacion, reproduccion, defensa y papel ecologico, apareceran solos. */
@@ -1988,7 +2096,9 @@ function buildControls(){
     + '<button class="chip" data-record="seen" aria-pressed="false"><span class="chip-dot" style="background:#6fe39a"></span>Ya registradas</button>'
     + '<button class="chip" data-record="pending" aria-pressed="false">Me faltan</button>'
     + '<button class="chip" data-record="doubt" aria-pressed="false"><span class="chip-dot" style="background:#ff9d7a"></span>Presencia por confirmar</button>'
-    + '<button class="chip" data-record="nophoto" aria-pressed="false">Sin fotografía</button>');
+    + '<button class="chip" data-record="nophoto" aria-pressed="false">Sin fotografía</button>'
+    + '<button class="chip" data-record="ok" aria-pressed="false"><span class="chip-dot" style="background:#6fe39a"></span>Validadas por Agustín</button>'
+    + '<button class="chip" data-record="draft" aria-pressed="false"><span class="chip-dot" style="background:#ffd166"></span>Borrador</button>');
 
   $("#levelRow").innerHTML =
       '<button class="chip" data-level="basic" aria-pressed="true">Básico</button>'
@@ -2143,22 +2253,33 @@ function renderIsland(){
 }
 
 function renderCredits(){
-  const named = {};
-  SPECIES.forEach(sp=>{ if(PHOTOS["s"+sp.i]) named["s"+sp.i] = sp.n+" — "+sp.s; });
-  PLACES.forEach(([k,n])=>{ if(PHOTOS[k]) named[k] = n+" (El Hierro)"; });
-  if(PHOTOS.hero) named.hero = "Mar de las Calmas (cabecera)";
-  const keys = Object.keys(named);
+  /* Cada credito lleva su foto resuelta, para que las propias de Agustin
+     aparezcan en la lista igual que las de Commons. Nadie sin atribucion. */
+  const rows = [];
+  SPECIES.forEach(sp=>{
+    const ph = photoOf(sp);
+    if(ph) rows.push({t:sp.n+" — "+sp.s, ph:ph});
+  });
+  PLACES.forEach(([k,n])=>{ if(PHOTOS[k]) rows.push({t:n+" (El Hierro)", ph:PHOTOS[k]}); });
+  if(PHOTOS.hero) rows.push({t:"Mar de las Calmas (cabecera)", ph:PHOTOS.hero});
+
+  const propias = rows.filter(r=>r.ph.propia).length;
+  const sinFoto = SPECIES.length - SPECIES.filter(hasPhoto).length;
+
   $("#creditsIntro").textContent =
-    "Las " + keys.length + " fotografías de esta guía proceden de Wikimedia Commons y se reproducen "
-    + "bajo licencias que permiten uso comercial, con la atribución que cada una exige. "
-    + (SPECIES.length - SPECIES.filter(hasPhoto).length)
-    + " especies siguen sin fotografía verificada y muestran su lámina generada.";
-  $("#creditsList").innerHTML = '<div class="credits">' + keys.map(k=>{
-    const ph = PHOTOS[k];
-    return '<div><em>'+esc(named[k])+'</em>'
+    "Las " + rows.length + " fotografías de esta guía se reproducen con la atribución que cada "
+    + "licencia exige, y todas permiten uso comercial. "
+    + (propias ? propias + " son de Agustín Fragero; el resto proceden de Wikimedia Commons. " : "Proceden de Wikimedia Commons. ")
+    + (sinFoto ? sinFoto + " especies siguen sin fotografía verificada y muestran su lámina generada." : "");
+
+  $("#creditsList").innerHTML = '<div class="credits">' + rows.map(r=>{
+    const ph = r.ph;
+    return '<div><em>'+esc(r.t)+'</em>'
          + '<span>'+esc(ph.a)+'</span>'
          + '<span>'+esc(ph.l)+'</span>'
-         + '<a href="'+esc(ph.u)+'" target="_blank" rel="noopener">Commons ↗</a></div>';
+         + (ph.u ? '<a href="'+esc(ph.u)+'" target="_blank" rel="noopener">'
+             + (ph.propia ? "Fuente ↗" : "Commons ↗") + '</a>' : '<span class="tiny">Original del autor</span>')
+         + '</div>';
   }).join("") + '</div>';
 }
 
@@ -2268,6 +2389,49 @@ function renderQuever(){
     + '</article>').join("");
 }
 
+/* ═══ Bici ════════════════════════════════════════════════════ */
+
+function renderBici(){
+  const aviso = $("#biciAviso");
+  if(aviso) aviso.textContent = BICI.aviso || "";
+
+  const alt = $("#biciAltitud");
+  if(alt){
+    alt.innerHTML = BICI.altitud
+      ? '<span aria-hidden="true">▲</span><span><strong>Pedalear también es ganar altitud.</strong> '
+        + esc(BICI.altitud) + '</span>'
+      : "";
+    alt.style.display = BICI.altitud ? "" : "none";
+  }
+
+  const host = $("#rutaList");
+  if(host) host.innerHTML = (BICI.rutas||[]).map(r=>
+      '<article class="ruta">'
+    +   '<div class="ruta-top">'
+    +     '<span class="ruta-tramo">' + esc(r.desde) + ' → ' + esc(r.hasta) + '</span>'
+    +     '<span class="ruta-dureza" data-d="' + esc(r.dureza) + '">' + esc(r.dureza) + '</span>'
+    +   '</div>'
+    +   '<h4>' + esc(r.n) + '</h4>'
+    /* Un dato sin medir se dice, no se rellena: la misma regla que con las
+       especies de presencia dudosa. */
+    +   '<div class="ruta-cifras">'
+    +     '<span><b class="num">' + esc(r.km) + '</b> km</span>'
+    +     (r.desnivel ? '<span><b class="num">+' + esc(r.desnivel) + '</b> m</span>'
+                     : '<span class="pend">desnivel por medir</span>')
+    +     (r.cima ? '<span><b class="num">' + esc(r.cima) + '</b> m de cima</span>' : '')
+    +   '</div>'
+    +   '<p>' + esc(r.d) + '</p>'
+    +   (r.truco ? '<p class="ruta-truco"><b>El truco</b>' + esc(r.truco) + '</p>' : '')
+    +   (r.agua ? '<p class="ruta-agua"><b>Agua</b> ' + esc(r.agua) + '</p>' : '')
+    +   (r.verificado ? '' : '<p class="tiny ruta-nota">Kilómetros contrastados; el desnivel está pendiente de medir sobre el terreno.</p>')
+    + '</article>').join("");
+
+  const trucos = $("#trucoList");
+  if(trucos) trucos.innerHTML = (BICI.trucos||[]).map(t=>
+      '<article class="truco"><h4>' + esc(t.t) + '</h4><p>' + esc(t.d) + '</p></article>'
+    ).join("");
+}
+
 /* ═══ Autor ═══════════════════════════════════════════════════ */
 
 function renderAutor(){
@@ -2331,7 +2495,7 @@ async function exportPlate(sp){
   g.fillStyle = grad; g.fillRect(0, 0, W, H);
 
   const band = BANDS[sp.b] || BANDS.som;
-  const ph = PHOTOS["s" + sp.i];
+  const ph = photoOf(sp);
   g.textAlign = "left";
   g.textBaseline = "alphabetic";
 
@@ -2589,7 +2753,7 @@ async function downloadOffline(){
 
 const photoSrc = ph => "fotos/" + ph.f;
 
-let VIAJE = {}, AUTOR = {}, ISLA = {}, DIVES = [], DIVES_META = {}, QUEVER = {};
+let VIAJE = {}, AUTOR = {}, ISLA = {}, DIVES = [], DIVES_META = {}, QUEVER = {}, BICI = {};
 let diveActive = -1;
 
 document.addEventListener("click", event=>{
@@ -2624,7 +2788,10 @@ async function boot(){
       fetch("data/species.json").then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }),
       fetch("data/photos.json").then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })
     ]);
-    SPECIES = species;
+    /* El fichero es {especies:[...]} para que Sveltia pueda mapearlo a un
+       formulario. Se acepta el array suelto por si alguien edita a la antigua. */
+    SPECIES = Array.isArray(species) ? species : (species.especies || []);
+    if(!SPECIES.length) throw new Error("species.json sin especies");
     PHOTOS  = photos;
   }catch(err){
     $("#grid").innerHTML = '<p class="empty">No se han podido cargar los datos de la gu&iacute;a. '
@@ -2635,12 +2802,12 @@ async function boot(){
 
   /* Lo secundario no bloquea la consulta de fauna: si falla, su seccion queda
      vacia pero la guia sigue sirviendo bajo el agua. */
-  const [viaje, autor, isla, dives, quever] = await Promise.all([
+  const [viaje, autor, isla, dives, quever, bici] = await Promise.all([
     grab("viaje.json", {}), grab("autor.json", {}),
     grab("isla.json", {}), grab("inmersiones.json", {puntos:[]}),
-    grab("quever.json", {})
+    grab("quever.json", {}), grab("bici.json", {})
   ]);
-  VIAJE = viaje; AUTOR = autor; ISLA = isla; QUEVER = quever;
+  VIAJE = viaje; AUTOR = autor; ISLA = isla; QUEVER = quever; BICI = bici;
   DIVES_META = dives; DIVES = dives.puntos || [];
 
   buildControls();
@@ -2648,8 +2815,10 @@ async function boot(){
   renderCredits();
   renderViaje();
   renderQuever();
+  renderBici();
   renderAutor();
   renderDives(diveActive);
+  renderDraftNotice();
   renderStats();
   render();
   offlineStatus();

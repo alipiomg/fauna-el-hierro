@@ -83,7 +83,9 @@ bytes += heroOut.bytes;
 console.log(`ficheros de imagen: ${Object.keys(photos).length + 1} · ${(bytes / 1048576).toFixed(2)} MB`);
 
 writeFileSync(join(OUT, "data", "photos.json"), JSON.stringify(photos, null, 1) + "\n", "utf8");
-writeFileSync(join(OUT, "data", "species.json"), JSON.stringify(SPECIES, null, 1) + "\n", "utf8");
+/* Envuelto en un objeto porque Sveltia mapea cada fichero a un formulario y no
+   admite un array en la raiz. La guia acepta las dos formas al cargar. */
+writeFileSync(join(OUT, "data", "species.json"), JSON.stringify({ especies: SPECIES }, null, 1) + "\n", "utf8");
 
 /* ── 3. Report the shape of the data so the content pass knows the gaps ─ */
 

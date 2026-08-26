@@ -32,13 +32,16 @@ const SENSIBLES = new Set([
   117, 118, 119, 120  // cetáceos
 ]);
 
-const species = JSON.parse(readFileSync(join(PUB, "data", "species.json"), "utf8"));
+/* El fichero es {especies:[...]} para que Sveltia lo mapee a un formulario;
+   se acepta el array suelto por compatibilidad con volcados antiguos. */
+const rawSpecies = JSON.parse(readFileSync(join(PUB, "data", "species.json"), "utf8"));
+const species = Array.isArray(rawSpecies) ? rawSpecies : rawSpecies.especies;
 let flagged = 0;
 for (const sp of species) {
   const marcar = SENSIBLES.has(sp.i) || sp.loc !== "si";
   if (marcar) { sp.rp = true; flagged++; } else { delete sp.rp; }
 }
-writeFileSync(join(PUB, "data", "species.json"), JSON.stringify(species, null, 1) + "\n", "utf8");
+writeFileSync(join(PUB, "data", "species.json"), JSON.stringify({ especies: species }, null, 1) + "\n", "utf8");
 console.log(`marcadas para REDPROMAR: ${flagged}/${species.length}`);
 
 /* ── 2. Marca ─────────────────────────────────────────────────────────── */

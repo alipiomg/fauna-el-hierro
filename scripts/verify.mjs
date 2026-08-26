@@ -57,10 +57,11 @@ await page.waitForFunction(() => document.querySelectorAll("#grid .card").length
    same JSON the page reads instead of poking at internals. */
 const facts = await page.evaluate(async () => {
   const j = (f) => fetch("data/" + f).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-  const [species, photos, dives, isla] = await Promise.all(
-    ["species.json", "photos.json", "inmersiones.json", "isla.json"].map(j)
+  const [species, photos, dives, isla, bici] = await Promise.all(
+    ["species.json", "photos.json", "inmersiones.json", "isla.json", "bici.json"].map(j)
   );
-  const s = species || [];
+  /* species.json es {especies:[...]} desde que hay CMS; se acepta el array suelto. */
+  const s = Array.isArray(species) ? species : ((species || {}).especies || []);
   const n = (k) => s.filter((x) => x[k]).length;
   return {
     title: document.title,
@@ -71,6 +72,15 @@ const facts = await page.evaluate(async () => {
     logoHeader: !!document.querySelector(".topbar .brand-mark svg use"),
     logoFooter: !!document.querySelector(".foot .foot-mark use"),
     filled: { food: n("food"), repro: n("repro"), def: n("def"), eco: n("eco"), risk: n("risk"), rp: n("rp") },
+    validadas: n("validado"),
+    badgeOk: document.querySelectorAll("#grid .plate-ok").length,
+    chipsValid: [...document.querySelectorAll("#stateRow .chip")].some(c => c.dataset.record === "ok"),
+    aviso: (document.querySelector("#draftNotice") || {}).textContent || "",
+    rutas: document.querySelectorAll("#rutaList .ruta").length,
+    trucos: document.querySelectorAll("#trucoList .truco").length,
+    biciAltitud: ((document.querySelector("#biciAltitud") || {}).textContent || "").trim().length > 0,
+    rutasSinMedir: document.querySelectorAll("#rutaList .pend").length,
+    biciRutas: ((bici || {}).rutas || []).length,
     travelRows: document.querySelectorAll("#travelList .travel-row").length,
     plans: document.querySelectorAll("#planList .plan").length,
     spots: document.querySelectorAll("#spotList .spot").length,
@@ -180,6 +190,9 @@ console.log(`secciones  ${facts.sections.join(" ")}`);
 console.log(`logotipo   cabecera ${facts.logoHeader ? "sí" : "NO"} · pie ${facts.logoFooter ? "sí" : "NO"}`);
 console.log(`viaje      ${facts.travelRows} conexiones · autor ${facts.author ? "sí" : "NO"}`);
 console.log(`qué ver    ${facts.plans} recorridos · ${facts.spots + facts.feature} imprescindibles · ${facts.legends} leyendas`);
+console.log(`bici       ${facts.rutas}/${facts.biciRutas} rutas · ${facts.trucos} trucos · ${facts.rutasSinMedir} con desnivel por medir · aviso ${facts.biciAltitud ? "sí" : "NO"}`);
+console.log(`validación ${facts.validadas}/${facts.species} validadas · filtro ${facts.chipsValid ? "sí" : "NO"} · distintivos en pantalla ${facts.badgeOk}`);
+console.log(`  aviso    ${facts.aviso.slice(0, 92)}…`);
 console.log(`           aviso de altitud ${facts.altitud ? "sí" : "NO"} · Pescarestinga ${facts.pescarestinga ? "sí" : "NO"}`);
 console.log(`inmersión  ${facts.diveItems}/${facts.dives} fichas · ${facts.divePins} pines · costa ${facts.coast ? "real" : "NO"}`);
 console.log(`REDPROMAR  ${facts.filled.rp} especies marcadas`);

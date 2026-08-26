@@ -9,7 +9,7 @@
  *
  * Al cambiar VERSION se descarta la caché anterior entera.
  */
-const VERSION = "hierro-v2";
+const VERSION = "hierro-v3";
 const SHELL = VERSION + "-shell";
 const FOTOS = VERSION + "-fotos";
 const MAX_FOTOS = 140;
@@ -28,6 +28,7 @@ const PRECACHE = [
   "data/isla.json",
   "data/inmersiones.json",
   "data/quever.json",
+  "data/bici.json",
   "fotos/hero.webp"
 ];
 
@@ -95,6 +96,11 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
+
+  /* El panel de edición se queda fuera: son 2 MB que no sirven de nada bajo el
+     agua, y servir index.html como respaldo de /admin/ sólo despista. Editar
+     exige conexión de todos modos, porque acaba en un commit. */
+  if (url.pathname.startsWith("/admin")) return;
 
   /* Fotografías: cache primero. Una foto no cambia; si está, se sirve. */
   if (url.pathname.includes("/fotos/")) {
