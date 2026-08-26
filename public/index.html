@@ -721,6 +721,57 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
   .travel-go{grid-column:2;justify-self:start}
   .moves{grid-template-columns:1fr}
 }
+
+/* ── Qué ver: recorridos e imprescindibles ──────────────────── */
+.subhead{margin:30px 0 12px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:12px}
+.plan{
+  display:flex;flex-direction:column;gap:8px;align-items:flex-start;
+  padding:16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--shelf);
+}
+.plan-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;width:100%}
+.plan-when{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--calm-dim)}
+.plan-dur{font-size:12.5px;color:var(--foam)}
+.plan h4{font-family:var(--serif);font-size:16.5px}
+.plan p{font-size:13.5px;color:var(--calm);line-height:1.5}
+.plan-alt{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid;
+}
+.plan-alt[data-alt="mar"]{color:var(--turquoise);border-color:rgba(47,212,192,.4);background:rgba(47,212,192,.08)}
+.plan-alt[data-alt="cumbre"]{color:var(--lumen);border-color:rgba(255,209,102,.4);background:rgba(255,209,102,.08)}
+.plan-stops{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.plan-stops span{
+  font-size:12px;color:var(--calm);padding:3px 9px;
+  border:1px solid var(--line);border-radius:999px;background:var(--basalt);
+}
+
+.spots{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:12px}
+.spot{
+  display:flex;flex-direction:column;gap:6px;
+  padding:16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--basalt);
+}
+.spot--star{border-color:var(--line-hi);background:var(--basalt-hi)}
+.spot-zone{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--calm-dim)}
+.spot h4{font-family:var(--serif);font-size:17px}
+.spot p{font-size:13.5px;color:var(--calm);line-height:1.5}
+.spot b{margin-top:2px;font-size:12.5px;color:var(--foam);font-variant-numeric:tabular-nums}
+
+.feature{
+  padding:24px;border:1px solid var(--line-hi);border-radius:var(--r-lg);
+  background:var(--basalt-hi);margin-bottom:12px;
+}
+.feature h4{font-family:var(--serif);font-size:26px;margin:2px 0 8px}
+.feature-lede{font-size:15.5px;color:var(--foam);line-height:1.62;max-width:var(--measure)}
+.feature b{display:inline-block;margin-top:12px;font-size:12.5px;color:var(--lumen);font-variant-numeric:tabular-nums}
+.legends{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:12px;margin-top:18px}
+.legend{padding:14px 16px;border-left:3px solid var(--lumen);border-radius:0 var(--r-sm) var(--r-sm) 0;background:rgba(255,209,102,.055)}
+.legend h5{font-family:var(--serif);font-size:15px;color:var(--lumen);margin:0 0 6px}
+.legend p{font-size:13.5px;color:var(--calm);line-height:1.55}
+@media (max-width:560px){
+  .feature{padding:18px}
+  .feature h4{font-size:22px}
+}
 </style>
 </head>
 <body>
@@ -789,7 +840,8 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     <a href="#bitacora" data-close-drawer>Mi bitácora</a>
     <a href="#viaje" data-close-drawer>Cómo llegar y moverse</a>
     <a href="#inmersiones" data-close-drawer>Puntos de inmersión</a>
-    <a href="#isla" data-close-drawer>Guía de la isla</a>
+    <a href="#quever" data-close-drawer>Qué ver en la isla</a>
+    <a href="#isla" data-close-drawer>Más, por categorías</a>
     <a href="#restinga" data-close-drawer>La Restinga y el Mar de las Calmas</a>
     <a href="#autor" data-close-drawer>Quién firma esta guía</a>
     <a href="#practico" data-close-drawer>Servicios y emergencias</a>
@@ -812,7 +864,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     </p>
     <div class="hero-actions">
       <a class="btn btn--primary" href="#fauna">Consultar la fauna</a>
-      <a class="btn" href="#viaje">Cómo llegar</a>
+      <a class="btn" href="#quever">Qué ver en la isla</a>
       <a class="btn btn--ghost" href="#autor">Bucear con Agustín</a>
     </div>
     <p class="tiny hero-credit">Mar de las Calmas · foto de Josepgras · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Mardelascalmas(1).jpg" target="_blank" rel="noopener">Wikimedia Commons ↗</a></p>
@@ -950,11 +1002,28 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     </div>
   </section>
 
+  <!-- ═══ Qué ver ═════════════════════════════════════════════ -->
+  <section class="section" id="quever">
+    <div class="section-head">
+      <p class="eyebrow">El Hierro fuera del agua</p>
+      <h2>Qué ver, y cómo encajarlo con el buceo</h2>
+      <p id="queverAviso"></p>
+    </div>
+    <div class="note note--turq" id="queverAltitud"></div>
+
+    <h3 class="eyebrow subhead">Recorridos</h3>
+    <div class="plans" id="planList"></div>
+
+    <h3 class="eyebrow subhead">Imprescindibles</h3>
+    <div id="spotFeature"></div>
+    <div class="spots" id="spotList"></div>
+  </section>
+
   <!-- ═══ Guía de la isla ═════════════════════════════════════ -->
   <section class="section" id="isla">
     <div class="section-head">
-      <p class="eyebrow">El Hierro fuera del agua</p>
-      <h2>Guía de la isla</h2>
+      <p class="eyebrow">El resto del catálogo</p>
+      <h2>Más, por categorías</h2>
       <p>
         Las diez categorías oficiales de Turismo de El Hierro, cada una enlazada a su página fuente para que
         consultes horarios, accesos y fotografías actualizadas antes de salir.
@@ -1084,6 +1153,13 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
           <a href="tel:+34922557130">El Refugio</a>
           <a href="tel:+34922557102">Casa Juan</a>
           <a href="tel:+34822096130">Restingolita</a>
+        </div>
+      </article>
+      <article class="info">
+        <h3>Pescado directo del barco</h3>
+        <p>Sociedad Cooperativa Pescarestinga, en el muelle. Venta directa de los pescadores de La Restinga: lo que ha entrado ese día y sin intermediario. Lo que hay y a qué hora depende de la marea y de cómo se haya dado la jornada, así que pregunta allí mismo.</p>
+        <div class="info-links">
+          <a href="https://www.google.com/maps/place/SOCIEDAD+COOPERATIVA+PESCARESTINGA/@27.6400269,-17.9802445,168m/data=!3m1!1e3!4m6!3m5!1s0xc6b57839bf341c7:0x63edcd313807a8d5!8m2!3d27.6396451!4d-17.9792475!16s%2Fg%2F11fd4wh8yq" target="_blank" rel="noopener">Ver en el mapa ↗</a>
         </div>
       </article>
       <article class="info">
@@ -2126,6 +2202,72 @@ function renderViaje(){
     + '<p class="tiny" style="margin-top:14px">'+esc(d.declaracion||"")+'</p>';
 }
 
+/* ═══ Qué ver ═════════════════════════════════════════════════ */
+
+function spotLinks(s){
+  const a = [];
+  if(s.url)  a.push('<a href="'+esc(s.url)+'" target="_blank" rel="noopener">Ficha oficial ↗</a>');
+  if(s.maps) a.push('<a href="'+esc(s.maps)+'" target="_blank" rel="noopener">Cómo llegar ↗</a>');
+  return a.length ? '<div class="info-links" style="margin-top:8px">' + a.join("") + '</div>' : "";
+}
+
+function renderQuever(){
+  const aviso = $("#queverAviso");
+  if(aviso) aviso.textContent = QUEVER.aviso || "";
+
+  /* La altitud tras bucear no es un adorno: decide qué recorrido cabe hoy. */
+  const alt = $("#queverAltitud");
+  if(alt){
+    alt.innerHTML = QUEVER.altitud
+      ? '<span aria-hidden="true">▲</span><span><strong>Subir a la cumbre después de bucear.</strong> '
+        + esc(QUEVER.altitud) + '</span>'
+      : "";
+    alt.style.display = QUEVER.altitud ? "" : "none";
+  }
+
+  const plans = $("#planList");
+  if(plans) plans.innerHTML = (QUEVER.recorridos||[]).map(r=>{
+    const mar = r.altitud === "nivel del mar";
+    return '<article class="plan">'
+    +   '<div class="plan-top"><span class="plan-when">' + esc(r.cuando) + '</span>'
+    +     '<span class="plan-dur num">' + esc(r.dur) + '</span></div>'
+    +   '<h4>' + esc(r.n) + '</h4>'
+    +   '<span class="plan-alt" data-alt="' + (mar ? "mar" : "cumbre") + '">'
+    +     (mar ? "≈ 0 m" : "▲ cumbre") + ' · ' + esc(r.altitud) + '</span>'
+    +   '<p>' + esc(r.d) + '</p>'
+    +   '<div class="plan-stops">'
+    +     (r.paradas||[]).map(p=>'<span>' + esc(p) + '</span>').join("")
+    +   '</div>'
+    + '</article>';
+  }).join("");
+
+  const spots = QUEVER.imprescindibles || [];
+
+  /* Lo que trae leyenda se cuenta entero; el resto va en rejilla. */
+  const feat = $("#spotFeature");
+  if(feat) feat.innerHTML = spots.filter(s=>s.leyendas && s.leyendas.length).map(s=>
+      '<article class="feature">'
+    +   '<p class="spot-zone">' + esc(s.zona) + '</p>'
+    +   '<h4>' + esc(s.n) + '</h4>'
+    +   '<p class="feature-lede">' + esc(s.d) + '</p>'
+    +   '<div class="legends">'
+    +     s.leyendas.map(l=>'<div class="legend"><h5>' + esc(l.t) + '</h5><p>' + esc(l.d) + '</p></div>').join("")
+    +   '</div>'
+    +   (s.dato ? '<b>' + esc(s.dato) + '</b>' : '')
+    +   spotLinks(s)
+    + '</article>').join("");
+
+  const list = $("#spotList");
+  if(list) list.innerHTML = spots.filter(s=>!(s.leyendas && s.leyendas.length)).map(s=>
+      '<article class="spot' + (s.destacado ? " spot--star" : "") + '">'
+    +   '<p class="spot-zone">' + esc(s.zona) + '</p>'
+    +   '<h4>' + esc(s.n) + '</h4>'
+    +   '<p>' + esc(s.d) + '</p>'
+    +   (s.dato ? '<b>' + esc(s.dato) + '</b>' : '')
+    +   spotLinks(s)
+    + '</article>').join("");
+}
+
 /* ═══ Autor ═══════════════════════════════════════════════════ */
 
 function renderAutor(){
@@ -2447,7 +2589,7 @@ async function downloadOffline(){
 
 const photoSrc = ph => "fotos/" + ph.f;
 
-let VIAJE = {}, AUTOR = {}, ISLA = {}, DIVES = [], DIVES_META = {};
+let VIAJE = {}, AUTOR = {}, ISLA = {}, DIVES = [], DIVES_META = {}, QUEVER = {};
 let diveActive = -1;
 
 document.addEventListener("click", event=>{
@@ -2493,17 +2635,19 @@ async function boot(){
 
   /* Lo secundario no bloquea la consulta de fauna: si falla, su seccion queda
      vacia pero la guia sigue sirviendo bajo el agua. */
-  const [viaje, autor, isla, dives] = await Promise.all([
+  const [viaje, autor, isla, dives, quever] = await Promise.all([
     grab("viaje.json", {}), grab("autor.json", {}),
-    grab("isla.json", {}), grab("inmersiones.json", {puntos:[]})
+    grab("isla.json", {}), grab("inmersiones.json", {puntos:[]}),
+    grab("quever.json", {})
   ]);
-  VIAJE = viaje; AUTOR = autor; ISLA = isla;
+  VIAJE = viaje; AUTOR = autor; ISLA = isla; QUEVER = quever;
   DIVES_META = dives; DIVES = dives.puntos || [];
 
   buildControls();
   renderIsland();
   renderCredits();
   renderViaje();
+  renderQuever();
   renderAutor();
   renderDives(diveActive);
   renderStats();

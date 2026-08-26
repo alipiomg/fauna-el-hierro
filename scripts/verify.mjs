@@ -66,6 +66,13 @@ const facts = await page.evaluate(async () => {
     logoFooter: !!document.querySelector(".foot .foot-mark use"),
     filled: { food: n("food"), repro: n("repro"), def: n("def"), eco: n("eco"), risk: n("risk"), rp: n("rp") },
     travelRows: document.querySelectorAll("#travelList .travel-row").length,
+    plans: document.querySelectorAll("#planList .plan").length,
+    spots: document.querySelectorAll("#spotList .spot").length,
+    feature: document.querySelectorAll("#spotFeature .feature").length,
+    legends: document.querySelectorAll("#spotFeature .legend").length,
+    altitud: (document.querySelector("#queverAltitud") || {}).textContent.trim().length > 0,
+    pescarestinga: [...document.querySelectorAll("#practico a")]
+      .some((x) => /PESCARESTINGA/i.test(x.href)),
     author: !!document.querySelector("#authorCard .author-actions a"),
     divePins: document.querySelectorAll("#diveMap .dive-pin").length,
     diveItems: document.querySelectorAll("#diveList .dive-item").length,
@@ -166,6 +173,8 @@ console.log(`campos     food ${facts.filled.food} · repro ${facts.filled.repro}
 console.log(`secciones  ${facts.sections.join(" ")}`);
 console.log(`logotipo   cabecera ${facts.logoHeader ? "sí" : "NO"} · pie ${facts.logoFooter ? "sí" : "NO"}`);
 console.log(`viaje      ${facts.travelRows} conexiones · autor ${facts.author ? "sí" : "NO"}`);
+console.log(`qué ver    ${facts.plans} recorridos · ${facts.spots + facts.feature} imprescindibles · ${facts.legends} leyendas`);
+console.log(`           aviso de altitud ${facts.altitud ? "sí" : "NO"} · Pescarestinga ${facts.pescarestinga ? "sí" : "NO"}`);
 console.log(`inmersión  ${facts.diveItems}/${facts.dives} fichas · ${facts.divePins} pines · costa ${facts.coast ? "real" : "NO"}`);
 console.log(`REDPROMAR  ${facts.filled.rp} especies marcadas`);
 if (sheet) {

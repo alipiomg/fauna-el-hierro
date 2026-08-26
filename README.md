@@ -35,6 +35,7 @@ lápiz, guardar. Son JSON: respeta las comillas y las comas.
 | `photos.json` | Autoría y licencia de cada fotografía |
 | `inmersiones.json` | Puntos de inmersión: profundidad, nivel, acceso, descripción |
 | `viaje.json` | Cómo llegar y moverse: operadores, duraciones, alojamiento |
+| `quever.json` | Imprescindibles de la isla, con sus leyendas, y los recorridos por días |
 | `autor.json` | Biografía, canales de contacto y llamada a la acción |
 | `isla.json` | Costa y límites del mapa. **No lo toques**: se genera con un script |
 
@@ -47,6 +48,24 @@ En `autor.json`, dentro de `contacto`:
 ```
 
 El que lleve `"primario": true` es el que aparece como botón grande.
+
+### Añadir un lugar imprescindible o un recorrido
+
+En `quever.json`. Un lugar va en `imprescindibles`:
+
+```json
+{ "n": "Nombre", "zona": "Municipio · comarca", "d": "Por qué merece la pena.",
+  "dato": "Cota, tiempo o aviso corto", "url": "https://elhierro.travel/…",
+  "maps": "https://www.google.com/maps/search/?api=1&query=…" }
+```
+
+`"destacado": true` le pone borde de acento. Si le añades un array `leyendas` con
+objetos `{ "t": "...", "d": "..." }`, el lugar sube a ficha grande arriba del todo,
+como el Garoé.
+
+Un recorrido va en `recorridos`, y su `altitud` sólo admite dos valores:
+`"nivel del mar"` o `"sube a la cumbre"`. Ese campo es el que pinta el distintivo
+que avisa de si el plan se puede hacer el mismo día que se bucea.
 
 ### Corregir el texto de una especie
 

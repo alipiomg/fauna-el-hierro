@@ -1,0 +1,196 @@
+{
+ "aviso": "Lo imprescindible de El Hierro fuera del agua, con recorridos pensados para encajar con los días de buceo. Distancias y duraciones son aproximadas y de coche; horarios, accesos y precios se consultan siempre en la ficha oficial, porque cambian.",
+
+ "altitud": "En El Hierro casi todo lo bonito está arriba: cruzar de La Restinga a El Golfo o al Garoé obliga a subir por encima de los 1.000 m. Después de bucear eso es exposición a altitud, y el intervalo que hay que esperar lo marcan tu ordenador, tus tablas y el briefing de tu centro, no esta guía. Los recorridos de abajo dicen cuáles suben y cuáles se quedan a nivel del mar.",
+
+ "imprescindibles": [
+  {
+   "id": "garoe",
+   "n": "Árbol Garoé",
+   "zona": "Valverde · San Andrés",
+   "destacado": true,
+   "d": "El árbol que dio de beber a una isla sin ríos. Un til (Ocotea foetens) plantado en el paso por donde entra el alisio cargado de humedad: la niebla condensa en las hojas y gotea, y los bimbaches recogían esa agua en albercas excavadas bajo las raíces. No es magia, es lluvia horizontal, y sigue funcionando. Es la visita que explica por qué hubo gente en El Hierro antes de que hubiera pozos.",
+   "leyendas": [
+    {
+     "t": "La traición de Agarfa",
+     "d": "Cuenta la tradición que, durante la conquista castellana del siglo XV, los bimbaches escondieron el árbol para que los invasores no encontrasen agua y acabaran marchándose. Una joven llamada Agarfa se enamoró de un soldado y reveló el secreto. Con el agua asegurada, la conquista se completó."
+    },
+    {
+     "t": "El árbol que se llevó el viento",
+     "d": "El ejemplar original fue arrancado por un huracán hacia 1610. La isla se quedó sin su árbol y con la historia. En 1949 se plantó un til nuevo en el mismo lugar, sobre las mismas albercas, y es el que se visita hoy."
+    }
+   ],
+   "dato": "Cumbre, por encima de 1.000 m · ≈ 20 min desde Valverde",
+   "url": "https://elhierro.travel/museos-y-visitas-de-interes/el-hierro/arbol-garoe/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=%C3%81rbol%20Garo%C3%A9%20El%20Hierro"
+  },
+  {
+   "id": "guinea",
+   "n": "Ecomuseo de Guinea y el Lagartario",
+   "zona": "Frontera · El Golfo",
+   "destacado": true,
+   "d": "Poblado con casas levantadas sobre tubos volcánicos, habitadas sin interrupción desde antes de la conquista hasta el siglo XX, y al lado el centro de recuperación del lagarto gigante de El Hierro (Gallotia simonyi), que se dio por extinguido hasta que reapareció en los riscos de Tibataje. Se visita con guía. Es el equivalente en tierra de lo que hace la Reserva Marina bajo el agua.",
+   "dato": "Frontera · visita guiada, consulta turno",
+   "url": "https://elhierro.travel/museos-y-visitas-de-interes/el-hierro/ecomuseo-guinea/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Ecomuseo%20de%20Guinea%20El%20Hierro"
+  },
+  {
+   "id": "pena",
+   "n": "Mirador de la Peña",
+   "zona": "Frontera · El Golfo",
+   "destacado": true,
+   "d": "El mirador de César Manrique sobre el valle de El Golfo: mil metros de pared, el arco entero del desprendimiento que se llevó media isla al mar, y los Roques de Salmor al fondo. Tiene restaurante. Es el sitio donde se entiende de un vistazo la forma de El Hierro.",
+   "dato": "≈ 1.000 m sobre el valle · con restaurante",
+   "url": "https://elhierro.travel/miradores/el-hierro/mirador-de-la-pena/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Mirador%20de%20la%20Pe%C3%B1a%20El%20Hierro"
+  },
+  {
+   "id": "joapira",
+   "n": "Campanario de Joapira",
+   "zona": "Frontera · El Golfo",
+   "d": "El campanario de la iglesia de la Candelaria no está en la iglesia: está a más de cincuenta metros, encaramado en el cono del volcán Joapira. Se sube por una escalera y desde arriba se ve el valle entero. No hay otra igual en Canarias.",
+   "dato": "Frontera pueblo · se sube andando",
+   "url": "https://elhierro.travel/museos-y-visitas-de-interes/el-hierro/campanario-de-joapira/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Campanario%20de%20Joapira%20Frontera%20El%20Hierro"
+  },
+  {
+   "id": "charco-azul",
+   "n": "Charco Azul",
+   "zona": "Frontera · El Golfo",
+   "d": "Piscina natural encajada entre coladas, con un arco de lava sobre el agua. Acceso por escaleras. El baño depende por completo del estado del mar en la costa norte, que es la expuesta al alisio.",
+   "dato": "Costa norte · consulta mar antes de ir",
+   "url": "https://elhierro.travel/piscinas-naturales/el-hierro/charco-azul/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Charco%20Azul%20El%20Hierro"
+  },
+  {
+   "id": "maceta",
+   "n": "La Maceta",
+   "zona": "Frontera · El Golfo",
+   "d": "Tres piscinas naturales con acceso fácil y zona de solana, la opción más cómoda de El Golfo para bañarse con niños. Mismo aviso: costa norte, y con marejada se cierra.",
+   "dato": "Costa norte · acceso fácil",
+   "url": "https://elhierro.travel/piscinas-naturales/el-hierro/la-maceta/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=La%20Maceta%20El%20Hierro"
+  },
+  {
+   "id": "pozo-salud",
+   "n": "Pozo de la Salud",
+   "zona": "Frontera · Sabinosa",
+   "d": "Manantial de aguas mineromedicinales al final de El Golfo, con balneario. La fama del agua es antigua y la razón por la que Sabinosa aparece en los libros de viajes del XIX.",
+   "dato": "Sabinosa · balneario",
+   "url": "https://elhierro.travel/museos-y-visitas-de-interes/el-hierro/pozo-de-la-salud/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Pozo%20de%20la%20Salud%20Sabinosa%20El%20Hierro"
+  },
+  {
+   "id": "sabinar",
+   "n": "El Sabinar",
+   "zona": "Frontera · La Dehesa",
+   "destacado": true,
+   "d": "Sabinas centenarias dobladas hasta el suelo por el alisio, algunas en ángulo recto. Es la imagen que todo el mundo tiene de El Hierro antes de venir, y está al final de una pista en el oeste, en La Dehesa. Súbelo con tiempo: se llega tarde y con viento.",
+   "dato": "La Dehesa · pista, ≈ 40 min desde Frontera",
+   "url": "https://elhierro.travel/lugares-con-encanto-el-hierro/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=El%20Sabinar%20El%20Hierro"
+  },
+  {
+   "id": "reyes",
+   "n": "Ermita de la Virgen de los Reyes",
+   "zona": "Frontera · La Dehesa",
+   "d": "La ermita de la patrona de la isla, sola en mitad de La Dehesa. Cada cuatro años sale de aquí la Bajada de la Virgen y la imagen cruza El Hierro de punta a punta a hombros, con las danzas de cada pueblo relevándose por el camino. Es la fiesta que ordena el calendario de la isla.",
+   "dato": "La Dehesa · Bajada cada cuatro años",
+   "url": "https://elhierro.travel/museos-y-visitas-de-interes/el-hierro/ermita-de-nuestra-senora-de-los-reyes/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Ermita%20Virgen%20de%20los%20Reyes%20El%20Hierro"
+  },
+  {
+   "id": "orchilla",
+   "n": "Faro de Orchilla",
+   "zona": "Frontera · punta suroeste",
+   "d": "Durante siglos aquí estuvo el meridiano cero: el borde del mundo conocido en los mapas antes de que Greenwich se llevara la referencia. Malpaís negro hasta el agua y un faro blanco. Carretera larga y lenta.",
+   "dato": "Punta suroeste · ≈ 1 h desde Frontera",
+   "url": "https://elhierro.travel/miradores/el-hierro/mirador-faro-de-orchilla/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Faro%20de%20Orchilla%20El%20Hierro"
+  },
+  {
+   "id": "jinama",
+   "n": "Mirador de Jinama",
+   "zona": "Frontera · cumbre",
+   "d": "Balcón sobre El Golfo desde el filo de la cumbre, con la ermita al lado y el mar de nubes entrando por debajo cuando el alisio aprieta. De aquí baja el camino histórico por el que los herreños subían y bajaban el ganado.",
+   "dato": "Cumbre · ≈ 1.200 m",
+   "url": "https://elhierro.travel/miradores/el-hierro/mirador-de-jinama/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Mirador%20de%20Jinama%20El%20Hierro"
+  },
+  {
+   "id": "bascos",
+   "n": "Mirador de Bascos",
+   "zona": "Frontera · noroeste",
+   "d": "El sitio de la puesta de sol sobre El Golfo y los Roques de Salmor. Va justo de camino si vuelves de La Dehesa al final del día.",
+   "dato": "Noroeste · puesta de sol",
+   "url": "https://elhierro.travel/miradores/el-hierro/mirador-de-bascos/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Mirador%20de%20Bascos%20El%20Hierro"
+  },
+  {
+   "id": "calcosas",
+   "n": "Pozo de las Calcosas",
+   "zona": "Valverde · costa norte",
+   "d": "Caserío de casas de piedra seca con techo de paja al borde del acantilado, con su charco abajo. Se baja andando. Es de los pocos sitios donde la arquitectura tradicional herreña sigue en pie y a la vista.",
+   "dato": "Costa norte · se baja a pie",
+   "url": "https://elhierro.travel/piscinas-naturales/el-hierro/pozo-de-las-calcosas/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Pozo%20de%20las%20Calcosas%20El%20Hierro"
+  },
+  {
+   "id": "tacoron",
+   "n": "Tacorón",
+   "zona": "El Pinar · sur",
+   "d": "Ensenada de lava al sur, aguas normalmente tranquilas por estar a resguardo del alisio, con aparcamiento y merenderos. A nivel del mar y a diez minutos de La Restinga: el plan de la tarde entre inmersiones.",
+   "dato": "Nivel del mar · ≈ 10 min de La Restinga",
+   "url": "https://elhierro.travel/piscinas-naturales/el-hierro/tacoron/",
+   "maps": "https://www.google.com/maps/search/?api=1&query=Tacor%C3%B3n%20El%20Hierro"
+  }
+ ],
+
+ "recorridos": [
+  {
+   "id": "desaturacion",
+   "n": "Tarde de desaturación",
+   "cuando": "El mismo día que buceas",
+   "dur": "≈ 3 h",
+   "altitud": "nivel del mar",
+   "d": "Todo a cota cero y a diez minutos del puerto, para no sumar altitud a un día de inmersiones. El intervalo que necesitas antes de subir a la cumbre lo marca tu centro.",
+   "paradas": ["Tacorón", "Compra en Pescarestinga", "Paseo del puerto de La Restinga", "Centro de Interpretación del Geoparque"]
+  },
+  {
+   "id": "golfo",
+   "n": "El Golfo y Frontera, día completo",
+   "cuando": "Día sin buceo",
+   "dur": "≈ 7 h",
+   "altitud": "sube a la cumbre",
+   "d": "El recorrido que hay que hacer sí o sí. Se entra al valle por arriba para verlo entero antes de bajar, y se termina de cara al oeste con la puesta de sol.",
+   "paradas": ["Mirador de la Peña", "Ecomuseo de Guinea y Lagartario", "Campanario de Joapira", "Charco Azul o La Maceta", "Pozo de la Salud", "Mirador de Bascos"]
+  },
+  {
+   "id": "garoe",
+   "n": "El Garoé y el norte",
+   "cuando": "Día sin buceo",
+   "dur": "≈ 5 h",
+   "altitud": "sube a la cumbre",
+   "d": "Media jornada de historia herreña: el árbol del agua, el caserío de piedra y paja de la costa norte y la vista de El Golfo desde La Peña.",
+   "paradas": ["Árbol Garoé", "Valverde y su casco", "Pozo de las Calcosas", "Mirador de la Peña"]
+  },
+  {
+   "id": "dehesa",
+   "n": "La Dehesa y el meridiano",
+   "cuando": "Día sin buceo",
+   "dur": "≈ 6 h",
+   "altitud": "sube a la cumbre",
+   "d": "El oeste vacío. Carretera larga, lenta y sin gasolinera: sal con el depósito lleno y agua. Es el día en que El Hierro parece otro planeta.",
+   "paradas": ["El Sabinar", "Ermita de la Virgen de los Reyes", "Faro de Orchilla", "Mirador de Bascos"]
+  },
+  {
+   "id": "vuelo",
+   "n": "Último día, antes del avión o del barco",
+   "cuando": "Día de salida",
+   "dur": "≈ 3 h",
+   "altitud": "nivel del mar",
+   "d": "Sin buceo y sin cumbre: volar o navegar después de una inmersión tiene su propio intervalo de espera, y la carretera al aeropuerto ya sube bastante. Plan de costa y de compra.",
+   "paradas": ["Tacorón", "Pescado en Pescarestinga", "Valverde de camino al aeropuerto"]
+  }
+ ]
+}

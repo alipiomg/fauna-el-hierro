@@ -9,7 +9,7 @@
  *
  * Al cambiar VERSION se descarta la caché anterior entera.
  */
-const VERSION = "hierro-v1";
+const VERSION = "hierro-v2";
 const SHELL = VERSION + "-shell";
 const FOTOS = VERSION + "-fotos";
 const MAX_FOTOS = 140;
@@ -27,6 +27,7 @@ const PRECACHE = [
   "data/autor.json",
   "data/isla.json",
   "data/inmersiones.json",
+  "data/quever.json",
   "fotos/hero.webp"
 ];
 
