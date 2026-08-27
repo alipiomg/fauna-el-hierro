@@ -1,45 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
 <rect width="200" height="200" rx="42" fill="#061418"/>
 <g transform="translate(0,26)">
+  <!-- Marca simplificada, derivada del logo de buceo de Agustín. La ilustración
+       completa (ciclista, tiburón, tortuga, pulpo, regulador) no sobrevive por
+       debajo de 64 px: aquí queda sólo lo que sí se lee a 16. El viewBox sigue
+       siendo 200x150 porque build-assets.mjs lo tiene cableado. -->
   <path id="mkLens" d="M40 55C51 49 77 48 88 55C94 59 95 69 92 79C88 92 77 99 64 99C50 99 40 90 37 76C34 65 35 58 40 55Z"/>
+  <clipPath id="mkLensL"><use href="#mkLens"/></clipPath>
   <clipPath id="mkLensR"><use href="#mkLens" transform="translate(200,0) scale(-1,1)"/></clipPath>
+
   <!-- Hebillas de la correa -->
-  <rect x="1" y="58" width="19" height="28" rx="7" fill="#122C3F"/>
-  <rect x="180" y="58" width="19" height="28" rx="7" fill="#122C3F"/>
-  <!-- Cuerpo -->
-  <path id="mkBody" d="M16 54C16 34 34 25 57 22C85 19 115 19 143 22C166 25 184 34 184 54C184 78 177 98 163 110C150 121 131 122 117 113C109 108 105 104 100 104C95 104 91 108 83 113C69 122 50 121 37 110C23 98 16 78 16 54Z" fill="#122C3F"/>
-  <clipPath id="mkTop"><use href="#mkBody"/></clipPath>
-  <g clip-path="url(#mkTop)"><rect x="0" y="0" width="100" height="46" fill="#1BA9A4"/></g>
-  <!-- Cristales: un solo trazado, espejado. Simetría garantizada. -->
-  <g fill="none" stroke="#FFF" stroke-width="13">
+  <rect x="1" y="58" width="19" height="28" rx="7" fill="#0d2129"/>
+  <rect x="180" y="58" width="19" height="28" rx="7" fill="#0d2129"/>
+
+  <!-- Cuerpo y faldón -->
+  <path id="mkBody" d="M16 54C16 34 34 25 57 22C85 19 115 19 143 22C166 25 184 34 184 54C184 78 177 98 163 110C150 121 131 122 117 113C109 108 105 104 100 104C95 104 91 108 83 113C69 122 50 121 37 110C23 98 16 78 16 54Z" fill="#0d2129"/>
+
+  <!-- Marco de silicona: el contorno claro es lo que sostiene la silueta sobre
+       cualquier fondo, incluido el negro. -->
+  <g fill="none" stroke="#1BA9A4" stroke-width="13">
     <use href="#mkLens"/><use href="#mkLens" transform="translate(200,0) scale(-1,1)"/>
   </g>
-  <use href="#mkLens" fill="#FFF" stroke="#1BA9A4" stroke-width="9"/>
-  <use href="#mkLens" transform="translate(200,0) scale(-1,1)" fill="#1BA9A4" stroke="#1BA9A4" stroke-width="9"/>
-  <!-- Izquierda: profundímetro -->
-  <g stroke="#122C3F" stroke-width="3.4" stroke-linecap="round">
-    <path d="M45 62l5 4M41 74h6M45 87l5-4M57 93l2-5"/>
-  </g>
-  <path d="M41 86l6-4" stroke="#F47B20" stroke-width="3.6" stroke-linecap="round"/>
-  <path d="M64 75L85 53c3-3 7 1 4 4L69 79Z" fill="#122C3F"/>
-  <path d="M67 74l14-1c3 0 3 5 0 5l-14-1Z" fill="#F47B20"/>
-  <circle cx="64" cy="76" r="6.5" fill="#FFF" stroke="#122C3F" stroke-width="3.6"/>
-  <!-- Derecha: la vida bajo el agua -->
-  <g clip-path="url(#mkLensR)">
-    <path d="M104 92c9 5 15-3 24 1s13 7 21 5 13-7 21-3v20h-66Z" fill="#122C3F"/>
-    <g fill="#FFF">
-      <path d="M115 80c6-6 18-7 26-2l8-6v16l-8-6c-8 5-20 4-26-2Z"/>
-      <path d="M138 60c5-5 15-5 21-1l7-5v13l-7-5c-6 4-16 3-21-2Z"/>
+
+  <!-- Cristal izquierdo: la tierra. Cristal derecho: el mar. Esa es la marca. -->
+  <use href="#mkLens" fill="#eaf6f7"/>
+  <use href="#mkLens" transform="translate(200,0) scale(-1,1)" fill="#2fd4c0"/>
+
+  <!-- Izquierda: rueda de bici, reducida a llanta, buje y cuatro radios -->
+  <g clip-path="url(#mkLensL)">
+    <circle cx="64" cy="75" r="19" fill="none" stroke="#0d2129" stroke-width="6"/>
+    <g stroke="#0d2129" stroke-width="3.4" stroke-linecap="round">
+      <path d="M64 60v30M49 75h30M53 64l22 22M75 64L53 86"/>
     </g>
-    <g fill="#122C3F"><circle cx="131" cy="78" r="1.8"/><circle cx="149" cy="58" r="1.6"/></g>
-    <g fill="#FFF" opacity=".9"><circle cx="118" cy="61" r="2.8"/><circle cx="112" cy="70" r="1.9"/></g>
+    <circle cx="64" cy="75" r="5.5" fill="#ffd166" stroke="#0d2129" stroke-width="3"/>
   </g>
-  <!-- Puente, nariz y acentos -->
-  <path d="M88 47c7-5 17-5 24 0-6 6-18 6-24 0Z" fill="#B4D923"/>
+
+  <!-- Derecha: un tiburón de perfil, que es lo único que aguanta a 16 px -->
+  <g clip-path="url(#mkLensR)">
+    <path d="M110 77C117 70 127 66 139 66L145 53C146 51 149 52 148 54L146 67C153 69 159 72 163 76L172 66C173 64 176 66 175 68L170 77L175 86C176 88 173 90 172 88L163 78C159 82 153 85 146 87L148 100C149 102 146 103 145 101L139 88C127 88 117 84 110 77Z" fill="#0d2129"/>
+    <circle cx="118" cy="74" r="2.2" fill="#2fd4c0"/>
+    <g fill="#eaf6f7" opacity=".85">
+      <circle cx="112" cy="58" r="3"/><circle cx="122" cy="52" r="2"/>
+    </g>
+  </g>
+
+  <!-- Monograma AF en la banda superior. A 16 px es sólo una marca de color,
+       pero de 48 en adelante se lee, y es lo que ata esta marca al logo grande. -->
+  <g fill="#eaf6f7">
+    <path d="M86 44l7-18h5l7 18h-5l-1.2-3.6h-6.6L91 44Zm7.6-7.4h4.2L95.8 31Z"/>
+    <path d="M108 44V26h12v4.2h-7.2v3.1h6.4v4.1h-6.4V44Z"/>
+  </g>
+
+  <!-- Puente y bolsillo nasal -->
+  <path d="M88 47c7-5 17-5 24 0-6 6-18 6-24 0Z" fill="#1BA9A4"/>
   <g clip-path="url(#mkTop)">
-    <path d="M93 70c2-7 12-7 14 0Z" fill="#F47B20"/>
-    <path d="M91 77h18c2 13 2 25 0 32-4 5-14 5-18 0-2-7-2-19 0-32Z" fill="#FFF"/>
-    <path d="M91 77h9v36c-4 0-7-1-9-4-2-7-2-19 0-32Z" fill="#1BA9A4"/>
+    <path d="M91 100h18c2 9 2 15 0 20-4 5-14 5-18 0-2-5-2-11 0-20Z" fill="#1BA9A4"/>
   </g>
+  <clipPath id="mkTop"><use href="#mkBody"/></clipPath>
 </g>
 </svg>
