@@ -283,7 +283,44 @@ collections:
         fields:
           - { name: nombre, label: Nombre, widget: string }
           - { name: rol, label: Rol, widget: string }
+          - name: credenciales
+            label: Especialidades
+            widget: list
+            field: { name: credencial, label: Especialidad, widget: string }
+            hint: 'Por ejemplo: Buceo Nocturno, Aire Enriquecido (Nitrox)…'
           - { name: bio, label: Biografía, widget: list, field: { name: parrafo, label: Párrafo, widget: text } }
+          - name: carta
+            label: Carta del autor
+            label_singular: Bloque
+            widget: list
+            summary: '{{fields.titulo}}'
+            collapsed: true
+            hint: 'El bloque largo debajo del avatar. Un título y sus párrafos.'
+            fields:
+              - { name: titulo, label: Título del bloque, widget: string }
+              - { name: parrafos, label: Párrafos, widget: list, field: { name: parrafo, label: Párrafo, widget: text } }
+          - { name: lema, label: 'Lema (cita destacada)', widget: text, required: false }
+          - name: valores
+            label: Palabras clave finales
+            widget: list
+            field: { name: valor, label: Palabra, widget: string }
+            required: false
+            hint: 'Se muestran como Conocer · Observar · Disfrutar · …'
+          - name: oquea
+            label: Recomendación de Oquea
+            widget: object
+            required: false
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - { name: texto, label: Texto, widget: text }
+              - { name: recomendacion, label: Frase de recomendación, widget: text }
+              - { name: app_url, label: Enlace de descarga (App Store), widget: string }
+              - { name: web_url, label: Enlace a la app web, widget: string, required: false }
+              - { name: nota, label: Nota de disponibilidad, widget: string, required: false }
+          - { name: payoff, label: 'Frase final (mayúsculas)', widget: text, required: false }
+          - { name: despedida, label: Despedida, widget: list, field: { name: parrafo, label: Párrafo, widget: text }, required: false }
+          - { name: firma, label: Firma bajo el nombre, widget: string, required: false }
+          - { name: invitacion, label: Línea de invitación final, widget: string, required: false }
           - { name: cta, label: Texto del botón principal, widget: string }
           - name: contacto
             label: Canales de contacto

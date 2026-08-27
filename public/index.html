@@ -169,6 +169,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 .hero h1 em{color:var(--turquoise);font-style:normal}
 .hero-lede{max-width:56ch;font-size:clamp(16px,2vw,18.5px);color:#cfe6ea}
+.hero-quote{
+  max-width:52ch;margin:4px 0 22px;padding-left:16px;border-left:2px solid var(--turquoise);
+  font-family:var(--serif);font-style:italic;font-size:15.5px;line-height:1.5;color:var(--foam);
+}
+.hero-quote a{color:var(--turquoise);font-style:normal;white-space:nowrap}
 .hero-actions{display:flex;flex-wrap:wrap;gap:10px}
 
 /* ── Estructura de secciones ────────────────────────────────── */
@@ -702,6 +707,63 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
 .author p{color:var(--calm);max-width:60ch;line-height:1.6}
 .author p + p{margin-top:10px}
 .author-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.author-creds{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.author-creds span{
+  font-size:11.5px;font-weight:600;letter-spacing:.02em;color:var(--foam);
+  padding:4px 11px;border-radius:999px;border:1px solid var(--line-hi);background:var(--basalt-hi);
+}
+
+/* La carta del autor: lectura larga, no ficha de contacto. Se compone aparte
+   del bloque compacto de arriba y con más aire entre bloques. */
+.letter{max-width:var(--measure);margin-top:34px}
+.letter-block{margin-top:30px}
+.letter-block:first-child{margin-top:0}
+.letter-block h3{font-size:19px;margin-bottom:10px}
+.letter-block p{color:var(--calm);line-height:1.68;font-size:15px}
+.letter-block p + p{margin-top:12px}
+
+.letter-quote{
+  margin:34px 0;padding:22px 26px;border-left:3px solid var(--turquoise);
+  font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.5;
+  color:var(--foam);background:rgba(47,212,192,.055);border-radius:0 var(--r-md) var(--r-md) 0;
+}
+
+.oquea-box{
+  margin:30px 0;padding:24px 26px;border:1px solid var(--line-hi);border-radius:var(--r-lg);
+  background:linear-gradient(150deg,#123c47,#0a212b 68%);
+}
+.oquea-box-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.oquea-mark{font-size:26px;line-height:1}
+.oquea-box h3{font-size:19px}
+.oquea-box p{color:var(--calm);font-size:14.5px;line-height:1.6;max-width:60ch}
+.oquea-box p + p{margin-top:10px}
+.oquea-rec{color:var(--foam) !important}
+.oquea-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn--oquea{
+  background:var(--turquoise);border-color:var(--turquoise);color:#04181c;font-weight:700;
+}
+.btn--oquea:hover{background:var(--turquoise-dim);border-color:var(--turquoise-dim);text-decoration:none}
+.oquea-box .tiny{margin-top:12px;color:var(--calm-dim)}
+
+.letter-values{
+  margin-top:30px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--turquoise);
+}
+.letter-payoff{
+  margin-top:26px;font-family:var(--serif);font-size:clamp(21px,3vw,28px);line-height:1.35;
+  color:var(--foam);text-wrap:balance;
+}
+.letter-farewell{margin-top:26px}
+.letter-farewell p{color:var(--calm);line-height:1.68;font-size:15px}
+.letter-farewell p + p{margin-top:12px}
+
+.letter-sign{
+  margin-top:32px;padding-top:22px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;
+}
+.letter-sign strong{font-family:var(--serif);font-size:18px}
+.letter-sign span{font-size:13px;color:var(--calm-dim)}
+.letter-invite{color:var(--turquoise) !important;font-weight:600}
 
 /* ── Descarga para uso sin conexión ─────────────────────────── */
 .offline-box{
@@ -913,6 +975,10 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
       Guía de identificación de 120 especies del Mar de las Calmas, ordenadas por grupo taxonómico y
       por la profundidad a la que realmente te las encuentras. Marca lo que ves, anota cuántos ejemplares
       y llévate tu bitácora contigo.
+    </p>
+    <p class="hero-quote">
+      «No es que no haya vida. Es que todavía no sabemos dónde mirar.»
+      <a href="#autor">— Agustín Fragero, autor de esta guía ↓</a>
     </p>
     <div class="hero-actions">
       <a class="btn btn--primary" href="#fauna">Consultar la fauna</a>
@@ -1201,6 +1267,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
       <h2>Bucear con Agustín</h2>
     </div>
     <div class="author" id="authorCard"></div>
+    <div class="letter" id="authorLetter"></div>
   </section>
 
   <!-- ═══ Práctico ════════════════════════════════════════════ -->
@@ -2443,6 +2510,9 @@ function renderAutor(){
     + '<div>'
     +   '<h2>'+esc(AUTOR.nombre)+'</h2>'
     +   '<p class="role">'+esc(AUTOR.rol)+'</p>'
+    +   (AUTOR.credenciales && AUTOR.credenciales.length
+          ? '<div class="author-creds">'+AUTOR.credenciales.map(c=>'<span>'+esc(c)+'</span>').join("")+'</div>'
+          : '')
     +   (AUTOR.bio||[]).map(p=>'<p>'+esc(p)+'</p>').join("")
     +   '<div class="author-actions">'
     +     (primario ? '<a class="btn btn--primary" href="'+esc(primario.url)+'" target="_blank" rel="noopener">'
@@ -2451,6 +2521,53 @@ function renderAutor(){
             '<a class="btn" href="'+esc(c.url)+'" target="_blank" rel="noopener">'+esc(c.t)+' ↗</a>').join("")
     +     '<a class="btn btn--ghost" href="#inmersiones">Ver los puntos de inmersión</a>'
     +   '</div>'
+    + '</div>';
+
+  /* La carta larga va aparte del bloque compacto de arriba: es lectura, no
+     ficha de contacto, y se compone como tal. */
+  const letter = $("#authorLetter");
+  if(!letter) return;
+
+  const oq = AUTOR.oquea;
+  letter.innerHTML =
+      (AUTOR.carta||[]).map(b=>
+        '<section class="letter-block">'
+      +   '<h3>'+esc(b.titulo)+'</h3>'
+      +   (b.parrafos||[]).map(p=>'<p>'+esc(p)+'</p>').join("")
+      + '</section>').join("")
+
+    + (AUTOR.lema ? '<blockquote class="letter-quote">'+esc(AUTOR.lema)+'</blockquote>' : '')
+
+    + (oq && oq.app_url ? '<aside class="oquea-box">'
+      +   '<div class="oquea-box-head">'
+      +     '<span class="oquea-mark" aria-hidden="true">🤿</span>'
+      +     '<div><h3>'+esc(oq.titulo||"Registra tus inmersiones")+'</h3></div>'
+      +   '</div>'
+      +   (oq.texto ? '<p>'+esc(oq.texto)+'</p>' : '')
+      +   (oq.recomendacion ? '<p class="oquea-rec">'+esc(oq.recomendacion)+'</p>' : '')
+      +   '<div class="oquea-actions">'
+      +     '<a class="btn btn--oquea" href="'+esc(oq.app_url)+'" target="_blank" rel="noopener">'
+      +       'Descargar Oquea en el App Store ↗</a>'
+      +     (oq.web_url ? '<a class="btn btn--ghost" href="'+esc(oq.web_url)+'" target="_blank" rel="noopener">Abrir la app web ↗</a>' : '')
+      +   '</div>'
+      +   (oq.nota ? '<p class="tiny">'+esc(oq.nota)+'</p>' : '')
+      + '</aside>' : '')
+
+    + (AUTOR.valores && AUTOR.valores.length
+      ? '<p class="letter-values">'+AUTOR.valores.map(v=>esc(v)).join(' <span aria-hidden="true">·</span> ')+'</p>'
+      : '')
+
+    + (AUTOR.payoff ? '<p class="letter-payoff">'+esc(AUTOR.payoff).replace(/\n/g,"<br>")+'</p>' : '')
+
+    + (AUTOR.despedida && AUTOR.despedida.length
+      ? '<div class="letter-farewell">'+AUTOR.despedida.map(p=>'<p>'+esc(p)+'</p>').join("")+'</div>'
+      : '')
+
+    + '<div class="letter-sign">'
+    +   '<strong>'+esc(AUTOR.nombre)+'</strong>'
+    +   (AUTOR.firma ? '<span>'+esc([AUTOR.rol, AUTOR.firma].filter(Boolean).join(" · "))+'</span>' : '')
+    +   (primario ? '<a href="'+esc(primario.url)+'" target="_blank" rel="noopener">'+esc(primario.v||primario.t)+' ↗</a>' : '')
+    +   (AUTOR.invitacion ? '<span class="letter-invite">'+esc(AUTOR.invitacion)+' 🌊🤿</span>' : '')
     + '</div>';
 }
 

@@ -1,10 +1,69 @@
 {
  "nombre": "Agustín Fragero Blesa",
- "rol": "Dive Master · La Restinga, El Hierro",
- "bio": [
-  "Buceo en el Mar de las Calmas y trabajo como Dive Master en La Restinga, dentro de la Reserva Marina de Punta de La Restinga. Esta guía nace de lo que veo bajo el agua cada semana: las 120 especies que hay aquí son las que salen en las inmersiones de verdad, ordenadas por la profundidad a la que te las encuentras.",
-  "Si vienes a bucear a El Hierro y quieres que te guíe, escríbeme. Trabajo con grupos pequeños y adapto la inmersión al nivel real del grupo, no al que pone en la tarjeta."
+ "rol": "Dive Master",
+ "credenciales": [
+  "Buceo Nocturno",
+  "Buceo Profundo",
+  "Buceo en Barcos",
+  "Buceo de Rescate",
+  "Aire Enriquecido (Nitrox)"
  ],
+ "bio": [
+  "Buceo desde 2021 y, desde entonces, cada inmersión me ha enseñado que bajo la superficie hay muchísimo más de lo que imaginamos.",
+  "Durante 2026, además, he tenido la oportunidad de ampliar mi formación con estudios de Biología Marina a través del Método BIOMYC. Esta formación me ha permitido acercarme de una manera mucho más profunda a la enorme biodiversidad que existe bajo el agua y comprender mejor el papel fundamental que desempeña cada organismo dentro de los ecosistemas marinos.",
+  "Descubrir esta biodiversidad también me ha hecho ser todavía más consciente de la importancia de conocer, respetar, proteger y conservar nuestros océanos. Porque aquello que conocemos y aprendemos a valorar es mucho más fácil que queramos cuidarlo.",
+  "Y de ahí nace también esta guía."
+ ],
+ "carta": [
+  {
+   "titulo": "Una guía para aprender a mirar",
+   "parrafos": [
+    "Esta guía nace de una idea muy sencilla: conocer mejor lo que vemos nos permite disfrutar mucho más de nuestras inmersiones.",
+    "Cuando terminamos una inmersión muchas veces decimos: «Hoy no he visto gran cosa» o «solo he visto unos cuantos peces». Pero si aprendemos a mirar con otros ojos, descubrimos que el fondo marino está lleno de vida: pequeños crustáceos, moluscos, equinodermos, cnidarios, anélidos, esponjas y muchos otros organismos que pasan desapercibidos.",
+    "Y es que el océano no son solo peces, cetáceos y tortugas. Existe una enorme diversidad de filos y especies, especialmente entre los invertebrados, que convierte cada inmersión en una auténtica búsqueda del tesoro."
+   ]
+  },
+  {
+   "titulo": "La Restinga: nuestro punto de partida",
+   "parrafos": [
+    "Esta primera guía está dedicada a la fauna marina de La Restinga, en la isla de El Hierro, uno de los lugares que más me ha motivado a observar, identificar y aprender sobre la vida marina.",
+    "Pero este proyecto no termina aquí. La idea es que la guía vaya creciendo con cada viaje, incorporando nuevos destinos de buceo y nuevas especies de diferentes lugares del mundo.",
+    "Cada destino tendrá su propia fauna, sus especies características y sus pequeñas sorpresas. Porque dos inmersiones aparentemente similares pueden ser completamente diferentes cuando sabemos dónde y qué buscar."
+   ]
+  },
+  {
+   "titulo": "Aprende a mirar",
+   "parrafos": [
+    "El objetivo no es convertirnos en biólogos marinos, sino aprender a reconocer, comprender y valorar la biodiversidad que tenemos delante.",
+    "Una pequeña babosa de mar, un nudibranquio de apenas unos centímetros, una estrella escondida entre las rocas, una gamba perfectamente camuflada o una colonia de pequeños organismos pueden convertirse en uno de los mejores descubrimientos de una inmersión."
+   ]
+  },
+  {
+   "titulo": "Conocer para conservar",
+   "parrafos": [
+    "El mar nos ofrece un mundo extraordinario que muchas veces permanece oculto a nuestros ojos.",
+    "Esta guía pretende ser una pequeña herramienta para descubrir esa biodiversidad, aprender a identificarla y, sobre todo, comprender su importancia. Porque cada especie forma parte de un ecosistema y cada ecosistema forma parte de un planeta que necesitamos cuidar."
+   ]
+  }
+ ],
+ "lema": "Cuanto más conocemos, más vemos. Cuanto más vemos, más disfrutamos. Y cuanto más valoramos, más queremos proteger.",
+ "valores": ["Conocer", "Observar", "Disfrutar", "Respetar", "Conservar"],
+ "oquea": {
+  "titulo": "Tu guía también puede convertirse en tu registro",
+  "texto": "Además de ayudarte a identificar las especies, esta guía puede servirte para registrar todo aquello que encuentres durante tus inmersiones. Después podrás trasladar tus observaciones a tu logbook de buceo y conservar un recuerdo mucho más completo de cada aventura: dónde buceaste, qué viste y qué especies descubriste.",
+  "recomendacion": "Para ello os recomiendo Oquea, una aplicación de buceo que permite registrar nuestras inmersiones, compartir nuestras observaciones y aventuras con otros usuarios y localizar en un mapa del mundo los lugares donde hemos buceado.",
+  "app_url": "https://apps.apple.com/es/app/oquea/id6765639550?l=en-GB",
+  "web_url": "https://app.oquea.com",
+  "nota": "Disponible en iPhone. Android, próximamente. También como web en app.oquea.com."
+ },
+ "payoff": "No es que no haya vida.\nEs que todavía no sabemos dónde mirar.",
+ "despedida": [
+  "Espero que esta guía te ayude a disfrutar de cada inmersión de una manera diferente.",
+  "La próxima vez que estés bajo el agua, no mires solamente a los peces. Mira entre las rocas. Mira debajo de las piedras. Mira las paredes. Mira los pequeños detalles."
+ ],
+ "firma": "Divulgación de fauna marina",
+ "invitacion": "¿Nos vemos bajo el agua?",
+ "cta": "Escríbeme por Instagram",
  "contacto": [
   {
    "t": "Instagram",
@@ -12,6 +71,5 @@
    "url": "https://www.instagram.com/agustin_fragero/",
    "primario": true
   }
- ],
- "cta": "Escríbeme por Instagram"
+ ]
 }

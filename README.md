@@ -78,7 +78,7 @@ lápiz, guardar. Son JSON: respeta las comillas y las comas.
 | `viaje.json` | Cómo llegar y moverse: operadores, duraciones, alojamiento |
 | `quever.json` | Imprescindibles de la isla, con sus leyendas, y los recorridos por días |
 | `bici.json` | Rutas en bicicleta y los trucos de la isla |
-| `autor.json` | Biografía, canales de contacto y llamada a la acción |
+| `autor.json` | Biografía, la carta larga de la sección "Bucear con Agustín", la recomendación de Oquea, canales de contacto y llamada a la acción |
 | `isla.json` | Costa y límites del mapa. **No lo toques**: se genera con un script |
 
 ### Añadir un canal de contacto
@@ -90,6 +90,22 @@ En `autor.json`, dentro de `contacto`:
 ```
 
 El que lleve `"primario": true` es el que aparece como botón grande.
+
+### Editar la carta de "Bucear con Agustín"
+
+En `autor.json`, el campo `carta` es una lista de bloques con título y párrafos:
+
+```json
+{ "titulo": "Un título nuevo", "parrafos": ["Primer párrafo.", "Segundo párrafo."] }
+```
+
+Se pintan en ese orden, debajo de la tarjeta compacta. `lema` es la cita destacada
+a media carta, `payoff` es la frase grande en mayúsculas del final (admite un
+salto de línea con `\n`), y `despedida` son los párrafos de cierre antes de la firma.
+
+El bloque `oquea` controla el aviso de la app: `app_url` es el enlace de descarga
+que aparece como botón sólido y bien visible — no lo dejes vacío ni apuntando a
+una URL genérica de tienda, tiene que ser el enlace directo a la ficha de Oquea.
 
 ### Añadir un lugar imprescindible o un recorrido
 

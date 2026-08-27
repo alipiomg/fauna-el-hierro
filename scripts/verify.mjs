@@ -90,6 +90,11 @@ const facts = await page.evaluate(async () => {
     pescarestinga: [...document.querySelectorAll("#practico a")]
       .some((x) => /PESCARESTINGA/i.test(x.href)),
     author: !!document.querySelector("#authorCard .author-actions a"),
+    letterBlocks: document.querySelectorAll("#authorLetter .letter-block").length,
+    letterQuote: !!document.querySelector("#authorLetter .letter-quote"),
+    letterPayoff: !!document.querySelector("#authorLetter .letter-payoff"),
+    oqueaBtn: (document.querySelector("#authorLetter .btn--oquea") || {}).href || null,
+    heroQuote: !!document.querySelector(".hero-quote"),
     divePins: document.querySelectorAll("#diveMap .dive-pin").length,
     diveItems: document.querySelectorAll("#diveList .dive-item").length,
     coast: !!(isla || {}).costa,
@@ -189,6 +194,8 @@ console.log(`campos     food ${facts.filled.food} · repro ${facts.filled.repro}
 console.log(`secciones  ${facts.sections.join(" ")}`);
 console.log(`logotipo   cabecera ${facts.logoHeader ? "sí" : "NO"} · pie ${facts.logoFooter ? "sí" : "NO"}`);
 console.log(`viaje      ${facts.travelRows} conexiones · autor ${facts.author ? "sí" : "NO"}`);
+console.log(`carta      ${facts.letterBlocks} bloques · cita ${facts.letterQuote ? "sí" : "NO"} · frase final ${facts.letterPayoff ? "sí" : "NO"} · cita en el hero ${facts.heroQuote ? "sí" : "NO"}`);
+console.log(`oquea      ${facts.oqueaBtn || "SIN BOTÓN"}`);
 console.log(`qué ver    ${facts.plans} recorridos · ${facts.spots + facts.feature} imprescindibles · ${facts.legends} leyendas`);
 console.log(`bici       ${facts.rutas}/${facts.biciRutas} rutas · ${facts.trucos} trucos · ${facts.rutasSinMedir} con desnivel por medir · aviso ${facts.biciAltitud ? "sí" : "NO"}`);
 console.log(`validación ${facts.validadas}/${facts.species} validadas · filtro ${facts.chipsValid ? "sí" : "NO"} · distintivos en pantalla ${facts.badgeOk}`);
