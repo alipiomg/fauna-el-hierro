@@ -1,6 +1,6 @@
 # Fauna Marina de El Hierro
 
-Guía de identificación de las 120 especies del **Mar de las Calmas**, en la Reserva
+Guía de identificación de las 122 especies del **Mar de las Calmas**, en la Reserva
 Marina de Punta de La Restinga (El Hierro, Canarias).
 
 Contenido de buceo por **Agustín Fragero Blesa**, Dive Master en La Restinga.
@@ -72,7 +72,7 @@ lápiz, guardar. Son JSON: respeta las comillas y las comas.
 
 | Fichero | Qué contiene |
 |---|---|
-| `species.json` | Las 120 fichas: nombre, talla, profundidad, los cuatro bloques biológicos, avisos de riesgo |
+| `species.json` | Las 122 fichas: nombre, talla, profundidad, los cuatro bloques biológicos, avisos de riesgo |
 | `photos.json` | Autoría y licencia de cada fotografía |
 | `inmersiones.json` | Puntos de inmersión: profundidad, nivel, acceso, descripción |
 | `viaje.json` | Cómo llegar y moverse: operadores, duraciones, alojamiento |
@@ -133,7 +133,7 @@ el aviso de borrador; con él a `true` sale el distintivo verde y la especie ent
 en el filtro *Validadas por Agustín*.
 
 El aviso general de la sección de fuentes cuenta solas cuántas quedan, y
-desaparece cuando estén las 120. **Actívalo sólo cuando hayas leído la ficha
+desaparece cuando estén las 122. **Actívalo sólo cuando hayas leído la ficha
 entera**: es lo único que separa una redacción de trabajo de una edición firmada.
 
 ### Corregir el texto de una especie

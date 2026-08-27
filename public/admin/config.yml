@@ -31,7 +31,7 @@ collections:
     label: Fauna
     files:
       - name: especies
-        label: Las 120 especies
+        label: Las 122 especies
         file: public/data/species.json
         description: >-
           Cada ficha es un registro. Marca "validado" sólo cuando hayas
@@ -115,7 +115,13 @@ collections:
                 widget: select
                 required: false
                 default: CC BY-SA 4.0
-                options: ['CC0', 'CC BY 4.0', 'CC BY-SA 4.0', 'Todos los derechos reservados · Agustín Fragero']
+                options:
+                  - 'CC0'
+                  - 'CC BY 4.0'
+                  - 'CC BY-SA 4.0'
+                  - 'Todos los derechos reservados · Agustín Fragero'
+                  - '© Buceo La Restinga · cedida con permiso'
+                  - 'Cedida con permiso del autor'
                 hint: 'Obligatorio si has subido foto.'
               - name: fu
                 label: Enlace a la fuente

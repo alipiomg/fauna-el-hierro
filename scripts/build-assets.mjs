@@ -29,7 +29,9 @@ const SENSIBLES = new Set([
   107, 108, 109, 110, // tiburones
   113, 114,           // batoideos
   115, 116,           // tortugas
-  117, 118, 119, 120  // cetáceos
+  117, 118, 119, 120, // cetáceos
+  121,  // Antipathella wollastoni, CITES II y monitoreo de corales de REDPROMAR
+  122   // Odontaspis ferox, En Peligro y con serie de citas abierta en El Hierro
 ]);
 
 /* El fichero es {especies:[...]} para que Sveltia lo mapee a un formulario;

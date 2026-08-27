@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fauna Marina de El Hierro — gu&iacute;a de buceo del Mar de las Calmas</title>
-<meta name="description" content="Gu&iacute;a de identificaci&oacute;n de 120 especies del Mar de las Calmas, El Hierro. Taxonom&iacute;a verificada en WoRMS y fotograf&iacute;a con licencia. Por Agust&iacute;n Fragero Blesa, Dive Master en La Restinga.">
+<meta name="description" content="Gu&iacute;a de identificaci&oacute;n de 122 especies del Mar de las Calmas, El Hierro. Taxonom&iacute;a verificada en WoRMS y fotograf&iacute;a con licencia. Por Agust&iacute;n Fragero Blesa, Dive Master en La Restinga.">
 <meta name="author" content="Agust&iacute;n Fragero Blesa">
 <meta name="theme-color" content="#061418">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="Fauna Marina de El Hierro">
 <meta property="og:title" content="Fauna Marina de El Hierro — gu&iacute;a de buceo del Mar de las Calmas">
-<meta property="og:description" content="120 especies del Mar de las Calmas con taxonom&iacute;a verificada y fotograf&iacute;a con licencia. Por Agust&iacute;n Fragero Blesa, Dive Master en La Restinga.">
+<meta property="og:description" content="122 especies del Mar de las Calmas con taxonom&iacute;a verificada y fotograf&iacute;a con licencia. Por Agust&iacute;n Fragero Blesa, Dive Master en La Restinga.">
 <meta property="og:image" content="og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <style>
@@ -972,7 +972,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     <p class="eyebrow">Reserva Marina · Mar de las Calmas · El Hierro</p>
     <h1>Lo que vive <em>bajo</em> las calmas</h1>
     <p class="hero-lede">
-      Guía de identificación de 120 especies del Mar de las Calmas, ordenadas por grupo taxonómico y
+      Guía de identificación de 122 especies del Mar de las Calmas, ordenadas por grupo taxonómico y
       por la profundidad a la que realmente te las encuentras. Marca lo que ves, anota cuántos ejemplares
       y llévate tu bitácora contigo.
     </p>
@@ -1681,7 +1681,7 @@ function renderStats(){
 }
 
 /* El aviso general cuenta el estado real, no una frase fija. Cuando Agustin
-   valide las 120, el aviso se retira solo en vez de quedarse mintiendo. */
+   valide las 122, el aviso se retira solo en vez de quedarse mintiendo. */
 function renderDraftNotice(){
   const host = $("#draftNotice");
   if(!host) return;
@@ -1819,7 +1819,9 @@ function fillModal(sp){
     +   '<b class="num">' + (e.count || 0) + '</b></span>'
     + '</div>'
     + (ph ? '<p class="idCredit">Foto: ' + esc(ph.a) + ' \u00b7 ' + esc(ph.l)
-          + ' \u00b7 <a href="' + esc(ph.u) + '" target="_blank" rel="noopener">Commons \u2197</a></p>' : '')
+          + (ph.u ? ' \u00b7 <a href="' + esc(ph.u) + '" target="_blank" rel="noopener">'
+                  + (ph.propia ? "Fuente \u2197" : "Commons \u2197") + '</a>' : '')
+          + '</p>' : '')
     + '<div class="idChips">'
     +   '<div class="idChip"><small>Frecuencia</small><span class="dots">' + dots + '</span><b>' + esc(sp.f) + '</b></div>'
     +   '<div class="idChip"><small>Profundidad</small><b class="num">' + esc(sp.dp) + '</b></div>'
@@ -2835,7 +2837,11 @@ async function downloadOffline(){
     toast("Recarga la página y vuelve a intentarlo");
     return;
   }
-  const urls = Object.values(PHOTOS).map(photoSrc);
+  /* Las fotos propias viven en la ficha, no en photos.json. Si no se suman aqui,
+     la unica foto que de verdad importa es justo la que no baja para offline. */
+  const urls = [...new Set(
+    [...Object.values(PHOTOS), ...SPECIES.map(photoOf).filter(Boolean)].map(photoSrc)
+  )];
   ui.btn.disabled = true;
   ui.bar.hidden = false;
 
@@ -2868,7 +2874,10 @@ async function downloadOffline(){
 
 /* ═══ Arranque ════════════════════════════════════════════════ */
 
-const photoSrc = ph => "fotos/" + ph.f;
+/* El panel guarda la foto propia como "fotos/nombre.webp" (public_folder), y
+   photos.json la guarda como "nombre.webp". Se acepta cualquiera de las dos:
+   sin esto, la primera foto que Agustin suba desde el panel daria fotos/fotos/. */
+const photoSrc = ph => /^(?:fotos\/|https?:|data:)/.test(ph.f) ? ph.f : "fotos/" + ph.f;
 
 let VIAJE = {}, AUTOR = {}, ISLA = {}, DIVES = [], DIVES_META = {}, QUEVER = {}, BICI = {};
 let diveActive = -1;
