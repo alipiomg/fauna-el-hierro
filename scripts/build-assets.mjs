@@ -48,22 +48,37 @@ console.log(`marcadas para REDPROMAR: ${flagged}/${species.length}`);
 
 /* ── 2. Marca ─────────────────────────────────────────────────────────── */
 
-const logo = readFileSync(join(ROOT, "artifact", "logo-mark.svg"), "utf8");
-const inner = logo.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
-
-/* Favicon: la máscara sobre el azul de marca, cuadrado, sin márgenes muertos. */
-const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-<rect width="200" height="200" rx="42" fill="#061418"/>
-<g transform="translate(0,26)">${inner}</g>
-</svg>
-`;
-writeFileSync(join(PUB, "favicon.svg"), favicon, "utf8");
+/* La marca ya no es el SVG simplificado: es la ilustración de buceo de Agustín.
+   El favicon lleva incrustada una copia de 64 px para no pesar, y los iconos y
+   la tarjeta de Open Graph se rasterizan desde la grande. */
+const logoURI = "data:image/webp;base64,"
+  + readFileSync(join(PUB, "logo-buceo.webp")).toString("base64");
 
 const browser = await puppeteer.launch({
   executablePath: CHROME, headless: "new",
   args: ["--no-sandbox", "--disable-dev-shm-usage"]
 });
 const page = await browser.newPage();
+await page.goto("about:blank");
+
+const mini = await page.evaluate(async (src) => {
+  const im = new Image();
+  await new Promise((ok, ko) => { im.onload = ok; im.onerror = ko; im.src = src; });
+  const w = 64, h = Math.round(im.naturalHeight / im.naturalWidth * w);
+  const c = document.createElement("canvas");
+  c.width = w; c.height = h;
+  c.getContext("2d").drawImage(im, 0, 0, w, h);
+  return { url: c.toDataURL("image/webp", 0.9), ratio: h / w };
+}, logoURI);
+
+const fh = Math.round(180 * mini.ratio);
+const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<rect width="200" height="200" rx="42" fill="#061418"/>
+<image href="${mini.url}" x="10" y="${Math.round((200 - fh) / 2)}" width="180" height="${fh}"/>
+</svg>
+`;
+writeFileSync(join(PUB, "favicon.svg"), favicon, "utf8");
+console.log(`  favicon.svg · ${(favicon.length / 1024).toFixed(0)} KB`);
 
 async function shot(html, w, h, file, type = "png") {
   await page.setViewport({ width: w, height: h, deviceScaleFactor: 1 });
@@ -77,7 +92,7 @@ async function shot(html, w, h, file, type = "png") {
 
 const iconHtml = (size) => `<div style="width:${size}px;height:${size}px;background:#061418;
   display:flex;align-items:center;justify-content:center">
-  <svg viewBox="0 0 200 150" width="${Math.round(size * 0.76)}">${inner}</svg></div>`;
+  <img src="${logoURI}" style="width:${Math.round(size * 0.84)}px;display:block"></div>`;
 
 await shot(iconHtml(192), 192, 192, "icon-192.png");
 await shot(iconHtml(512), 512, 512, "icon-512.png");
@@ -92,7 +107,7 @@ const og = `<div style="width:1200px;height:630px;position:relative;overflow:hid
   <div style="position:absolute;inset:0;background:linear-gradient(105deg,#061418 22%,rgba(6,20,24,.55) 72%)"></div>
   <div style="position:absolute;left:74px;top:74px;bottom:74px;right:74px;display:flex;
     flex-direction:column;justify-content:space-between">
-    <svg viewBox="0 0 200 150" width="150">${inner}</svg>
+    <img src="${logoURI}" style="width:150px;display:block">
     <div>
       <p style="font:700 19px ui-sans-serif,Segoe UI,sans-serif;letter-spacing:.17em;
         color:#2fd4c0;margin-bottom:18px">RESERVA MARINA · MAR DE LAS CALMAS · EL HIERRO</p>

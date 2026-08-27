@@ -63,6 +63,14 @@ const facts = await page.evaluate(async () => {
   /* species.json es {especies:[...]} desde que hay CMS; se acepta el array suelto. */
   const s = Array.isArray(species) ? species : ((species || {}).especies || []);
   const n = (k) => s.filter((x) => x[k]).length;
+  /* Marca presente y utilizable, sea <img> o <svg><use>. Una imagen diferida
+     que aún no se ha pedido cuenta: tiene src y el navegador la pedirá. */
+  const pintado = (sel) => {
+    const m = document.querySelector(sel);
+    if (!m) return false;
+    if (m.tagName !== "IMG") return !!m.querySelector("use") || !!m.querySelector("image");
+    return m.naturalWidth > 0 || (m.getAttribute("src") || "").length > 0;
+  };
   return {
     title: document.title,
     species: s.length,
@@ -70,13 +78,11 @@ const facts = await page.evaluate(async () => {
     cards: document.querySelectorAll("#grid .card").length,
     sections: [...document.querySelectorAll("main > section[id]")].map((x) => x.id),
     /* La marca puede ser el símbolo SVG o la ilustración en webp, así que se
-       comprueba que esté Y que haya pintado, no de qué etiqueta es. */
-    logoHeader: (() => {
-      const m = document.querySelector(".topbar .brand-mark");
-      if (!m) return false;
-      return m.tagName === "IMG" ? m.naturalWidth > 0 : !!m.querySelector("use");
-    })(),
-    logoFooter: !!document.querySelector(".foot .foot-mark use"),
+       comprueba que esté Y que haya pintado, no de qué etiqueta es. Una imagen
+       diferida aún no pedida cuenta como presente: lo que se verifica es que
+       el sitio la declare, no que el robot haya llegado a hacer scroll. */
+    logoHeader: pintado(".topbar .brand-mark"),
+    logoFooter: pintado(".foot .foot-mark"),
     heroOquea: !!document.querySelector('.hero-oquea a[href="#oquea"]'),
     filled: { food: n("food"), repro: n("repro"), def: n("def"), eco: n("eco"), risk: n("risk"), rp: n("rp") },
     validadas: n("validado"),
