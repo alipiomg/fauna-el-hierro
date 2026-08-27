@@ -69,8 +69,15 @@ const facts = await page.evaluate(async () => {
     photos: Object.keys(photos || {}).length,
     cards: document.querySelectorAll("#grid .card").length,
     sections: [...document.querySelectorAll("main > section[id]")].map((x) => x.id),
-    logoHeader: !!document.querySelector(".topbar .brand-mark svg use"),
+    /* La marca puede ser el símbolo SVG o la ilustración en webp, así que se
+       comprueba que esté Y que haya pintado, no de qué etiqueta es. */
+    logoHeader: (() => {
+      const m = document.querySelector(".topbar .brand-mark");
+      if (!m) return false;
+      return m.tagName === "IMG" ? m.naturalWidth > 0 : !!m.querySelector("use");
+    })(),
     logoFooter: !!document.querySelector(".foot .foot-mark use"),
+    heroOquea: !!document.querySelector('.hero-oquea a[href="#oquea"]'),
     filled: { food: n("food"), repro: n("repro"), def: n("def"), eco: n("eco"), risk: n("risk"), rp: n("rp") },
     validadas: n("validado"),
     badgeOk: document.querySelectorAll("#grid .plate-ok").length,
@@ -195,7 +202,7 @@ console.log(`secciones  ${facts.sections.join(" ")}`);
 console.log(`logotipo   cabecera ${facts.logoHeader ? "sí" : "NO"} · pie ${facts.logoFooter ? "sí" : "NO"}`);
 console.log(`viaje      ${facts.travelRows} conexiones · autor ${facts.author ? "sí" : "NO"}`);
 console.log(`carta      ${facts.letterBlocks} bloques · cita ${facts.letterQuote ? "sí" : "NO"} · frase final ${facts.letterPayoff ? "sí" : "NO"} · cita en el hero ${facts.heroQuote ? "sí" : "NO"}`);
-console.log(`oquea      ${facts.oqueaBtn || "SIN BOTÓN"}`);
+console.log(`oquea      ${facts.oqueaBtn || "SIN BOTÓN"} · enganche en el hero ${facts.heroOquea ? "sí" : "NO"}`);
 console.log(`qué ver    ${facts.plans} recorridos · ${facts.spots + facts.feature} imprescindibles · ${facts.legends} leyendas`);
 console.log(`bici       ${facts.rutas}/${facts.biciRutas} rutas · ${facts.trucos} trucos · ${facts.rutasSinMedir} con desnivel por medir · aviso ${facts.biciAltitud ? "sí" : "NO"}`);
 console.log(`validación ${facts.validadas}/${facts.species} validadas · filtro ${facts.chipsValid ? "sí" : "NO"} · distintivos en pantalla ${facts.badgeOk}`);
