@@ -105,13 +105,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit;min-width:0}
 .brand:hover{text-decoration:none}
-.brand-mark{
-  width:42px;height:42px;flex:none;border-radius:12px;
-  display:grid;place-items:center;padding:3px;
-  border:1px solid var(--line-hi);
-  background:linear-gradient(160deg,#123c47,#0a212b);
-}
-.brand-mark svg{width:100%;height:100%;display:block}
+/* La ilustración completa, sin caja: a este tamaño cada píxel de recuadro
+   se lo quita al dibujo, y ya va justo. */
+.brand-mark{width:52px;height:auto;flex:none;display:block}
 .foot-mark{width:74px;height:56px;display:block;margin-bottom:6px}
 .brand-name{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.06em;line-height:1.25}
 .brand-role{font-size:11px;color:var(--calm);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -701,7 +697,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
   padding:26px;border:1px solid var(--line-hi);border-radius:var(--r-xl);
   background:linear-gradient(150deg,#123c47,#0a212b 62%);
 }
-.author-mark{width:132px;height:99px;flex:none}
+.author-mark{width:232px;height:auto;flex:none;align-self:start}
 .author h2{font-size:26px;margin-bottom:4px}
 .author .role{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px}
 .author p{color:var(--calm);max-width:60ch;line-height:1.6}
@@ -728,6 +724,17 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
   color:var(--foam);background:rgba(47,212,192,.055);border-radius:0 var(--r-md) var(--r-md) 0;
 }
 
+/* Enganche en el hero hacia el registro de inmersiones. Va después de los
+   botones para no competir con la acción principal, que sigue siendo la fauna. */
+.hero-oquea{
+  display:flex;gap:11px;align-items:flex-start;margin-top:18px;max-width:62ch;
+  padding:13px 15px;border:1px solid var(--line-hi);border-radius:var(--r-lg);
+  background:rgba(18,60,71,.42);
+  font-size:14px;line-height:1.55;color:var(--calm);
+}
+.hero-oquea-mark{font-size:21px;line-height:1.2;flex:none}
+.hero-oquea b{color:var(--foam);font-weight:700}
+.hero-oquea a{display:inline-block;margin-top:4px;color:var(--turquoise);font-weight:700}
 .oquea-box{
   margin:30px 0;padding:24px 26px;border:1px solid var(--line-hi);border-radius:var(--r-lg);
   background:linear-gradient(150deg,#123c47,#0a212b 68%);
@@ -790,7 +797,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
   .divemap{grid-template-columns:1fr}
   .dive-list{max-height:none}
   .author{grid-template-columns:1fr;text-align:left}
-  .author-mark{width:96px;height:72px}
+  .author-mark{width:180px;height:auto}
 }
 @media (max-width:720px){
   .travel-row{grid-template-columns:28px 1fr;gap:10px}
@@ -936,7 +943,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
 
 <header class="topbar">
   <a class="brand" href="#inicio">
-    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 200 150"><use href="#mark"/></svg></span>
+    <img class="brand-mark" src="logo-buceo-sm.webp" width="96" height="86" alt="" aria-hidden="true" fetchpriority="high">
     <span>
       <span class="brand-name">FAUNA MARINA DE EL HIERRO</span>
       <span class="brand-role">Agustín Fragero Blesa · Dive Master</span>
@@ -951,6 +958,7 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
     <button class="drawer-close" data-close-drawer>← Cerrar</button>
     <a href="#fauna" data-close-drawer>Consulta de fauna</a>
     <a href="#bitacora" data-close-drawer>Mi bitácora</a>
+    <a href="#oquea" data-close-drawer>Registro de inmersiones</a>
     <a href="#viaje" data-close-drawer>Cómo llegar y moverse</a>
     <a href="#inmersiones" data-close-drawer>Puntos de inmersión</a>
     <a href="#quever" data-close-drawer>Qué ver en la isla</a>
@@ -985,6 +993,13 @@ textarea.field{width:100%;min-height:130px;font-family:ui-monospace,"Cascadia Co
       <a class="btn" href="#quever">Qué ver en la isla</a>
       <a class="btn btn--ghost" href="#autor">Bucear con Agustín</a>
     </div>
+    <p class="hero-oquea">
+      <span class="hero-oquea-mark" aria-hidden="true">🤿</span>
+      <span><b>Tu guía también puede convertirse en tu registro.</b>
+        Marca aquí lo que ves en cada inmersión y trasládalo después a tu logbook:
+        dónde buceaste, qué viste y qué especies descubriste.
+        <a href="#oquea">Registrar mis inmersiones con Oquea ↓</a></span>
+    </p>
     <p class="tiny hero-credit">Mar de las Calmas · foto de Josepgras · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Mardelascalmas(1).jpg" target="_blank" rel="noopener">Wikimedia Commons ↗</a></p>
   </div>
 </section>
@@ -2508,7 +2523,12 @@ function renderAutor(){
   if(!host || !AUTOR.nombre) return;
   const primario = (AUTOR.contacto||[]).find(c=>c.primario) || (AUTOR.contacto||[])[0];
   host.innerHTML =
-      '<svg class="author-mark" viewBox="0 0 200 150" aria-hidden="true"><use href="#mark"/></svg>'
+      /* Aqui va la ilustracion completa, no la marca reducida: es el unico
+         sitio de la guia con espacio para que se lea, y es la firma de quien
+         la escribe. Diferida, para no tocar el peso de la primera carga. */
+      '<img class="author-mark" src="logo-buceo.webp" width="512" height="458"'
+    + ' loading="lazy" decoding="async"'
+    + ' alt="Logotipo de Agustín Fragero: una máscara de buceo con una ruta en bici en un cristal y fauna marina en el otro">'
     + '<div>'
     +   '<h2>'+esc(AUTOR.nombre)+'</h2>'
     +   '<p class="role">'+esc(AUTOR.rol)+'</p>'
@@ -2540,7 +2560,7 @@ function renderAutor(){
 
     + (AUTOR.lema ? '<blockquote class="letter-quote">'+esc(AUTOR.lema)+'</blockquote>' : '')
 
-    + (oq && oq.app_url ? '<aside class="oquea-box">'
+    + (oq && oq.app_url ? '<aside class="oquea-box" id="oquea">'
       +   '<div class="oquea-box-head">'
       +     '<span class="oquea-mark" aria-hidden="true">🤿</span>'
       +     '<div><h3>'+esc(oq.titulo||"Registra tus inmersiones")+'</h3></div>'
